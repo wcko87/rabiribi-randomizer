@@ -797,7 +797,7 @@
 // Wall jump hack temporarily applied
 {
 "location": "SLIDING_POWDER",
-"entry_prereq": "NONE & (NONE | WALL_JUMP)",
+"entry_prereq": "NONE",
 "exit_prereq": "SLIDING_POWDER | (AIR_JUMP | WALL_JUMP_LV2)",
 }
 
@@ -899,7 +899,7 @@
 
 {
 "location": "FIRE_ORB",
-"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & (BOOST | CHARGE_RING))) & (CARROT_BOMB | CARROT_SHOOTER | WALL_JUMP)",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & (BOOST | CHARGE_RING))",
 "exit_prereq": "CARROT_BOMB | CARROT_SHOOTER | (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP_LV2)",
 }
 

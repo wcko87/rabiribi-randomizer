@@ -321,11 +321,9 @@ class LocationMap(object):
 
     def validate_required_reachables(self, must_be_reachable):
         unreachable = self.compute_unreachable()
-        #print(must_be_reachable & unreachable)
-        #quit()
         return len(must_be_reachable & unreachable) == 0
 
-    def compute_unreachable(self):
+    def compute_unreachable(self, analyzer=None):
         unreachable = set(self.locations) # copy
         to_remove = set()
         variables = dict(self.variables) # copy
@@ -341,10 +339,13 @@ class LocationMap(object):
                     has_change = True
             for item_name in to_remove:
                 variables[item_name] = True
-            #print('---- NEXT PHASE ----')
-            #print(to_remove)
+            if analyzer != None:
+                analyzer.analyze(to_remove)
             unreachable -= to_remove
             to_remove.clear()
+
+        if analyzer != None:
+            analyzer.finish(unreachable)
         return unreachable
 
     # returns (new_items, assigned_locations)
@@ -361,9 +362,7 @@ class LocationMap(object):
             assigned_locations[item_name] = location
         return new_items, assigned_locations
 
-# returns (new_items, assigned_locations)
-# new_items: items with newly-assigned locations
-# assigned_locations: item_name -> location map for analysis purposes.
+# returns a LocationMap object
 def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints):
     items = list(items) # all actual items
     locations = list(locations) # actual items + custom items
@@ -382,7 +381,7 @@ def randomize(items, locations, variables, to_shuffle, must_be_reachable, constr
         if location_map.validate_required_reachables(must_be_reachable): break
 
     print('Computed after %d attempts' % attempts)
-    return location_map.compute_item_locations()
+    return location_map
 
 #  _________________________________________
 # | :: RANDOMIZER / ANALYSIS LOGIC - END :: |
@@ -417,9 +416,10 @@ def run_item_randomizer():
     to_shuffle, must_be_reachable = read_config(variables, item_names)
     constraints = read_constraints(locations, variables, default_expressions, custom_items)
 
-    return randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints)
+    location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints)
+    return location_map.compute_item_locations()
 
-def generate_randomized_maps():
+def generate_randomized_maps(write_to_map_files=False):
     items, assigned_locations = run_item_randomizer()
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
@@ -428,6 +428,7 @@ def generate_randomized_maps():
     for warning in warnings:
         print('WARNING: %s' % warning)
 
+    if not write_to_map_files: return
     mod = itemreader.ItemModifier(areaids)
     mod.clear_items()
     for item in items:
@@ -437,32 +438,4 @@ def generate_randomized_maps():
 
 if __name__ == '__main__':
     #run_item_randomizer()
-    generate_randomized_maps()
-    quit()
-
-    locations = ['FOO', 'BAR', 'BAND', 'SLIDING_POWDER']
-    variables = define_variables(locations)
-    default_expressions = define_default_expressions(variables)
-    constraints = read_constraints(locations, variables, default_expressions)
-    for key, value in constraints.items():
-        print('Key: %s' % key)
-        print('Value: %s' % value)
-        print('Enter Result: %s' % value.can_enter(variables))
-        print('Exit Result: %s' % value.can_exit(variables, key))
-    quit()
-
-    line = 'X  &((ORANGE & A)|BOY &   !THREE)|!this way&(five   | !(!one & two))'
-    expr = parse_expression(line, default_expressions)
-    print(expr)
-    variables = {
-        'X': False,
-        'ORANGE': True,
-        'A': True,
-        'BOY': True,
-        'THREE': True,
-        'this way': False,
-        'five': False,
-        'one': False,
-        'two': False,
-    }
-    print(expr.evaluate(variables))
+    generate_randomized_maps(write_to_map_files=False)

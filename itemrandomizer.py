@@ -179,11 +179,18 @@ def print_error(error, jsondata):
     VIEW_RANGE = 100
     start = max(pos-VIEW_RANGE, 0)
     end = min(pos+VIEW_RANGE, len(jsondata))
-    print('Parsing error')
+    print('File parsing error')
     print(error)
     print('Error location:')
     print(jsondata[start:pos])
     print(jsondata[pos:end])
+
+def parse_json(jsondata):
+    try:
+        return json.loads(jsondata)
+    except ValueError as e:
+        print_error(e, jsondata)
+        raise e
 
 # throws errors for invalid formats.
 # returns a dict mapping each location to its prereqs.
@@ -193,11 +200,7 @@ def read_constraints(locations, variables, default_expressions, custom_items):
     jsondata = re.sub(',\s*}', '}', jsondata)
     jsondata = '},{'.join(re.split('}\s*{', jsondata))
     jsondata = '[' + jsondata + ']'
-    try:
-        cdicts = json.loads(jsondata)
-    except ValueError as e:
-        print_error(e, jsondata)
-        sys.exit(1)
+    cdicts = parse_json(jsondata)
 
     DEFAULT_CONSTRAINT = Constraint(default_expressions['IMPOSSIBLE'], default_expressions['IMPOSSIBLE'])
     locations_set = set(locations)
@@ -218,7 +221,10 @@ def read_constraints(locations, variables, default_expressions, custom_items):
 
 def read_config(variables, item_names):
     lines = read_file_and_strip_comments('config.txt')
-    config_dict = json.loads('{' + ' '.join(lines) + '}')
+    jsondata = ' '.join(lines)
+    jsondata = re.sub(',\s*]', ']', jsondata)
+    jsondata = re.sub(',\s*}', '}', jsondata)
+    config_dict = parse_json('{' + jsondata + '}')
 
     to_shuffle = config_dict['to_shuffle']
     must_be_reachable = set(config_dict['must_be_reachable'])
@@ -306,8 +312,8 @@ class LocationMap(object):
 
     def validate_required_reachables(self, must_be_reachable):
         unreachable = self.compute_unreachable()
-        print(unreachable)
-        quit()
+        #print(must_be_reachable & unreachable)
+        #quit()
         return len(must_be_reachable & unreachable) == 0
 
     def compute_unreachable(self):
@@ -319,14 +325,15 @@ class LocationMap(object):
         while has_change:
             has_change = False
             for item_name in unreachable:
-                if self.constraints[item_name].can_enter_and_exit(variables, item_name):
+                location = self.assigned_locations[item_name]
+                if self.constraints[location].can_enter_and_exit(variables, item_name):
                     # item can be reached.
                     to_remove.add(item_name)
                     has_change = True
             for item_name in to_remove:
                 variables[item_name] = True
-            print('---- NEXT PHASE ----')
-            print(to_remove)
+            #print('---- NEXT PHASE ----')
+            #print(to_remove)
             unreachable -= to_remove
             to_remove.clear()
         return unreachable

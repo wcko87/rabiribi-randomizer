@@ -410,13 +410,28 @@ def print_allocation(assigned_locations):
             print(" %s -> %s's location" % (item_name, location))
 
 def print_analysis(analyzer):
+    # Print steps needed to get everything
     print('Steps needed: %d' % analyzer.step_count)
+
+    # Print all item levels
     for index, items in enumerate(analyzer.levels):
         print('Level %d' % index)
         for item in items:
             print('  %s' % item)
+
+    # Print all unreachable items
     print('Unreachable items:')
-    print('\n'.join(analyzer.unreachable))
+    print('\n'.join('  %s' % s for s in analyzer.unreachable))
+
+    # Print select item levels
+    find_level = lambda item_name : next(index for index, items in enumerate(analyzer.levels) if item_name in items)
+    items_to_check = [
+        'PIKO_HAMMER',
+        'SLIDING_POWDER',
+        'AIR_JUMP'
+    ]
+    for item_name in items_to_check:
+        print('%s: level %d' % (item_name, find_level(item_name)))
 
 def get_all_warnings(assigned_locations):
     warnings = []
@@ -463,4 +478,6 @@ def generate_randomized_maps(write_to_map_files=False):
 
 if __name__ == '__main__':
     #run_item_randomizer()
+    if len(sys.argv) > 1:
+        random.seed(int(sys.argv[1]))
     generate_randomized_maps(write_to_map_files=False)

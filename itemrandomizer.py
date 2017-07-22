@@ -360,7 +360,22 @@ class LocationMap(object):
             new_item.set_location(self.items[location])
             new_items.append(new_item)
             assigned_locations[item_name] = location
-        return new_items, assigned_locations
+
+        analyzer = Analyzer()
+        self.compute_unreachable(analyzer)
+        return new_items, assigned_locations, analyzer
+
+class Analyzer(object):
+    def __init__(self):
+        self.step_count = 0
+        self.levels = []
+        self.unreachable = None
+    def analyze(self, to_remove):
+        if len(to_remove) == 0: return
+        self.step_count += 1
+        self.levels.append(list(sorted(to_remove)))
+    def finish(self, unreachable):
+        self.unreachable = list(sorted(unreachable))
 
 # returns a LocationMap object
 def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints):
@@ -394,6 +409,15 @@ def print_allocation(assigned_locations):
         if item_name != location:
             print(" %s -> %s's location" % (item_name, location))
 
+def print_analysis(analyzer):
+    print('Steps needed: %d' % analyzer.step_count)
+    for index, items in enumerate(analyzer.levels):
+        print('Level %d' % index)
+        for item in items:
+            print('  %s' % item)
+    print('Unreachable items:')
+    print('\n'.join(analyzer.unreachable))
+
 def get_all_warnings(assigned_locations):
     warnings = []
     if assigned_locations['CARROT_BOMB'] != 'CARROT_BOMB':
@@ -420,10 +444,11 @@ def run_item_randomizer():
     return location_map.compute_item_locations()
 
 def generate_randomized_maps(write_to_map_files=False):
-    items, assigned_locations = run_item_randomizer()
+    items, assigned_locations, analyzer = run_item_randomizer()
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
-    print_allocation(assigned_locations)
+    #print_allocation(assigned_locations)
+    print_analysis(analyzer)
     warnings = get_all_warnings(assigned_locations)
     for warning in warnings:
         print('WARNING: %s' % warning)

@@ -1,4 +1,12 @@
+// Configure generation flags here
+"settings": {
+    "ZIP_REQUIRED": false,
+    "POST_GAME_ALLOWED": false,
+    "STUPID_HARD_TRICKS": false,
+    "POST_IRISU_ALLOWED": false,
+},
 
+// Only these items will be shuffled
 "to_shuffle": [
     "AIR_DASH",
     "AIR_JUMP",
@@ -60,6 +68,7 @@
     "WEAKEN",
 ],
 
+// All these items must be reachable
 "must_be_reachable": [
     "AIR_DASH",
     "AIR_JUMP",
@@ -88,12 +97,4 @@
     "SUPER_CARROT",
     "WALL_JUMP",
     "WATER_ORB",
-],
-
-// Define variables here
-"settings": {
-    "ZIP_REQUIRED": false,
-    "POST_GAME_ALLOWED": false,
-    "STUPID_HARD_TRICKS": false,
-    "POST_IRISU_ALLOWED": false,
-}
+]

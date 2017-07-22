@@ -85,7 +85,7 @@
 
 {
 "location": "WALL_JUMP",
-"entry_prereq": "SLIDING_POWDER | (AIR_JUMP & AIR_DASH) | (ZIP & HAMMER_ROLL)",
+"entry_prereq": "SLIDING_POWDER | (AIR_JUMP & AIR_DASH) | (ZIP & HAMMER_ROLL_LV3)",
 "exit_prereq": "NONE",
 }
 
@@ -121,8 +121,8 @@
 
 {
 "location": "LIGHT_ORB",
-"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | (ZIP & HAMMER_ROLL))",
-"exit_prereq": "SLIDING_POWDER | (ZIP & HAMMER_ROLL)",
+"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3))",
+"exit_prereq": "SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3)",
 }
 
 {
@@ -289,7 +289,7 @@
 
 {
 "location": "CHAOS_ROD",
-"entry_prereq": "SLIDING_POWDER | (ZIP & HAMMER_ROLL)",
+"entry_prereq": "SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3)",
 "exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | ZIP)",
 }
 
@@ -308,7 +308,7 @@
 {
 "location": "HP_UP_PYRAMID_ENTRANCE",
 "entry_prereq": "CARROT_BOMB | (SLIDING_POWDER & ZIP)",
-"exit_prereq": "CARROT_BOMB | (HAMMER_ROLL & ZIP)",
+"exit_prereq": "CARROT_BOMB | (HAMMER_ROLL_LV3 & ZIP)",
 }
 
 {
@@ -409,14 +409,14 @@
 
 {
 "location": "REGEN_UP_PARK",
-"entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL & ZIP)",
+"entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "HEALTH_SURGE",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID)) & (SLIDING_POWDER | (HAMMER_ROLL & ZIP))",
-"exit_prereq": "SLIDING_POWDER | (HAMMER_ROLL & ZIP)",
+"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID)) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
+"exit_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
 }
 
 {
@@ -439,8 +439,8 @@
 
 {
 "location": "HEX_CANCEL",
-"entry_prereq": "(SLIDING_POWDER | (HAMMER_ROLL & ZIP)) & (CARROT_BOMB | ZIP)",
-"exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL & ZIP))",
+"entry_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) & (CARROT_BOMB | ZIP)",
+"exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
 {
@@ -451,13 +451,13 @@
 
 {
 "location": "PACK_UP_SKY_BRIDGE",
-"entry_prereq": "(SLIDING_POWDER | (HAMMER_ROLL & ZIP)) & (CARROT_BOMB | ZIP)",
-"exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL & ZIP))",
+"entry_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) & (CARROT_BOMB | ZIP)",
+"exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
 {
 "location": "REGEN_UP_SKY_BRIDGE",
-"entry_prereq": "SLIDING_POWDER | AIR_JUMP | AIR_DASH | (HAMMER_ROLL & ZIP)",
+"entry_prereq": "SLIDING_POWDER | AIR_JUMP | AIR_DASH | (HAMMER_ROLL_LV3 & ZIP)",
 "exit_prereq": "NONE",
 }
 
@@ -487,8 +487,8 @@
 
 {
 "location": "HP_UP_SOUTH_RAVINE",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | (HAMMER_ROLL & ZIP))",
-"exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL & ZIP))",
+"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
+"exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
 {
@@ -553,7 +553,7 @@
 
 {
 "location": "ATK_UP_SNOWLAND",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | HAMMER_ROLL | ZIP)",
+"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 "exit_prereq": "NONE",
 }
 
@@ -619,7 +619,7 @@
 
 {
 "location": "MP_UP_ICY_SUMMIT",
-"entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL & ZIP) | RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | BUNNY_WHIRL",
+"entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP) | RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | BUNNY_WHIRL",
 "exit_prereq": "NONE",
 }
 
@@ -655,8 +655,8 @@
 
 {
 "location": "MP_UP_AQUARIUM",
-"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL & WATER_ORB & ZIP)",
-"exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL & WATER_ORB & ZIP) | (SLIDING_POWDER & ZIP)",
+"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP)",
+"exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP) | (SLIDING_POWDER & ZIP)",
 }
 
 {
@@ -679,8 +679,8 @@
 
 {
 "location": "PACK_UP_AQUARIUM",
-"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL & WATER_ORB & ZIP)",
-"exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL & WATER_ORB & ZIP) | (SLIDING_POWDER & ZIP)",
+"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP)",
+"exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP) | (SLIDING_POWDER & ZIP)",
 }
 
 {
@@ -751,7 +751,7 @@
 
 {
 "location": "FRAME_CANCEL",
-"entry_prereq": "CARROT_BOMB | SLIDING_POWDER | (HAMMER_ROLL & ZIP)",
+"entry_prereq": "CARROT_BOMB | SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
 "exit_prereq": "SLIDING_POWDER",
 }
 

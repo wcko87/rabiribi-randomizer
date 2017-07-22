@@ -181,7 +181,7 @@
 
 {
 "location": "SURVIVAL",
-"entry_prereq": "BUNNY_WHIRL | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH)",
+"entry_prereq": "BUNNY_WHIRL | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | (BUNNY_STRIKE & STUPID)",
 "exit_prereq": "NONE",
 }
 
@@ -433,7 +433,7 @@
 
 {
 "location": "MP_UP_PARK",
-"entry_prereq": "RABI_SLIPPERS | SLIDING_POWDER | AIR_DASH | AIR_JUMP",
+"entry_prereq": "RABI_SLIPPERS | SLIDING_POWDER | AIR_DASH | AIR_JUMP | SPEED_BOOST",
 "exit_prereq": "NONE",
 }
 
@@ -553,7 +553,7 @@
 
 {
 "location": "ATK_UP_SNOWLAND",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
+"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | HAMMER_ROLL & ZIP)",
 "exit_prereq": "NONE",
 }
 
@@ -595,7 +595,7 @@
 
 {
 "location": "ATK_UP_NORTH_AQUARIUM",
-"entry_prereq": "WATER_ORB & AIR_JUMP & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
+"entry_prereq": "WATER_ORB & AIR_JUMP & (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (WALL_JUMP_LV2 | (RABI_SLIPPERS & WALL_JUMP))",
 "exit_prereq": "NONE",
 }
 
@@ -798,7 +798,7 @@
 {
 "location": "SLIDING_POWDER",
 "entry_prereq": "NONE",
-"exit_prereq": "SLIDING_POWDER | (AIR_JUMP | WALL_JUMP_LV2)",
+"exit_prereq": "SLIDING_POWDER | (AIR_JUMP & WALL_JUMP_LV2)",
 }
 
 {
@@ -900,7 +900,8 @@
 {
 "location": "FIRE_ORB",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & (BOOST | CHARGE_RING))",
-"exit_prereq": "CARROT_BOMB | CARROT_SHOOTER | (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP_LV2)",
+//"exit_prereq": "CARROT_BOMB | CARROT_SHOOTER | (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP_LV2)",
+"exit_prereq": "FIRE_ORB | (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP_LV2)",
 }
 
 {

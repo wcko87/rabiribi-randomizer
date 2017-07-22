@@ -37,6 +37,14 @@ def define_custom_items():
             "entry_prereq": "SLIDING_POWDER",
             "exit_prereq": "NONE",
         },
+        "AIR_DASH_LV3": {
+            "entry_prereq": "AIR_DASH",
+            "exit_prereq": "NONE",
+        },
+        "SPEED_BOOST": {
+            "entry_prereq": "NONE",
+            "exit_prereq": "NONE",
+        },
     }
 
 def define_default_expressions(variables):
@@ -51,7 +59,7 @@ def define_default_expressions(variables):
         "BUNNY_STRIKE": parse_expression("BUNNY_STRIKE & PIKO_HAMMER", variables),
         "BUNNY_WHIRL": parse_expression("BUNNY_WHIRL & PIKO_HAMMER", variables),
         "AIR_DASH": parse_expression("AIR_DASH & PIKO_HAMMER", variables),
-        "HAMMER_ROLL_LV3": parse_expression("HAMMER_ROLL_LV3 & PIKO_HAMMER", variables),
+        "HAMMER_ROLL_LV3": parse_expression("HAMMER_ROLL_LV3 & BUNNY_WHIRL & PIKO_HAMMER", variables),
         "BOOST": parse_expression("TRUE", variables),
         #"RIBBON": parse_expression("TRUE", variables),
         #"WARP": parse_expression("TRUE", variables),

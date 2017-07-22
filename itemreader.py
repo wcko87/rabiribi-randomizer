@@ -85,13 +85,13 @@ class ItemModifier(object):
         self._set_all_dirty_flags(False)
 
     def _set_all_dirty_flags(self, value):
-        self.modified = dict((areaid, value) for areaid in areaids)
+        self.modified = dict((areaid, value) for areaid in self.areaids)
 
     def _dirty(self, areaid):
         self.modified[areaid] = True
 
     def clear_items(self):
-        self.items = dict((areaid, {}) for areaid in areaids)
+        self.items = dict((areaid, {}) for areaid in self.areaids)
         self._set_all_dirty_flags(True)
 
     def add_item(self, item):

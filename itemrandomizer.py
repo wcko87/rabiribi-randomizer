@@ -4,6 +4,11 @@ import json
 import itemreader
 import sys
 
+#   _____________________________
+#  / :: ~~~~~~~~~~~~~~~~~~~~~ :: \
+# | :: KEY DEFINITIONS - START :: |
+# '''''''''''''''''''''''''''''''''
+
 def define_variables(item_names):
     variables = {
         "TRUE": True,
@@ -56,6 +61,16 @@ def define_default_expressions(variables):
         "NONE": parse_expression("TRUE", variables),
         "IMPOSSIBLE": parse_expression("FALSE", variables),
     }
+
+#  _____________________________
+# | :: KEY DEFINITIONS - END :: |
+#  \ :: ~~~~~~~~~~~~~~~~~~~ :: /
+#   '''''''''''''''''''''''''''
+
+#   _________________________________
+#  / :: ~~~~~~~~~~~~~~~~~~~~~~~~~ :: \
+# | :: CONFIG FILE PARSING - START :: |
+# '''''''''''''''''''''''''''''''''''''
 
 def fail(message):
     print(message)
@@ -255,21 +270,15 @@ def read_items():
     items = [itemreader.parse_item_from_string(line)
              for line in lines if line.lstrip().startswith('(')]
     return items
+#  _________________________________
+# | :: CONFIG FILE PARSING - END :: |
+#  \ :: ~~~~~~~~~~~~~~~~~~~~~~~ :: /
+#   '''''''''''''''''''''''''''''''
 
-
-def load_everything():
-    items = read_items()
-    custom_items = define_custom_items()
-    locations = [item.name for item in items] + list(custom_items.keys())
-    item_names = locations
-    variables = define_variables(item_names)
-    default_expressions = define_default_expressions(variables)
-
-    to_shuffle, must_be_reachable = read_config(variables, item_names)
-    constraints = read_constraints(locations, variables, default_expressions, custom_items)
-
-    randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints)
-
+#   _________________________________________
+#  / :: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ :: \
+# | :: RANDOMIZER / ANALYSIS LOGIC - START :: |
+# '''''''''''''''''''''''''''''''''''''''''''''
 
 class Constraint(object):
     def __init__(self, entry_expression, exit_expression):
@@ -338,16 +347,23 @@ class LocationMap(object):
             to_remove.clear()
         return unreachable
 
+    # returns (new_items, assigned_locations)
+    # new_items: items with newly-assigned locations
+    # assigned_locations: item_name -> location map for analysis purposes.
     def compute_item_locations(self):
         new_items = []
+        assigned_locations = {}
         for item_name, location in self.assigned_locations.items():
             if item_name not in self.items: continue # custom items are skipped
             new_item = self.items[item_name].copy()
             new_item.set_location(self.items[location])
             new_items.append(new_item)
-        return new_items
+            assigned_locations[item_name] = location
+        return new_items, assigned_locations
 
-
+# returns (new_items, assigned_locations)
+# new_items: items with newly-assigned locations
+# assigned_locations: item_name -> location map for analysis purposes.
 def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints):
     items = list(items) # all actual items
     locations = list(locations) # actual items + custom items
@@ -368,9 +384,60 @@ def randomize(items, locations, variables, to_shuffle, must_be_reachable, constr
     print('Computed after %d attempts' % attempts)
     return location_map.compute_item_locations()
 
+#  _________________________________________
+# | :: RANDOMIZER / ANALYSIS LOGIC - END :: |
+#  \ :: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ :: /
+#   '''''''''''''''''''''''''''''''''''''''
+
+def print_allocation(assigned_locations):
+    print('Assignment:')
+    for item_name, location in assigned_locations.items():
+        if item_name != location:
+            print(" %s -> %s's location" % (item_name, location))
+
+def get_all_warnings(assigned_locations):
+    warnings = []
+    if assigned_locations['CARROT_BOMB'] != 'CARROT_BOMB':
+        warnings.append('Carrot bomb not in carrot bomb original location!')
+    if assigned_locations['SLIDING_POWDER'] != 'SLIDING_POWDER':
+        warnings.append('Sliding powder not in sliding powder original location!')
+    return warnings
+
+# returns (new_items, assigned_locations)
+# new_items: items with newly-assigned locations
+# assigned_locations: item_name -> location map for analysis purposes.
+def run_item_randomizer():
+    items = read_items()
+    custom_items = define_custom_items()
+    locations = [item.name for item in items] + list(custom_items.keys())
+    item_names = locations
+    variables = define_variables(item_names)
+    default_expressions = define_default_expressions(variables)
+
+    to_shuffle, must_be_reachable = read_config(variables, item_names)
+    constraints = read_constraints(locations, variables, default_expressions, custom_items)
+
+    return randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints)
+
+def generate_randomized_maps():
+    items, assigned_locations = run_item_randomizer()
+    areaids = list(range(10))
+    assert len(set(item.areaid for item in items) - set(areaids)) == 0
+    print_allocation(assigned_locations)
+    warnings = get_all_warnings(assigned_locations)
+    for warning in warnings:
+        print('WARNING: %s' % warning)
+
+    mod = itemreader.ItemModifier(areaids)
+    mod.clear_items()
+    for item in items:
+        mod.add_item(item)
+    mod.save()
+    print('Maps saved successfully.')
 
 if __name__ == '__main__':
-    load_everything()
+    #run_item_randomizer()
+    generate_randomized_maps()
     quit()
 
     locations = ['FOO', 'BAR', 'BAND', 'SLIDING_POWDER']

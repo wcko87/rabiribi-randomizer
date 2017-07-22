@@ -1,0 +1,6 @@
+*.map
+__pycache__/
+map_images/
+ohnotes/
+sample_configs/
+backup_maps/

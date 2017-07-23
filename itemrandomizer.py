@@ -527,6 +527,10 @@ def generate_analysis_file(assigned_locations, analyzer, output_dir):
     for warning in warnings:
         printline('WARNING: %s' % warning)
 
+    f = open('%s/%s' % (output_dir, 'analysis.txt'), 'w+')
+    f.write('\n'.join(file_lines))
+    f.close()
+
 
 def get_all_warnings(assigned_locations):
     warnings = []

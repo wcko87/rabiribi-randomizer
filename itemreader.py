@@ -49,20 +49,20 @@ def load_items(areaid):
     f.close()
     return list(items)
 
-def write_items(areaid, items):
+def write_items(areaid, items, output_dir='.'):
     tiledata = [b'\x00\x00' for i in range(MAP_SIZE)]
     for item in items:
         if item.areaid != areaid: continue
         index = to_index(item.position)
         tiledata[index] = struct.pack('h', item.itemid)
 
-    f = open(map_filename(areaid), 'r+b')
+    f = open(map_filename(areaid, output_dir), 'r+b')
     f.seek(MAP_ITEMS_OFFSET)
     f.write(b''.join(tiledata))
     f.close()
 
-def map_filename(areaid):
-    return 'area%d.map' % areaid
+def map_filename(areaid, output_dir='.'):
+    return '%s/area%d.map' % (output_dir, areaid)
 
 def print_all_items():
     sb = []
@@ -75,14 +75,18 @@ def print_all_items():
 
 
 class ItemModifier(object):
-    def __init__(self, areaids):
+    def __init__(self, areaids, no_load=False):
         self.areaids = list(areaids)
         self.items = dict((areaid, {}) for areaid in areaids)
-        for areaid in areaids:
-            for item in load_items(areaid):
-                self.items[item.areaid][item.position] = item
 
-        self._set_all_dirty_flags(False)
+        if no_load:
+            self._set_all_dirty_flags(True)
+        else:
+            # Load items from maps
+            for areaid in areaids:
+                for item in load_items(areaid):
+                    self.items[item.areaid][item.position] = item
+            self._set_all_dirty_flags(False)
 
     def _set_all_dirty_flags(self, value):
         self.modified = dict((areaid, value) for areaid in self.areaids)
@@ -110,21 +114,21 @@ class ItemModifier(object):
             print('position [%d, %s] does not exist!' % areaid, position)
         self._dirty(item.areaid)
 
-    def save(self):
+    def save(self, output_dir='.'):
         for areaid, modified in self.modified.items():
             if not modified: continue
-            write_items(areaid, self.items[areaid].values())
+            write_items(areaid, self.items[areaid].values(), output_dir)
 
         # Reset dirty flags
         self._set_all_dirty_flags(False)
 
-def grab_original_maps():
+def grab_original_maps(output_dir='.'):
     areaids = list(range(10))
     import shutil
     import os
     BACKUP_DIR = 'original_maps/'
     for f in filter(lambda s : s.endswith('.map'), os.listdir(BACKUP_DIR)):
-        shutil.copyfile(BACKUP_DIR+f, f)
+        shutil.copyfile(BACKUP_DIR+f, '%s/%s' % (output_dir, f))
 
 def item_modification():
     areaids = list(range(10))

@@ -3,6 +3,7 @@ import re
 import json
 import itemreader
 import sys
+import os
 
 #   _____________________________
 #  / :: ~~~~~~~~~~~~~~~~~~~~~ :: \
@@ -468,7 +469,10 @@ def run_item_randomizer():
     location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints)
     return location_map.compute_item_locations()
 
-def generate_randomized_maps(write_to_map_files=False):
+def generate_randomized_maps(output_dir='.', write_to_map_files=False):
+    if write_to_map_files and not os.path.isdir(output_dir):
+        fail('Output directory %s does not exist' % output_dir)
+
     items, assigned_locations, analyzer = run_item_randomizer()
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
@@ -480,17 +484,17 @@ def generate_randomized_maps(write_to_map_files=False):
 
     if not write_to_map_files: return
     
-    itemreader.grab_original_maps()
+    itemreader.grab_original_maps(output_dir)
     print('Maps copied')
-    mod = itemreader.ItemModifier(areaids)
+    mod = itemreader.ItemModifier(areaids, no_load=True)
     mod.clear_items()
     for item in items:
         mod.add_item(item)
-    mod.save()
+    mod.save(output_dir)
     print('Maps saved successfully.')
 
 if __name__ == '__main__':
     #run_item_randomizer()
     if len(sys.argv) > 1:
         random.seed(int(sys.argv[1]))
-    generate_randomized_maps(write_to_map_files=True)
+    generate_randomized_maps(output_dir='generated_maps', write_to_map_files=True)

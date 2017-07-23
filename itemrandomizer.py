@@ -97,7 +97,8 @@ isExpr = lambda s : not type(s) is str
 # throws errors if parsing fails
 def parse_expression(line, variables, default_expressions={}):
     try:
-        return parse_expression_logic(line, variables, default_expressions)
+        # the str(line) cast is used because sometimes <line> is a u'unicode string' on unix machines.
+        return parse_expression_logic(str(line), variables, default_expressions)
     except Exception as e:
         print('Error parsing expression:')
         print(line)

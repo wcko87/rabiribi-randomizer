@@ -704,19 +704,19 @@
 }
 
 {
-"location": "REGEN_UP_NORTHWEST_HIGHLANDS",
+"location": "REGEN_UP_NORTHWEST_RIVERBANK",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
-"location": "PACK_UP_HIGHLANDS",
+"location": "PACK_UP_RIVERBANK",
 "entry_prereq": "((CARROT_SHOOTER & BOOST) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)) | ((CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER)",
 "exit_prereq": "NONE",
 }
 
 {
-"location": "MP_UP_SOUTHWEST_HIGHLANDS",
+"location": "MP_UP_SOUTHWEST_RIVERBANK",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)",
 "exit_prereq": "NONE",
 }
@@ -728,13 +728,13 @@
 }
 
 {
-"location": "REGEN_UP_SOUTH_HIGHLANDS",
+"location": "REGEN_UP_SOUTH_RIVERBANK",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)",
 "exit_prereq": "NONE",
 }
 
 {
-"location": "ATK_UP_HIGHLANDS_PIT",
+"location": "ATK_UP_RIVERBANK_PIT",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
@@ -752,13 +752,13 @@
 }
 
 {
-"location": "MP_UP_MID_HIGHLANDS",
+"location": "MP_UP_MID_RIVERBANK",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
-"location": "ATK_UP_EAST_HIGHLANDS",
+"location": "ATK_UP_EAST_RIVERBANK",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
@@ -788,7 +788,7 @@
 }
 
 {
-"location": "HP_UP_HIGHLANDS",
+"location": "HP_UP_RIVERBANK",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | BUNNY_WHIRL | AIR_DASH | BLOCK_CLIP",
 "exit_prereq": "NONE",
 }

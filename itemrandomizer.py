@@ -4,7 +4,6 @@ import json
 import itemreader
 import sys
 import os
-import statistics
 
 #   _____________________________
 #  / :: ~~~~~~~~~~~~~~~~~~~~~ :: \
@@ -377,6 +376,9 @@ class LocationMap(object):
         self.compute_unreachable(analyzer)
         return new_items, assigned_locations, analyzer
 
+def mean(values):
+    return float(sum(values))/len(values)
+
 def is_xx_up(item_name):
     return bool(re.match('^[A-Z]*_UP', item_name))
 
@@ -399,7 +401,7 @@ class Analyzer(object):
                 item_levels[item_name] = level
         self.item_levels = item_levels
     def average_hard_to_reach_step_count(self, hard_to_reach_items):
-        return statistics.mean(self.item_levels[item_name] for item_name in hard_to_reach_items)
+        return mean(self.item_levels[item_name] for item_name in hard_to_reach_items)
     def compute_hard_to_reach_items(self, actual_items):
         accepted_item_pool = set()
         item_pool = set()
@@ -481,7 +483,7 @@ def print_analysis(analyzer, assigned_locations):
     # Print steps needed to get everything
     print('Steps needed: %d' % analyzer.step_count)
 
-    mean_important_level = statistics.mean(analyzer.item_levels[item_name] for item_name in items_to_check)
+    mean_important_level = mean(analyzer.item_levels[item_name] for item_name in items_to_check)
     print('Mean Important Levels: %f' % mean_important_level)
 
     actual_items = set(assigned_locations.keys())
@@ -498,7 +500,7 @@ def generate_analysis_file(assigned_locations, analyzer, output_dir):
     actual_items = set(assigned_locations.keys())
     hard_to_reach_items = analyzer.compute_hard_to_reach_items(actual_items)
     important_items = ['PIKO_HAMMER', 'SLIDING_POWDER', 'CARROT_BOMB', 'AIR_JUMP']
-    mean_important_level = statistics.mean(analyzer.item_levels[item_name] for item_name in important_items)
+    mean_important_level = mean(analyzer.item_levels[item_name] for item_name in important_items)
     true_step_count = analyzer.average_hard_to_reach_step_count(hard_to_reach_items)
     difficulty = decide_difficulty(mean_important_level, true_step_count)
     warnings = get_all_warnings(assigned_locations)

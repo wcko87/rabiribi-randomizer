@@ -376,9 +376,12 @@ class LocationMap(object):
         self.compute_unreachable(analyzer)
         return new_items, assigned_locations, analyzer
 
+def is_xx_up(item_name):
+    return bool(re.match('^[A-Z]*_UP', item_name))
+
 class Analyzer(object):
     def __init__(self):
-        self.step_count = 0
+        self.step_count = -1
         self.levels = []
         self.unreachable = None
     def analyze(self, to_remove):
@@ -387,6 +390,14 @@ class Analyzer(object):
         self.levels.append(list(sorted(to_remove)))
     def finish(self, unreachable):
         self.unreachable = list(sorted(unreachable))
+        self._post_process()
+    def _post_process(self):
+        item_levels = {}
+        for level, items in enumerate(self.levels):
+            for item_name in items:
+                item_levels[item_name] = level
+        self.item_levels = item_levels
+
 
 # returns a LocationMap object
 def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=None):
@@ -443,7 +454,10 @@ def print_analysis(analyzer):
     for item_name in items_to_check:
         print('%s: level %d' % (item_name, find_level(item_name)))
     # Print steps needed to get everything
-    print('Steps needed: %d' % (analyzer.step_count-1))
+    print('Steps needed: %d' % analyzer.step_count)
+
+def generate_analysis_file(assigned_locations, analyzer, output_dir):
+    pass
 
 def get_all_warnings(assigned_locations):
     warnings = []
@@ -477,14 +491,17 @@ def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False
     items, assigned_locations, analyzer = run_item_randomizer(seed)
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
+    
     #print_allocation(assigned_locations)
-    print_analysis(analyzer)
-    warnings = get_all_warnings(assigned_locations)
-    for warning in warnings:
-        print('WARNING: %s' % warning)
+    #print_analysis(analyzer)
+    #warnings = get_all_warnings(assigned_locations)
+    #for warning in warnings:
+        #print('WARNING: %s' % warning)
 
     if not write_to_map_files: return
-    
+
+    generate_analysis_file(assigned_locations, analyzer, output_dir)
+
     itemreader.grab_original_maps(output_dir)
     print('Maps copied')
     mod = itemreader.ItemModifier(areaids, no_load=True)
@@ -501,3 +518,4 @@ if __name__ == '__main__':
         seed = None
 
     generate_randomized_maps(seed=seed, output_dir='generated_maps', write_to_map_files=True)
+    input('-- press enter to exit --')

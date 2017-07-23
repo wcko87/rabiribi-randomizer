@@ -441,7 +441,7 @@
 
 {
 "location": "HEX_CANCEL",
-"entry_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) & (CARROT_BOMB | ZIP)",
+"entry_prereq": "((SLIDING_POWDER | HAMMER_ROLL_LV3) & ZIP) | (SLIDING_POWDER & CARROT_BOMB)",
 "exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
@@ -453,7 +453,7 @@
 
 {
 "location": "PACK_UP_SKY_BRIDGE",
-"entry_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) & (CARROT_BOMB | ZIP)",
+"entry_prereq": "((SLIDING_POWDER | HAMMER_ROLL_LV3) & ZIP) | (SLIDING_POWDER & CARROT_BOMB)",
 "exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 

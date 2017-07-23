@@ -520,10 +520,12 @@ def generate_analysis_file(assigned_locations, analyzer, output_dir):
         printline(item)
     printline()
     printline('Unreachable Items:')
-    for item in analyzer.unreachable_items:
+    for item in analyzer.unreachable:
+        if item.startswith('UNKNOWN'): continue # Skip DLC items
         printline(item)
-
-
+    printline()
+    for warning in warnings:
+        printline('WARNING: %s' % warning)
 
 
 def get_all_warnings(assigned_locations):
@@ -560,14 +562,14 @@ def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     
     #print_allocation(assigned_locations)
-    print_analysis(analyzer, assigned_locations)
+    #print_analysis(analyzer, assigned_locations)
     #warnings = get_all_warnings(assigned_locations)
     #for warning in warnings:
         #print('WARNING: %s' % warning)
 
     if not write_to_map_files: return
 
-    #generate_analysis_file(assigned_locations, analyzer, output_dir)
+    generate_analysis_file(assigned_locations, analyzer, output_dir)
 
     itemreader.grab_original_maps(output_dir)
     print('Maps copied')

@@ -389,7 +389,7 @@ class Analyzer(object):
         self.unreachable = list(sorted(unreachable))
 
 # returns a LocationMap object
-def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints):
+def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=None):
     items = list(items) # all actual items
     locations = list(locations) # actual items + custom items
     must_be_reachable = set(must_be_reachable)
@@ -398,6 +398,7 @@ def randomize(items, locations, variables, to_shuffle, must_be_reachable, constr
     to_shuffle = list(to_shuffle)
     target_locations = to_shuffle[:]
 
+    if seed != None: random.seed(seed)
     location_map = LocationMap(items, locations, variables, constraints)
     attempts = 0
     while True:
@@ -455,7 +456,7 @@ def get_all_warnings(assigned_locations):
 # returns (new_items, assigned_locations)
 # new_items: items with newly-assigned locations
 # assigned_locations: item_name -> location map for analysis purposes.
-def run_item_randomizer():
+def run_item_randomizer(seed=None):
     items = read_items()
     custom_items = define_custom_items()
     locations = [item.name for item in items] + list(custom_items.keys())
@@ -466,14 +467,14 @@ def run_item_randomizer():
     to_shuffle, must_be_reachable = read_config(variables, item_names)
     constraints = read_constraints(locations, variables, default_expressions, custom_items)
 
-    location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints)
+    location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed)
     return location_map.compute_item_locations()
 
-def generate_randomized_maps(output_dir='.', write_to_map_files=False):
+def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
-    items, assigned_locations, analyzer = run_item_randomizer()
+    items, assigned_locations, analyzer = run_item_randomizer(seed)
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     #print_allocation(assigned_locations)
@@ -494,7 +495,9 @@ def generate_randomized_maps(output_dir='.', write_to_map_files=False):
     print('Maps saved successfully.')
 
 if __name__ == '__main__':
-    #run_item_randomizer()
     if len(sys.argv) > 1:
-        random.seed(int(sys.argv[1]))
-    generate_randomized_maps(output_dir='generated_maps', write_to_map_files=True)
+        seed = int(sys.argv[1])
+    else:
+        seed = None
+
+    generate_randomized_maps(seed=seed, output_dir='generated_maps', write_to_map_files=True)

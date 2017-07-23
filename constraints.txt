@@ -555,7 +555,7 @@
 
 {
 "location": "ATK_UP_SNOWLAND",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | (HAMMER_ROLL & ZIP))",
+"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | HAMMER_ROLL | ZIP)",
 "exit_prereq": "NONE",
 }
 

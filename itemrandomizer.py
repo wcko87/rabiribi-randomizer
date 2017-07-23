@@ -377,6 +377,7 @@ class LocationMap(object):
         return new_items, assigned_locations, analyzer
 
 def mean(values):
+    values = tuple(values)
     return float(sum(values))/len(values)
 
 def is_xx_up(item_name):

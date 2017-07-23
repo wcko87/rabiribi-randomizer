@@ -591,7 +591,3 @@ if __name__ == '__main__':
         seed = None
 
     generate_randomized_maps(seed=seed, output_dir='generated_maps', write_to_map_files=True)
-
-    try: input = raw_input
-    except NameError: pass
-    #input('-- press enter to exit --')

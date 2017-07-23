@@ -281,9 +281,11 @@
 "exit_prereq": "NONE",
 }
 
+// entry_prereq was changed to NONE as the bunny can blow it up for you.
 {
 "location": "ARMORED",
-"entry_prereq": "ZIP | CARROT_BOMB",
+"entry_prereq": "NONE",
+//"entry_prereq": "ZIP | CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
@@ -391,7 +393,7 @@
 
 {
 "location": "ATK_TRADE",
-"entry_prereq": "CARROT_BOMB",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 

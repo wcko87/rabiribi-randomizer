@@ -448,13 +448,13 @@ def randomize(items, locations, variables, to_shuffle, must_be_reachable, constr
 def decide_difficulty(mean_important_level, true_step_count):
     score = mean_important_level + true_step_count
     if score >= 7:
-        return 'V.HARD - %s' % score
+        return 'V.HARD (%s)' % score
     if score >= 5.5:
-        return 'HARD - %s' % score
+        return 'HARD (%s)' % score
     if score >= 3.5:
-        return 'MEDIUM - %s' % score
+        return 'MEDIUM (%s)' % score
     else:
-        return 'EASY - %s' % score
+        return 'EASY (%s)' % score
 
 def print_allocation(assigned_locations):
     print('Assignment:')
@@ -507,6 +507,24 @@ def generate_analysis_file(assigned_locations, analyzer, output_dir):
     difficulty = decide_difficulty(mean_important_level, true_step_count)
     warnings = get_all_warnings(assigned_locations)
 
+    file_lines = []
+    def printline(line=''):
+        print(line)
+        file_lines.append(str(line))
+
+    printline('-- analysis --')
+    printline('Difficulty: %s' % difficulty)
+    printline()
+    printline('Hard to reach items:')
+    for item in hard_to_reach_items:
+        printline(item)
+    printline()
+    printline('Unreachable Items:')
+    for item in analyzer.unreachable_items:
+        printline(item)
+
+
+
 
 def get_all_warnings(assigned_locations):
     warnings = []
@@ -549,7 +567,7 @@ def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False
 
     if not write_to_map_files: return
 
-    generate_analysis_file(assigned_locations, analyzer, output_dir)
+    #generate_analysis_file(assigned_locations, analyzer, output_dir)
 
     itemreader.grab_original_maps(output_dir)
     print('Maps copied')
@@ -566,7 +584,7 @@ if __name__ == '__main__':
     else:
         seed = None
 
-    generate_randomized_maps(seed=seed, output_dir='generated_maps', write_to_map_files=False)
+    generate_randomized_maps(seed=seed, output_dir='generated_maps', write_to_map_files=True)
 
     try: input = raw_input
     except NameError: pass

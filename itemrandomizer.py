@@ -4,6 +4,7 @@ import json
 import itemreader
 import sys
 import os
+import statistics
 
 #   _____________________________
 #  / :: ~~~~~~~~~~~~~~~~~~~~~ :: \
@@ -397,7 +398,21 @@ class Analyzer(object):
             for item_name in items:
                 item_levels[item_name] = level
         self.item_levels = item_levels
-
+    def average_hard_to_reach_step_count(self, hard_to_reach_items):
+        return statistics.mean(self.item_levels[item_name] for item_name in hard_to_reach_items)
+    def compute_hard_to_reach_items(self, actual_items):
+        accepted_item_pool = set()
+        item_pool = set()
+        current_level = self.step_count
+        while len(item_pool) < 5 and (len(item_pool) < 2 or self.step_count-current_level < 2):
+            accepted_item_pool.update(item_pool)
+            item_pool.update(item for item in self.levels[current_level]
+                             if not is_xx_up(item) and item in actual_items)
+            current_level -= 1
+        for item_name in item_pool:
+            if len(accepted_item_pool) >= 5: break
+            accepted_item_pool.add(item_name)
+        return accepted_item_pool
 
 # returns a LocationMap object
 def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=None):
@@ -426,13 +441,24 @@ def randomize(items, locations, variables, to_shuffle, must_be_reachable, constr
 #  \ :: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ :: /
 #   '''''''''''''''''''''''''''''''''''''''
 
+def decide_difficulty(mean_important_level, true_step_count):
+    score = mean_important_level + true_step_count
+    if score >= 7:
+        return 'V.HARD - %s' % score
+    if score >= 5.5:
+        return 'HARD - %s' % score
+    if score >= 3.5:
+        return 'MEDIUM - %s' % score
+    else:
+        return 'EASY - %s' % score
+
 def print_allocation(assigned_locations):
     print('Assignment:')
     for item_name, location in assigned_locations.items():
         if item_name != location:
             print(" %s -> %s's location" % (item_name, location))
 
-def print_analysis(analyzer):
+def print_analysis(analyzer, assigned_locations):
     # Print all item levels
     for index, items in enumerate(analyzer.levels):
         print('Level %d' % index)
@@ -444,7 +470,6 @@ def print_analysis(analyzer):
     print('\n'.join('  %s' % s for s in analyzer.unreachable))
 
     # Print select item levels
-    find_level = lambda item_name : next((index for index, items in enumerate(analyzer.levels) if item_name in items), -1)
     items_to_check = [
         'PIKO_HAMMER',
         'SLIDING_POWDER',
@@ -452,12 +477,32 @@ def print_analysis(analyzer):
         'AIR_JUMP'
     ]
     for item_name in items_to_check:
-        print('%s: level %d' % (item_name, find_level(item_name)))
+        print('%s: level %d' % (item_name, analyzer.item_levels[item_name]))
     # Print steps needed to get everything
     print('Steps needed: %d' % analyzer.step_count)
 
+    mean_important_level = statistics.mean(analyzer.item_levels[item_name] for item_name in items_to_check)
+    print('Mean Important Levels: %f' % mean_important_level)
+
+    actual_items = set(assigned_locations.keys())
+    hard_to_reach_items = analyzer.compute_hard_to_reach_items(actual_items)
+    print('Hard to reach:')
+    print(hard_to_reach_items)
+
+    true_step_count = analyzer.average_hard_to_reach_step_count(hard_to_reach_items)
+    print('True Step Count: %f' % true_step_count)
+
+    print('Difficulty: %s' % decide_difficulty(mean_important_level, true_step_count))
+
 def generate_analysis_file(assigned_locations, analyzer, output_dir):
-    pass
+    actual_items = set(assigned_locations.keys())
+    hard_to_reach_items = analyzer.compute_hard_to_reach_items(actual_items)
+    important_items = ['PIKO_HAMMER', 'SLIDING_POWDER', 'CARROT_BOMB', 'AIR_JUMP']
+    mean_important_level = statistics.mean(analyzer.item_levels[item_name] for item_name in important_items)
+    true_step_count = analyzer.average_hard_to_reach_step_count(hard_to_reach_items)
+    difficulty = decide_difficulty(mean_important_level, true_step_count)
+    warnings = get_all_warnings(assigned_locations)
+
 
 def get_all_warnings(assigned_locations):
     warnings = []
@@ -493,7 +538,7 @@ def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     
     #print_allocation(assigned_locations)
-    #print_analysis(analyzer)
+    print_analysis(analyzer, assigned_locations)
     #warnings = get_all_warnings(assigned_locations)
     #for warning in warnings:
         #print('WARNING: %s' % warning)
@@ -517,5 +562,8 @@ if __name__ == '__main__':
     else:
         seed = None
 
-    generate_randomized_maps(seed=seed, output_dir='generated_maps', write_to_map_files=True)
-    input('-- press enter to exit --')
+    generate_randomized_maps(seed=seed, output_dir='generated_maps', write_to_map_files=False)
+
+    try: input = raw_input
+    except NameError: pass
+    #input('-- press enter to exit --')

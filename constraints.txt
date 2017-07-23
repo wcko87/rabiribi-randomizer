@@ -742,7 +742,7 @@
 {
 "location": "BUNNY_WHIRL",
 "entry_prereq": "PIKO_HAMMER | (CARROT_SHOOTER & BOOST & STUPID)",
-"exit_prereq": "BUNNY_WHIRL | AIR_DASH | (PIKO_HAMMER & CARROT_SHOOTER & BOOST)",
+"exit_prereq": "BUNNY_WHIRL | AIR_DASH | (CARROT_SHOOTER & BOOST)",
 }
 
 {

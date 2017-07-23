@@ -118,12 +118,12 @@ class ItemModifier(object):
         # Reset dirty flags
         self._set_all_dirty_flags(False)
 
-def revert_changes():
+def grab_original_maps():
     areaids = list(range(10))
     import shutil
     import os
-    BACKUP_DIR = 'backup_maps/'
-    for f in os.listdir(BACKUP_DIR):
+    BACKUP_DIR = 'original_maps/'
+    for f in filter(lambda s : s.endswith('.map'), os.listdir(BACKUP_DIR)):
         shutil.copyfile(BACKUP_DIR+f, f)
 
 def item_modification():
@@ -147,6 +147,6 @@ def item_modification():
 
 
 if __name__ == '__main__':
-    #revert_changes()
+    #grab_original_maps()
     print_all_items()
     #item_modification()

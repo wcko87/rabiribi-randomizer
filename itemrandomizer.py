@@ -477,8 +477,9 @@ def generate_randomized_maps(write_to_map_files=False):
         print('WARNING: %s' % warning)
 
     if not write_to_map_files: return
-    # itemreader.revert_changes()
-    # print('Maps copied')
+    
+    itemreader.grab_original_maps()
+    print('Maps copied')
     mod = itemreader.ItemModifier(areaids)
     mod.clear_items()
     for item in items:
@@ -490,4 +491,4 @@ if __name__ == '__main__':
     #run_item_randomizer()
     if len(sys.argv) > 1:
         random.seed(int(sys.argv[1]))
-    generate_randomized_maps(write_to_map_files=False)
+    generate_randomized_maps(write_to_map_files=True)

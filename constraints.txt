@@ -501,7 +501,7 @@
 
 {
 "location": "HP_UP_MID_RAVINE",
-"entry_prereq": "CARROT_BOMB",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 

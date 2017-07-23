@@ -585,7 +585,14 @@
 
 {
 "location": "HP_UP_UPPER_AQUARIUM",
-"entry_prereq": "WATER_ORB & (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & ((WALL_JUMP_LV2 & AIR_DASH & RABI_SLIPPERS) | (WALL_JUMP  & RABI_SLIPPERS & AIR_JUMP) | (WALL_JUMP_LV2 & AIR_JUMP))",
+"entry_prereq": "
+    WATER_ORB &
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+    (
+        (WALL_JUMP_LV2 & AIR_DASH & RABI_SLIPPERS) |
+        (WALL_JUMP  & RABI_SLIPPERS & AIR_JUMP) |
+        (WALL_JUMP_LV2 & AIR_JUMP)
+    )",
 "exit_prereq": "NONE",
 }
 
@@ -601,7 +608,14 @@
 
 {
 "location": "ATK_UP_UPPER_AQUARIUM",
-"entry_prereq": "WATER_ORB & (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & ((WALL_JUMP_LV2 & AIR_DASH & RABI_SLIPPERS) | (WALL_JUMP  & RABI_SLIPPERS & AIR_JUMP) | (WALL_JUMP_LV2 & AIR_JUMP))",
+"entry_prereq": "
+    WATER_ORB &
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+    (
+        (WALL_JUMP_LV2 & AIR_DASH & RABI_SLIPPERS) |
+        (WALL_JUMP  & RABI_SLIPPERS & AIR_JUMP) |
+        (WALL_JUMP_LV2 & AIR_JUMP)
+    )",
 "exit_prereq": "NONE",
 }
 

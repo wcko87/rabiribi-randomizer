@@ -1,4 +1,6 @@
 *.map
+*.pyc
+
 __pycache__/
 map_images/
 ohnotes/

@@ -591,7 +591,11 @@
 
 {
 "location": "GOLD_CARROT",
-"entry_prereq": "AIR_JUMP | (BUNNY_WHIRL & WALL_JUMP)",
+"entry_prereq": "
+    AIR_JUMP | (
+        (BUNNY_WHIRL | AIR_DASH | (SLIDING_POWDER & RABI_SLIPPERS) | BUNNY_STRIKE)
+        & WALL_JUMP_LV2
+    )",
 "exit_prereq": "NONE",
 }
 
@@ -723,7 +727,7 @@
 
 {
 "location": "BUNNY_WHIRL",
-"entry_prereq": "PIKO_HAMMER",
+"entry_prereq": "PIKO_HAMMER | (CARROT_SHOOTER & BOOST & STUPID)",
 "exit_prereq": "BUNNY_WHIRL | AIR_DASH | (PIKO_HAMMER & CARROT_SHOOTER & BOOST)",
 }
 

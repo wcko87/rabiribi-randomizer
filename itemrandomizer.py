@@ -11,6 +11,7 @@ def parse_args():
     args.add_argument('-output_dir', default='generated_maps', help='Output Directory')
     args.add_argument('-seed', default=None, type=int, help='Random Seed')
     args.add_argument('--no-write', dest='write', default=True, action='store_false')
+    args.add_argument('--reset', action='store_true')
 
     return args.parse_args(sys.argv[1:])
 
@@ -575,7 +576,7 @@ def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     
     #print_allocation(assigned_locations)
-    print_analysis(analyzer, assigned_locations)
+    #print_analysis(analyzer, assigned_locations)
     #warnings = get_all_warnings(assigned_locations)
     #for warning in warnings:
         #print('WARNING: %s' % warning)
@@ -593,10 +594,22 @@ def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False
     mod.save(output_dir)
     print('Maps saved successfully to %s.' % output_dir)
 
+def reset_maps(output_dir='.'):
+    if not os.path.isdir(output_dir):
+        fail('Output directory %s does not exist' % output_dir)
+    itemreader.grab_original_maps(output_dir)
+    print('Original maps copied to %s.' % output_dir)
+
 if __name__ == '__main__':
     args = parse_args()
-    generate_randomized_maps(
-        seed=args.seed,
-        output_dir=args.output_dir,
-        write_to_map_files=args.write
-    )
+    if args.reset:
+        # copy over the default maps without randomization.
+        reset_maps(
+            output_dir=args.output_dir
+        )
+    else:
+        generate_randomized_maps(
+            seed=args.seed,
+            output_dir=args.output_dir,
+            write_to_map_files=args.write
+        )

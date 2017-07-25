@@ -919,9 +919,12 @@
 
 {
 "location": "FIRE_ORB",
-"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & (BOOST | CHARGE_RING))",
-//"exit_prereq": "CARROT_BOMB | CARROT_SHOOTER | (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP_LV2)",
+// 1.8 requirements
+"entry_prereq": "FIRE_ORB | CARROT_BOMB | (CARROT_SHOOTER & (BOOST | CHARGE_RING))",
 "exit_prereq": "FIRE_ORB | (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP_LV2)",
+// 1.75 requirements
+//"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & (BOOST | CHARGE_RING))",
+//"exit_prereq": "CARROT_BOMB | CARROT_SHOOTER | (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP_LV2)",
 }
 
 {

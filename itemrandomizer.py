@@ -4,6 +4,15 @@ import json
 import itemreader
 import sys
 import os
+import argparse
+
+def parse_args():
+    args = argparse.ArgumentParser(description='Item Randomizer')
+    args.add_argument('-output_dir', default='generated_maps', help='Output Directory')
+    args.add_argument('-seed', default=None, type=int, help='Random Seed')
+    args.add_argument('--no-write', dest='write', default=True, action='store_false')
+
+    return args.parse_args(sys.argv[1:])
 
 #   _____________________________
 #  / :: ~~~~~~~~~~~~~~~~~~~~~ :: \
@@ -566,7 +575,7 @@ def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     
     #print_allocation(assigned_locations)
-    #print_analysis(analyzer, assigned_locations)
+    print_analysis(analyzer, assigned_locations)
     #warnings = get_all_warnings(assigned_locations)
     #for warning in warnings:
         #print('WARNING: %s' % warning)
@@ -582,12 +591,12 @@ def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False
     for item in items:
         mod.add_item(item)
     mod.save(output_dir)
-    print('Maps saved successfully.')
+    print('Maps saved successfully to %s.' % output_dir)
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        seed = int(sys.argv[1])
-    else:
-        seed = None
-
-    generate_randomized_maps(seed=seed, output_dir='generated_maps', write_to_map_files=True)
+    args = parse_args()
+    generate_randomized_maps(
+        seed=args.seed,
+        output_dir=args.output_dir,
+        write_to_map_files=args.write
+    )

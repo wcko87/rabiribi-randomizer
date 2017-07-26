@@ -8,10 +8,11 @@ import argparse
 
 def parse_args():
     args = argparse.ArgumentParser(description='Item Randomizer')
-    args.add_argument('-output_dir', default='generated_maps', help='Output Directory')
-    args.add_argument('-seed', default=None, type=int, help='Random Seed')
-    args.add_argument('--no-write', dest='write', default=True, action='store_false')
-    args.add_argument('--reset', action='store_true')
+    args.add_argument('-output_dir', default='generated_maps', help='Output directory for generated maps')
+    args.add_argument('-config_file', default='config.txt', help='Config file to use')
+    args.add_argument('-seed', default=None, type=int, help='Random seed')
+    args.add_argument('--no-write', dest='write', default=True, action='store_false', help='Flag to disable map generation, and do only map analysis')
+    args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
 
     return args.parse_args(sys.argv[1:])
 
@@ -258,8 +259,8 @@ def read_constraints(locations, variables, default_expressions, custom_items):
 
     return constraints
 
-def read_config(variables, item_names):
-    lines = read_file_and_strip_comments('config.txt')
+def read_config(variables, item_names, config_file='config.txt'):
+    lines = read_file_and_strip_comments(config_file)
     jsondata = ' '.join(lines)
     jsondata = re.sub(',\s*]', ']', jsondata)
     jsondata = re.sub(',\s*}', '}', jsondata)
@@ -555,7 +556,7 @@ def get_all_warnings(assigned_locations):
 # returns (new_items, assigned_locations)
 # new_items: items with newly-assigned locations
 # assigned_locations: item_name -> location map for analysis purposes.
-def run_item_randomizer(seed=None):
+def run_item_randomizer(seed=None, config_file='config.txt'):
     items = read_items()
     custom_items = define_custom_items()
     locations = [item.name for item in items] + list(custom_items.keys())
@@ -563,17 +564,17 @@ def run_item_randomizer(seed=None):
     variables = define_variables(item_names)
     default_expressions = define_default_expressions(variables)
 
-    to_shuffle, must_be_reachable = read_config(variables, item_names)
+    to_shuffle, must_be_reachable = read_config(variables, item_names, config_file=config_file)
     constraints = read_constraints(locations, variables, default_expressions, custom_items)
 
     location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed)
     return location_map.compute_item_locations()
 
-def generate_randomized_maps(seed=None, output_dir='.', write_to_map_files=False):
+def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
-    items, assigned_locations, analyzer = run_item_randomizer(seed)
+    items, assigned_locations, analyzer = run_item_randomizer(seed=seed, config_file=config_file)
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     
@@ -613,5 +614,6 @@ if __name__ == '__main__':
         generate_randomized_maps(
             seed=args.seed,
             output_dir=args.output_dir,
-            write_to_map_files=args.write
+            config_file=args.config_file,
+            write_to_map_files=args.write,
         )

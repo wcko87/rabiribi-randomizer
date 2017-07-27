@@ -1,3 +1,3 @@
 @echo off
-CALL bin\itemrandomizer.exe
+CALL bin\itemrandomizer.exe %*
 pause

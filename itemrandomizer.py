@@ -551,6 +551,7 @@ def get_all_warnings(assigned_locations):
         warnings.append('Carrot bomb not in carrot bomb original location!')
     if assigned_locations['SLIDING_POWDER'] != 'SLIDING_POWDER':
         warnings.append('Sliding powder not in sliding powder original location!')
+    warnings.append("Don't pick up rabi slippers if you see it before ribbon!")
     return warnings
 
 # returns (new_items, assigned_locations)

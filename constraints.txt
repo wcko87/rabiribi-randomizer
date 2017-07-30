@@ -977,3 +977,368 @@
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
+
+// EGGS
+
+{
+"location": "EGG_CAVE_COCOA",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_CAVE_UNDER_HAMMER",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_FOREST_NE_LEDGE",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | (AIR_JUMP & WALL_JUMP_LV2)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_FOREST_NE_PEDESTAL",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_FORESTNIGHT_ARURAUNE",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_FORESTNIGHT_EAST",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_RUMI",
+"entry_prereq": "POST_GAME",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SPECTRAL_SLIDE",
+"entry_prereq": "SLIDING_POWDER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SPECTRAL_WEST",
+"entry_prereq": "BUNNY_STRIKE | AIR_JUMP | (BUNNY_WHIRL & ADVANCED)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_BEACH_TO_AQUARIUM",
+"entry_prereq": "(BUNNY_STRIKE & ZIP) | CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_GRAVEYARD_NEAR_LIBRARY",
+"entry_prereq": "(BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | SLIDING_POWDER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_HALLOWEEN_CICINI_ROOM",
+"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+"exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
+}
+
+{
+"location": "EGG_HALLOWEEN_LEFT_PILLAR",
+"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_HALLOWEEN_MID",
+"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+"exit_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+}
+
+{
+"location": "EGG_HALLOWEEN_NEAR_BOSS",
+"entry_prereq": "CARROT_BOMB & ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | SLIDING_POWDER)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_HALLOWEEN_PAST_PILLARS1",
+"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH",
+"exit_prereq": "BUNNY_WHIRL",
+}
+
+{
+"location": "EGG_HALLOWEEN_PAST_PILLARS2",
+"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_HALLOWEEN_RIGHT_PILLAR",
+"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_HALLOWEEN_SW_SLIDE",
+"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+"exit_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+}
+
+{
+"location": "EGG_HALLOWEEN_WARP_ZONE",
+"entry_prereq": "RABI_SLIPPERS & AIR_JUMP & WALL_JUMP & AIR_DASH",
+"exit_prereq": "RABI_SLIPPERS | AIR_JUMP",
+}
+
+{
+"location": "EGG_HALLOWEEN_WEST",
+"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+"exit_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+}
+
+{
+"location": "EGG_LIBRARY",
+"entry_prereq": "POST_GAME",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PYRAMID_LOWER",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PYRAMID_BEACH",
+"entry_prereq": "STUPID | CARROT_BOMB | (CARROT_SHOOTER & BOOST) | AIR_JUMP | AIR_DASH",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SKY_TOWN",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PARK_SPIKES",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PARK_GREEN_KOTRI",
+"entry_prereq": "(RABI_SLIPPERS & STUPID) | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_UPRPRC_BASE",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SKY_BRIDGE_WARP",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SKY_BRIDGE_BY_VANILLA",
+"entry_prereq": "CARROT_BOMB",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_RAVINE_ABOVE_CHOCOLATE",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_RAVINE_MID",
+"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
+"exit_prereq": "CARROT_BOMB | (SLIDING_POWDER & ZIP)",
+}
+
+{
+"location": "EGG_SNOWLAND_TO_EVERNIGHT",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PALACE_BRIDGE",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_AQUARIUM",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PALACE_WALL",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SNOWLAND_WARP",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_ICY_SUMMIT_NIXIE",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_ICY_SUMMIT_WARP",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SNOWLAND_LAKE",
+"entry_prereq": "STUPID | AIR_JUMP | WALL_JUMP | WATER_ORB  | (BUNNY_WHIRL & ADVANCED)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_RIVERBANK_SPIDER_SPIKE",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_RIVERBANK_WALL",
+"entry_prereq": "(RABI_SLIPPERS & STUPID) | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH | SLIDING_POWDER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_LAB",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_EVERNIGHT_MID",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_EVERNIGHT_SAYA",
+"entry_prereq": "STUPID | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_TOWN",
+"entry_prereq": "AIR_JUMP",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PLURK_EAST",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PLURK_CAVE",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_PLURK_CATS",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_VOLCANIC_BOMB_BUNNIES",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_MEMORIES_SYSINT",
+"entry_prereq": "POST_GAME & (CARROT_BOMB | CARROT_SHOOTER)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_MEMORIES_RAVINE",
+"entry_prereq": "POST_GAME & (CARROT_BOMB | CARROT_SHOOTER)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_VOLCANIC_FIRE_ORB",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_VOLCANIC_NE",
+"entry_prereq": "AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_VOLCANIC_BIG_DROP",
+"entry_prereq": "ADVANCED | AIR_JUMP | AIR_DASH",
+"exit_prereq": "NONE",
+}
+
+// Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
+{
+"location": "EGG_CRESPIRIT",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+// Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
+{
+"location": "EGG_HOSPITAL_WALL",
+"entry_prereq": "POST_GAME & (CARROT_BOMB | CARROT_SHOOTER)",
+"exit_prereq": "NONE",
+}
+
+// Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
+{
+"location": "EGG_HOSPITAL_BOX",
+"entry_prereq": "POST_GAME & (CARROT_BOMB | CARROT_SHOOTER)",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SYSINT1",
+"entry_prereq": "NONE",
+"exit_prereq": "NONE",
+}
+
+{
+"location": "EGG_SYSINT2",
+"entry_prereq": "POST_GAME",
+"exit_prereq": "NONE",
+}

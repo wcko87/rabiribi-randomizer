@@ -246,13 +246,13 @@ def read_constraints(locations, variables, default_expressions, custom_items):
     locations_set = set(locations)
     constraints = dict((location, DEFAULT_CONSTRAINT) for location in locations_set)
     for cdict in cdicts:
-        assert cdict['location'] in locations_set
+        assert cdict['location'] in locations_set, 'Unknown location: %s' % cdict['location']
         entry_expression = parse_expression(cdict['entry_prereq'], variables, default_expressions)
         exit_expression = parse_expression(cdict['exit_prereq'], variables, default_expressions)
         constraints[cdict['location']] = Constraint(entry_expression, exit_expression)
 
     for item_name, cdict in custom_items.items():
-        assert item_name in locations_set
+        assert item_name in locations_set, 'Unknown custom item: %s' % item_name
         entry_expression = parse_expression(cdict['entry_prereq'], variables, default_expressions)
         exit_expression = parse_expression(cdict['exit_prereq'], variables, default_expressions)
         constraints[item_name] = Constraint(entry_expression, exit_expression)
@@ -397,6 +397,9 @@ def mean(values):
 def is_xx_up(item_name):
     return bool(re.match('^[A-Z]*_UP', item_name))
 
+def is_egg(item_name):
+    return bool(item_name.startswith('EGG_'))
+
 class Analyzer(object):
     def __init__(self):
         self.step_count = -1
@@ -424,7 +427,7 @@ class Analyzer(object):
         while len(item_pool) < 5 and (len(item_pool) < 2 or self.step_count-current_level < 2):
             accepted_item_pool.update(item_pool)
             item_pool.update(item for item in self.levels[current_level]
-                             if not is_xx_up(item) and item in actual_items)
+                             if not is_xx_up(item) and not is_egg(item) and item in actual_items)
             current_level -= 1
         for item_name in item_pool:
             if len(accepted_item_pool) >= 5: break

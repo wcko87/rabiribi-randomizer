@@ -588,10 +588,12 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
     if not write_to_map_files: return
 
     generate_analysis_file(assigned_locations, analyzer, output_dir)
+    print('Analysis Generated...')
 
-    itemreader.grab_original_maps(output_dir)
-    print('Maps copied')
-    mod = itemreader.ItemModifier(areaids, no_load=True)
+    source_dir = 'original_maps'
+    itemreader.grab_original_maps(source_dir, output_dir)
+    print('Maps copied...')
+    mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)
     mod.clear_items()
     for item in items:
         mod.add_item(item)

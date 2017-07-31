@@ -292,8 +292,11 @@
 {
 "location": "CHAOS_ROD",
 "entry_prereq": "
-    (SLIDING_POWDER  | (ZIP & HAMMER_ROLL_LV3)) &
-    (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | STUPID)
+(
+    (SLIDING_POWDER  | (ZIP & HAMMER_ROLL_LV3)) & 
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
+) | 
+(SLIDING_POWDER & (AIR_JUMP | AIR_DASH | STUPID))
 ",
 "exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | ZIP)",
 }

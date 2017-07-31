@@ -789,7 +789,7 @@
 
 {
 "location": "MP_UP_LAB",
-"entry_prereq": "SLIDING_POWDER | (AIR_JUMP & WALL_JUMP)",
+"entry_prereq": "SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 

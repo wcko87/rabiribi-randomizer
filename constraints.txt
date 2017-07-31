@@ -985,7 +985,7 @@
 
 {
 "location": "EGG_CAVE_COCOA",
-"entry_prereq": "ADVANCED | CARROT_BOMB | CARROT_SHOOTER",
+"entry_prereq": "STUPID | CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 

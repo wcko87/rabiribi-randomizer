@@ -1252,7 +1252,7 @@
 
 {
 "location": "EGG_TOWN",
-"entry_prereq": "AIR_JUMP",
+"entry_prereq": "AIR_JUMP & RABI_SLIPPERS",
 "exit_prereq": "NONE",
 }
 

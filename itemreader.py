@@ -93,16 +93,16 @@ def write_all(areaid, items, stored_data, path='.'):
         else:
             # place item
             tiledata_items[index] = item.itemid
-    
+
     f = open(map_filename(areaid, path) , "r+b")
     f.seek(MAP_COLLISION_OFFSET)
-    f.write(b''.join(struct.pack('h', x) for x in tiledata_map))
+    f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_map))
     f.seek(MAP_EVENTS_OFFSET)
-    f.write(b''.join(struct.pack('h', x) for x in tiledata_event))
+    f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_event))
     f.seek(MAP_ITEMS_OFFSET)
-    f.write(b''.join(struct.pack('h', x) for x in tiledata_items))
+    f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_items))
     f.seek(MAP_TILES1_OFFSET)
-    f.write(b''.join(struct.pack('h', x) for x in tiledata_tiles1))
+    f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_tiles1))
     f.close()
     
 
@@ -116,25 +116,6 @@ def write_items(areaid, items, path='.'):
 
     f = open(map_filename(areaid, path), 'r+b')
     f.seek(MAP_ITEMS_OFFSET)
-    f.write(b''.join(tiledata))
-    f.close()
-
-def write_eggs(areaid, items, path='.'):
-    f = open(map_filename(areaid, path), 'rb')
-    f.seek(MAP_EVENTS_OFFSET)
-    tiledata = (f.read(2) for i in range(MAP_SIZE))
-    tiledata = ((struct.unpack('h', b)[0], b) for b in tiledata)
-    tiledata = [(b'\x00\x00' if x == EGG_EVENT_ID else b) for x, b in tiledata]
-    f.close()
-
-    for item in items:
-        if item.areaid != areaid: continue
-        if item.itemid != EGG_ID: continue
-        index = to_index(item.position)
-        tiledata[index] = struct.pack('h', EGG_EVENT_ID)
-
-    f = open(map_filename(areaid, path), 'r+b')
-    f.seek(MAP_EVENTS_OFFSET)
     f.write(b''.join(tiledata))
     f.close()
 
@@ -211,16 +192,17 @@ class StoredMapData(object):
     def __init__(self, filename):
         f = open(filename, "rb")
         f.seek(MAP_COLLISION_OFFSET)
-        self.tiledata_map = [struct.unpack('h', f.read(2))[0] for i in range(MAP_SIZE)]
+        self.tiledata_map = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_EVENTS_OFFSET)
-        self.tiledata_event = [struct.unpack('h', f.read(2))[0] for i in range(MAP_SIZE)]
+        self.tiledata_event = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_ITEMS_OFFSET)
-        self.tiledata_items = [struct.unpack('h', f.read(2))[0] for i in range(MAP_SIZE)]
+        self.tiledata_items = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_TILES1_OFFSET)
-        self.tiledata_tiles1 = [struct.unpack('h', f.read(2))[0] for i in range(MAP_SIZE)]
+        self.tiledata_tiles1 = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.close()
 
     def clear_items(self):
+
         self.tiledata_items = [0]*MAP_SIZE
 
     def clear_eggs(self):

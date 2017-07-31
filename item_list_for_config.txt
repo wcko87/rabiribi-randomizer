@@ -1,3 +1,6 @@
+// This file is provided only for convenience.
+// This lists all the items in the game, for copy-pasting item names into config.txt.
+
     // Key items and badges
     "AIR_DASH",
     "AIR_JUMP",
@@ -210,7 +213,6 @@
     "EGG_VOLCANIC_NE",
 
     // Recommend omitting these from shuffle
-    "EGG_CRESPIRIT",
     "EGG_HALLOWEEN_CICINI_ROOM",
     "EGG_HALLOWEEN_LEFT_PILLAR",
     "EGG_HALLOWEEN_MID",
@@ -221,5 +223,6 @@
     "EGG_HALLOWEEN_SW_SLIDE",
     "EGG_HALLOWEEN_WARP_ZONE",
     "EGG_HALLOWEEN_WEST",
+    "EGG_CRESPIRIT",
     "EGG_HOSPITAL_BOX",
     "EGG_HOSPITAL_WALL",

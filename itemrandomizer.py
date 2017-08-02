@@ -13,6 +13,7 @@ def parse_args():
     args.add_argument('-seed', default=None, type=int, help='Random seed')
     args.add_argument('--no-write', dest='write', default=True, action='store_false', help='Flag to disable map generation, and do only map analysis')
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
+    args.add_argument('--shuffle-music', action='store_true', help='Experimental: Shuffles the music in the map.')
 
     return args.parse_args(sys.argv[1:])
 
@@ -574,7 +575,7 @@ def run_item_randomizer(seed=None, config_file='config.txt'):
     location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed)
     return location_map.compute_item_locations()
 
-def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False):
+def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
@@ -596,7 +597,7 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
     source_dir = 'original_maps'
     itemreader.grab_original_maps(source_dir, output_dir)
     print('Maps copied...')
-    mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)
+    mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True, shuffle_music=shuffle_music)
     mod.clear_items()
     for item in items:
         mod.add_item(item)
@@ -622,4 +623,5 @@ if __name__ == '__main__':
             output_dir=args.output_dir,
             config_file=args.config_file,
             write_to_map_files=args.write,
+            shuffle_music=args.shuffle_music,
         )

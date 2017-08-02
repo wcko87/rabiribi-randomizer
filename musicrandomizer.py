@@ -2,10 +2,9 @@ import random
 import time
 
 def shuffle_music(stored_datas):
-    st = time.time()
     shuffler = MusicShuffler(stored_datas)
     shuffler.shuffle()
-    print('Time: %f' % (time.time() - st))
+    print('Music shuffled')
 
 is_bgm = lambda v : 129 <= v and v <= 159
 

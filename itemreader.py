@@ -223,7 +223,7 @@ class StoredMapData(object):
 
 
 class ItemModifier(object):
-    def __init__(self, areaids, source_dir='.', no_load=False):
+    def __init__(self, areaids, source_dir='.', no_load=False, shuffle_music=False):
         self.areaids = list(areaids)
         self.items = dict((areaid, {}) for areaid in areaids)
 
@@ -242,7 +242,8 @@ class ItemModifier(object):
             stored_data.clear_items_and_eggs()
             self.stored_datas[areaid] = stored_data
 
-        musicrandomizer.shuffle_music(self.stored_datas)
+        if shuffle_music:
+            musicrandomizer.shuffle_music(self.stored_datas)
 
     def _set_all_dirty_flags(self, value):
         self.modified = dict((areaid, value) for areaid in self.areaids)

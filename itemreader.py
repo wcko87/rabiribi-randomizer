@@ -6,6 +6,9 @@ MAP_COLLISION_OFFSET = 0
 MAP_EVENTS_OFFSET = 200000
 MAP_ITEMS_OFFSET = 402700
 MAP_TILES1_OFFSET = 802704
+MAP_TILES3_OFFSET = 1202704
+MAP_TILES4_OFFSET = 1402704
+MAP_TILES5_OFFSET = 1602704
 EGG_EVENT_ID = 250
 EGG_ID = -250
 NORMAL_BOMB_BLOCK_ID = 2
@@ -74,7 +77,10 @@ def write_all(areaid, items, stored_data, path='.'):
     tiledata_map = list(stored_data.tiledata_map)
     tiledata_event = list(stored_data.tiledata_event)
     tiledata_items = list(stored_data.tiledata_items)
+    tiledata_tiles3 = list(stored_data.tiledata_tiles3)
+    tiledata_tiles4 = list(stored_data.tiledata_tiles4)
     tiledata_tiles1 = list(stored_data.tiledata_tiles1)
+    tiledata_tiles5 = list(stored_data.tiledata_tiles5)
     
     # Note: read from stored data, write to actual data
     for item in items:
@@ -90,6 +96,9 @@ def write_all(areaid, items, stored_data, path='.'):
                     tiledata_map[index] = 0
                     tiledata_tiles1[index] = 0
             tiledata_event[index] = EGG_EVENT_ID
+            tiledata_tiles3[index] = 0
+            tiledata_tiles4[index] = 0
+            tiledata_tiles5[index] = 0
 
         else:
             # place item
@@ -102,8 +111,14 @@ def write_all(areaid, items, stored_data, path='.'):
     f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_event))
     f.seek(MAP_ITEMS_OFFSET)
     f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_items))
+    f.seek(MAP_TILES3_OFFSET)
+    f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_tiles3))
+    f.seek(MAP_TILES4_OFFSET)
+    f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_tiles4))
     f.seek(MAP_TILES1_OFFSET)
     f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_tiles1))
+    f.seek(MAP_TILES5_OFFSET)
+    f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_tiles5))
     f.close()
     
 
@@ -198,12 +213,17 @@ class StoredMapData(object):
         self.tiledata_event = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_ITEMS_OFFSET)
         self.tiledata_items = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
+        f.seek(MAP_TILES3_OFFSET)
+        self.tiledata_tiles3 = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
+        f.seek(MAP_TILES4_OFFSET)
+        self.tiledata_tiles4 = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_TILES1_OFFSET)
         self.tiledata_tiles1 = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
+        f.seek(MAP_TILES5_OFFSET)
+        self.tiledata_tiles5 = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.close()
 
     def clear_items(self):
-
         self.tiledata_items = [0]*MAP_SIZE
 
     def clear_eggs(self):

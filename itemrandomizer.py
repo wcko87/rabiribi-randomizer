@@ -669,8 +669,6 @@ def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
     eggs.update(random.sample(sorted(remaining_eggs), extra_eggs))
     return list(item for item in items if not is_egg(item.name) or item.name in eggs)
 
-
-
 def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, egg_goals=False, extra_eggs=None):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)

@@ -15,6 +15,7 @@ def parse_args():
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
     args.add_argument('--shuffle-music', action='store_true', help='Experimental: Shuffles the music in the map.')
     args.add_argument('--egg-goals', action='store_true', help='Experimental: Shuffles the music in the map.')
+    args.add_argument('-extra-eggs', default=None, type=int, help='Number of extra eggs for egg-goals mode')
 
     return args.parse_args(sys.argv[1:])
 
@@ -403,12 +404,11 @@ class LocationMap(object):
         new_items, assigned_locations, analyzer = self.compute_item_locations()
         actual_items = filter_items(assigned_locations.keys(), include_eggs=True, include_potions=False)
         hard_to_reach = set(analyzer.compute_hard_to_reach_items(actual_items))
-        unreachable = set(analyzer.unreachable)
 
         hard_to_reach_non_eggs = set(item for item in hard_to_reach if not is_egg(item))
         hard_locations = set([self.assigned_locations[item_name] for item_name in hard_to_reach_non_eggs])
 
-        not_hard_eggs = set(item for item in to_shuffle if is_egg(item) and item not in hard_to_reach and item not in unreachable)
+        not_hard_eggs = set(item for item in to_shuffle if is_egg(item) and item not in hard_to_reach and analyzer.is_reachable(item))
         if len(not_hard_eggs) < len(hard_to_reach_non_eggs): return False
 
         chosen_replacement_eggs = random.sample(sorted(not_hard_eggs), len(hard_to_reach_non_eggs))
@@ -459,12 +459,14 @@ class Analyzer(object):
         self.step_count = -1
         self.levels = []
         self.unreachable = None
+        self.unreachable_set = None
     def analyze(self, to_remove):
         if len(to_remove) == 0: return
         self.step_count += 1
         self.levels.append(sorted(to_remove))
     def finish(self, unreachable):
         self.unreachable = sorted(unreachable)
+        self.unreachable_set = set(self.unreachable)
         self._post_process()
     def _post_process(self):
         item_levels = {}
@@ -472,9 +474,9 @@ class Analyzer(object):
             for item_name in items:
                 item_levels[item_name] = level
         self.item_levels = item_levels
-    def average_hard_to_reach_step_count(self, hard_to_reach_items):
-        return mean(self.item_levels[item_name] for item_name in hard_to_reach_items)
-    def compute_hard_to_reach_items(self, items_to_consider, filter_eggs=True, MAX_ITEMS=5, MIN_ITEMS=2):
+    def average_step_count(self, items_to_check):
+        return mean(self.item_levels[item_name] for item_name in items_to_check)
+    def compute_hard_to_reach_items(self, items_to_consider, MAX_ITEMS=5, MIN_ITEMS=2):
         if type(items_to_consider) is not set:
             items_to_consider = set(items_to_consider)
         accepted_item_pool = set()
@@ -489,6 +491,8 @@ class Analyzer(object):
         n_items_needed = min(len(item_pool),MAX_ITEMS-len(accepted_item_pool))
         accepted_item_pool.update(random.sample(sorted(item_pool), n_items_needed))
         return accepted_item_pool
+    def is_reachable(self, item_name):
+        return item_name not in self.unreachable_set
 
 # returns a LocationMap object
 def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=None, egg_goals=False):
@@ -573,18 +577,24 @@ def print_analysis(analyzer, assigned_locations):
     print('Hard to reach:')
     print(hard_to_reach_items)
 
-    true_step_count = analyzer.average_hard_to_reach_step_count(hard_to_reach_items)
+    true_step_count = analyzer.average_step_count(hard_to_reach_items)
     print('True Step Count: %f' % true_step_count)
 
     print('Difficulty: %s' % decide_difficulty(mean_important_level, true_step_count))
 
-def generate_analysis_file(assigned_locations, analyzer, output_dir, egg_goals=False):
-    items_to_consider = filter_items(assigned_locations.keys(), include_eggs=egg_goals, include_potions=False)
-    hard_to_reach_items = analyzer.compute_hard_to_reach_items(items_to_consider, filter_eggs=not egg_goals)
-
+def generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals=False, write_to_map_files=False):
     important_items = ['PIKO_HAMMER', 'SLIDING_POWDER', 'CARROT_BOMB', 'AIR_JUMP']
     mean_important_level = mean(analyzer.item_levels[item_name] for item_name in important_items)
-    true_step_count = analyzer.average_hard_to_reach_step_count(hard_to_reach_items)
+
+    if egg_goals:
+        all_eggs = sorted(item.name for item in items if is_egg(item.name))
+        hard_to_reach_eggs = analyzer.compute_hard_to_reach_items(all_eggs)
+        true_step_count = analyzer.average_step_count(hard_to_reach_eggs)
+    else:
+        items_to_consider = filter_items((item.name for item in items), include_eggs=False, include_potions=False)
+        hard_to_reach_items = analyzer.compute_hard_to_reach_items(items_to_consider)
+        true_step_count = analyzer.average_step_count(hard_to_reach_items)
+
     difficulty = decide_difficulty(mean_important_level, true_step_count)
     warnings = get_all_warnings(assigned_locations)
 
@@ -596,9 +606,12 @@ def generate_analysis_file(assigned_locations, analyzer, output_dir, egg_goals=F
     printline('-- analysis --')
     printline('Difficulty: %s' % difficulty)
     printline()
-    if not egg_goals:
+    if egg_goals:
+        printline('Number of eggs: %d' % len(all_eggs))
+        printline()
+    else:
         printline('Hard to reach items:')
-        for item in hard_to_reach_items:
+        for item in sorted(hard_to_reach_items):
             printline(item)
         printline()
     printline('Unreachable Items:')
@@ -610,9 +623,10 @@ def generate_analysis_file(assigned_locations, analyzer, output_dir, egg_goals=F
     for warning in warnings:
         printline('WARNING: %s' % warning)
 
-    f = open('%s/%s' % (output_dir, 'analysis.txt'), 'w+')
-    f.write('\n'.join(file_lines))
-    f.close()
+    if write_to_map_files:
+        f = open('%s/%s' % (output_dir, 'analysis.txt'), 'w+')
+        f.write('\n'.join(file_lines))
+        f.close()
 
 
 def get_all_warnings(assigned_locations):
@@ -641,12 +655,23 @@ def run_item_randomizer(seed=None, config_file='config.txt', egg_goals=False):
     location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed, egg_goals=egg_goals)
     return location_map.compute_item_locations()
 
-def remove_eggs(analyzer, assigned_locations, items):
-    actual_items = filter_items(assigned_locations.keys(), include_eggs=True, include_potions=False)
-    hard_to_reach_items = set(analyzer.compute_hard_to_reach_items(actual_items))
-    return list(item for item in items if not is_egg(item.name) or item.name in hard_to_reach_items)
+def remove_eggs(analyzer, assigned_locations, items, extra_eggs):
+    all_eggs = set(filter(is_egg, assigned_locations.keys()))
+    hard_to_reach_eggs = set(analyzer.compute_hard_to_reach_items(all_eggs))
 
-def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, egg_goals=False):
+    if extra_eggs == None:
+        return list(item for item in items if not is_egg(item.name) or item.name in hard_to_reach_eggs)
+
+    # Add extra eggs
+    eggs = set(hard_to_reach_eggs)
+    all_reachable_eggs = set(filter(analyzer.is_reachable, all_eggs))
+    remaining_eggs = all_reachable_eggs - eggs
+    eggs.update(random.sample(sorted(remaining_eggs), extra_eggs))
+    return list(item for item in items if not is_egg(item.name) or item.name in eggs)
+
+
+
+def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, egg_goals=False, extra_eggs=None):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
@@ -654,18 +679,18 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     if egg_goals:
-        items = remove_eggs(analyzer, assigned_locations, items)
-    
+        items = remove_eggs(analyzer, assigned_locations, items, extra_eggs)
+
     #print_allocation(assigned_locations)
     #print_analysis(analyzer, assigned_locations)
     #warnings = get_all_warnings(assigned_locations)
     #for warning in warnings:
         #print('WARNING: %s' % warning)
 
-    if not write_to_map_files: return
+    generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals, write_to_map_files)
+    print('Analysis Generated.')
 
-    generate_analysis_file(assigned_locations, analyzer, output_dir, egg_goals)
-    print('Analysis Generated...')
+    if not write_to_map_files: return
 
     source_dir = 'original_maps'
     itemreader.grab_original_maps(source_dir, output_dir)
@@ -697,5 +722,6 @@ if __name__ == '__main__':
             config_file=args.config_file,
             write_to_map_files=args.write,
             shuffle_music=args.shuffle_music,
-            egg_goals=args.egg_goals
+            egg_goals=args.egg_goals,
+            extra_eggs=args.extra_eggs,
         )

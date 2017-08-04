@@ -1051,61 +1051,91 @@
 
 {
 "location": "EGG_HALLOWEEN_CICINI_ROOM",
-"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+"entry_prereq": "
+    HALLOWEEN & 
+    (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL)
+",
 "exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 }
 
 {
 "location": "EGG_HALLOWEEN_LEFT_PILLAR",
-"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH",
+"entry_prereq": "
+    HALLOWEEN & 
+    (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH)
+",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_HALLOWEEN_MID",
-"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+"entry_prereq": "
+    HALLOWEEN & 
+    (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL)
+",
 "exit_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
 }
 
 {
 "location": "EGG_HALLOWEEN_NEAR_BOSS",
-"entry_prereq": "CARROT_BOMB & ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | SLIDING_POWDER)",
+"entry_prereq": "
+    HALLOWEEN & 
+    (CARROT_BOMB & ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | SLIDING_POWDER))
+",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_HALLOWEEN_PAST_PILLARS1",
-"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH",
+"entry_prereq": "
+    HALLOWEEN & 
+    (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH)
+",
 "exit_prereq": "BUNNY_WHIRL",
 }
 
 {
 "location": "EGG_HALLOWEEN_PAST_PILLARS2",
-"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH",
+"entry_prereq": "
+    HALLOWEEN & 
+    (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH)
+",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_HALLOWEEN_RIGHT_PILLAR",
-"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH",
+"entry_prereq": "
+    HALLOWEEN & 
+    (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH)
+",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_HALLOWEEN_SW_SLIDE",
-"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+"entry_prereq": "
+    HALLOWEEN & 
+    (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL)
+",
 "exit_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
 }
 
 {
 "location": "EGG_HALLOWEEN_WARP_ZONE",
-"entry_prereq": "RABI_SLIPPERS & AIR_JUMP & WALL_JUMP & AIR_DASH",
+"entry_prereq": "
+    HALLOWEEN & 
+    (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP & AIR_DASH)
+",
 "exit_prereq": "RABI_SLIPPERS | AIR_JUMP",
 }
 
 {
 "location": "EGG_HALLOWEEN_WEST",
-"entry_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
+"entry_prereq": "
+    HALLOWEEN & 
+    (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL)
+",
 "exit_prereq": "AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL",
 }
 
@@ -1319,21 +1349,21 @@
 // Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
 {
 "location": "EGG_CRESPIRIT",
-"entry_prereq": "NONE",
+"entry_prereq": "WARP_DESTINATION",
 "exit_prereq": "NONE",
 }
 
 // Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
 {
 "location": "EGG_HOSPITAL_WALL",
-"entry_prereq": "POST_GAME & (CARROT_BOMB | CARROT_SHOOTER)",
+"entry_prereq": "WARP_DESTINATION & (POST_GAME & (CARROT_BOMB | CARROT_SHOOTER))",
 "exit_prereq": "NONE",
 }
 
 // Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
 {
 "location": "EGG_HOSPITAL_BOX",
-"entry_prereq": "POST_GAME & (CARROT_BOMB | CARROT_SHOOTER)",
+"entry_prereq": "WARP_DESTINATION & (POST_GAME & (CARROT_BOMB | CARROT_SHOOTER))",
 "exit_prereq": "NONE",
 }
 

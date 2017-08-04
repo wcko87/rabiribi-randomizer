@@ -32,6 +32,8 @@ def define_variables(item_names):
         "POST_GAME_ALLOWED": True,
         "POST_IRISU_ALLOWED": True,
         "STUPID_HARD_TRICKS": False,
+        "HALLOWEEN_REACHABLE": False,
+        "WARP_DESTINATION_REACHABLE": False,
     }
     for item_name in item_names:
         variables[item_name] = False
@@ -73,6 +75,8 @@ def define_default_expressions(variables):
         "STUPID": parse_expression("STUPID_HARD_TRICKS", variables),
         "ADVANCED": parse_expression("ADVANCED_TRICKS_REQUIRED", variables),
         "POST_IRISU": parse_expression("POST_IRISU_ALLOWED", variables),
+        "HALLOWEEN": parse_expression("HALLOWEEN_REACHABLE", variables),
+        "WARP_DESTINATION": parse_expression("WARP_DESTINATION_REACHABLE", variables),
         "BUNNY_STRIKE": parse_expression("BUNNY_STRIKE & PIKO_HAMMER", variables),
         "BUNNY_WHIRL": parse_expression("BUNNY_WHIRL & PIKO_HAMMER", variables),
         "AIR_DASH": parse_expression("AIR_DASH & PIKO_HAMMER", variables),

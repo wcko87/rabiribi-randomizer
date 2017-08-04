@@ -655,14 +655,14 @@ def run_item_randomizer(seed=None, config_file='config.txt', egg_goals=False):
     location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed, egg_goals=egg_goals)
     return location_map.compute_item_locations()
 
-def remove_eggs(analyzer, assigned_locations, items, extra_eggs):
+def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
     all_eggs = set(filter(is_egg, assigned_locations.keys()))
     hard_to_reach_eggs = set(analyzer.compute_hard_to_reach_items(all_eggs))
 
     if extra_eggs == None:
         return list(item for item in items if not is_egg(item.name) or item.name in hard_to_reach_eggs)
 
-    # Add extra eggs
+    # Add extra goal eggs
     eggs = set(hard_to_reach_eggs)
     all_reachable_eggs = set(filter(analyzer.is_reachable, all_eggs))
     remaining_eggs = all_reachable_eggs - eggs
@@ -679,7 +679,7 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     if egg_goals:
-        items = remove_eggs(analyzer, assigned_locations, items, extra_eggs)
+        items = remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs)
 
     #print_allocation(assigned_locations)
     #print_analysis(analyzer, assigned_locations)

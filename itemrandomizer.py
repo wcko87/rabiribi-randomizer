@@ -14,6 +14,7 @@ def parse_args():
     args.add_argument('--no-write', dest='write', default=True, action='store_false', help='Flag to disable map generation, and do only map analysis')
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
     args.add_argument('--shuffle-music', action='store_true', help='Experimental: Shuffles the music in the map.')
+    args.add_argument('--egg-goals', action='store_true', help='Experimental: Shuffles the music in the map.')
 
     return args.parse_args(sys.argv[1:])
 
@@ -395,6 +396,40 @@ class LocationMap(object):
         self.compute_unreachable(analyzer)
         return new_items, assigned_locations, analyzer
 
+    # tries to move eggs to the hard to reach locations.
+    # if unsuccessful, returns False.
+    # may not be deterministic even with random seed. check!
+    def move_eggs_to_hard_to_reach(self, to_shuffle):
+        new_items, assigned_locations, analyzer = self.compute_item_locations()
+        actual_items = filter_items(assigned_locations.keys(), include_eggs=True, include_potions=False)
+        hard_to_reach = set(analyzer.compute_hard_to_reach_items(actual_items))
+        unreachable = set(analyzer.unreachable)
+
+        hard_to_reach_non_eggs = set(item for item in hard_to_reach if not is_egg(item))
+        hard_locations = set([self.assigned_locations[item_name] for item_name in hard_to_reach_non_eggs])
+
+        not_hard_eggs = set(item for item in to_shuffle if is_egg(item) and item not in hard_to_reach and item not in unreachable)
+        if len(not_hard_eggs) < len(hard_to_reach_non_eggs): return False
+
+        chosen_replacement_eggs = random.sample(sorted(not_hard_eggs), len(hard_to_reach_non_eggs))
+        replacement_egg_locations = set([self.assigned_locations[item_name] for item_name in chosen_replacement_eggs])
+
+        self.reassign(deterministic_set_zip(hard_locations, chosen_replacement_eggs))
+        self.reassign(deterministic_set_zip(replacement_egg_locations, hard_to_reach_non_eggs))
+
+        new_items, assigned_locations, analyzer = self.compute_item_locations()
+        actual_items = filter_items(assigned_locations.keys(), include_eggs=True, include_potions=False)
+        new_hard_to_reach = analyzer.compute_hard_to_reach_items(actual_items)
+
+        if not all(is_egg(item) for item in new_hard_to_reach): return False
+        return True
+
+def deterministic_set_zip(s1, s2):
+    sorted1 = sorted(s1)
+    sorted2 = sorted(s2)
+    random.shuffle(sorted1)
+    return zip(sorted1, sorted2)
+
 def mean(values):
     values = tuple(values)
     return float(sum(values))/len(values)
@@ -405,6 +440,20 @@ def is_xx_up(item_name):
 def is_egg(item_name):
     return bool(item_name.startswith('EGG_'))
 
+def filter_items(item_names, include_eggs, include_potions):
+    if include_eggs:
+        if include_potions:
+            item_filter = lambda item : True
+        else:
+            item_filter = lambda item : not is_xx_up(item)
+    else:
+        if include_potions:
+            item_filter = lambda item : not is_egg(item)
+        else:
+            item_filter = lambda item : not is_xx_up(item) and not is_egg(item)
+    return filter(item_filter, item_names)
+
+
 class Analyzer(object):
     def __init__(self):
         self.step_count = -1
@@ -413,9 +462,9 @@ class Analyzer(object):
     def analyze(self, to_remove):
         if len(to_remove) == 0: return
         self.step_count += 1
-        self.levels.append(list(sorted(to_remove)))
+        self.levels.append(sorted(to_remove))
     def finish(self, unreachable):
-        self.unreachable = list(sorted(unreachable))
+        self.unreachable = sorted(unreachable)
         self._post_process()
     def _post_process(self):
         item_levels = {}
@@ -425,22 +474,24 @@ class Analyzer(object):
         self.item_levels = item_levels
     def average_hard_to_reach_step_count(self, hard_to_reach_items):
         return mean(self.item_levels[item_name] for item_name in hard_to_reach_items)
-    def compute_hard_to_reach_items(self, actual_items):
+    def compute_hard_to_reach_items(self, items_to_consider, filter_eggs=True, MAX_ITEMS=5, MIN_ITEMS=2):
+        if type(items_to_consider) is not set:
+            items_to_consider = set(items_to_consider)
         accepted_item_pool = set()
         item_pool = set()
         current_level = self.step_count
-        while len(item_pool) < 5 and (len(item_pool) < 2 or self.step_count-current_level < 2):
+
+        while len(item_pool) < MAX_ITEMS and (len(item_pool) < MIN_ITEMS or self.step_count-current_level < 2):
             accepted_item_pool.update(item_pool)
-            item_pool.update(item for item in self.levels[current_level]
-                             if not is_xx_up(item) and not is_egg(item) and item in actual_items)
+            item_pool.update(item for item in self.levels[current_level] if item in items_to_consider)
             current_level -= 1
-        for item_name in item_pool:
-            if len(accepted_item_pool) >= 5: break
-            accepted_item_pool.add(item_name)
+        
+        n_items_needed = min(len(item_pool),MAX_ITEMS-len(accepted_item_pool))
+        accepted_item_pool.update(random.sample(sorted(item_pool), n_items_needed))
         return accepted_item_pool
 
 # returns a LocationMap object
-def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=None):
+def randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=None, egg_goals=False):
     items = list(items) # all actual items
     locations = list(locations) # actual items + custom items
     must_be_reachable = set(must_be_reachable)
@@ -456,7 +507,15 @@ def randomize(items, locations, variables, to_shuffle, must_be_reachable, constr
         attempts += 1
         random.shuffle(target_locations)
         location_map.reassign(zip(target_locations, to_shuffle))
-        if location_map.validate_required_reachables(must_be_reachable): break
+        if location_map.validate_required_reachables(must_be_reachable):
+            # If not in egg goals mode, can stop now
+            if not egg_goals:
+                break
+            # In egg goals mode, try to move eggs to hard to reach items
+            move_success = location_map.move_eggs_to_hard_to_reach(to_shuffle)
+            if move_success and location_map.validate_required_reachables(must_be_reachable):
+                break
+            # issues with the movement. reshuffle.
 
     print('Computed after %d attempts' % attempts)
     return location_map
@@ -509,8 +568,8 @@ def print_analysis(analyzer, assigned_locations):
     mean_important_level = mean(analyzer.item_levels[item_name] for item_name in items_to_check)
     print('Mean Important Levels: %f' % mean_important_level)
 
-    actual_items = set(assigned_locations.keys())
-    hard_to_reach_items = analyzer.compute_hard_to_reach_items(actual_items)
+    items_to_consider = filter_items(assigned_locations.keys(), include_eggs=False, include_potions=False)
+    hard_to_reach_items = analyzer.compute_hard_to_reach_items(items_to_consider)
     print('Hard to reach:')
     print(hard_to_reach_items)
 
@@ -519,9 +578,10 @@ def print_analysis(analyzer, assigned_locations):
 
     print('Difficulty: %s' % decide_difficulty(mean_important_level, true_step_count))
 
-def generate_analysis_file(assigned_locations, analyzer, output_dir):
-    actual_items = set(assigned_locations.keys())
-    hard_to_reach_items = analyzer.compute_hard_to_reach_items(actual_items)
+def generate_analysis_file(assigned_locations, analyzer, output_dir, egg_goals=False):
+    items_to_consider = filter_items(assigned_locations.keys(), include_eggs=egg_goals, include_potions=False)
+    hard_to_reach_items = analyzer.compute_hard_to_reach_items(items_to_consider, filter_eggs=not egg_goals)
+
     important_items = ['PIKO_HAMMER', 'SLIDING_POWDER', 'CARROT_BOMB', 'AIR_JUMP']
     mean_important_level = mean(analyzer.item_levels[item_name] for item_name in important_items)
     true_step_count = analyzer.average_hard_to_reach_step_count(hard_to_reach_items)
@@ -536,13 +596,15 @@ def generate_analysis_file(assigned_locations, analyzer, output_dir):
     printline('-- analysis --')
     printline('Difficulty: %s' % difficulty)
     printline()
-    printline('Hard to reach items:')
-    for item in hard_to_reach_items:
-        printline(item)
-    printline()
+    if not egg_goals:
+        printline('Hard to reach items:')
+        for item in hard_to_reach_items:
+            printline(item)
+        printline()
     printline('Unreachable Items:')
     for item in analyzer.unreachable:
         if item.startswith('UNKNOWN'): continue # Skip DLC items
+        if egg_goals and is_egg(item): continue
         printline(item)
     printline()
     for warning in warnings:
@@ -565,7 +627,7 @@ def get_all_warnings(assigned_locations):
 # returns (new_items, assigned_locations)
 # new_items: items with newly-assigned locations
 # assigned_locations: item_name -> location map for analysis purposes.
-def run_item_randomizer(seed=None, config_file='config.txt'):
+def run_item_randomizer(seed=None, config_file='config.txt', egg_goals=False):
     items = read_items()
     custom_items = define_custom_items()
     locations = [item.name for item in items] + list(custom_items.keys())
@@ -576,16 +638,23 @@ def run_item_randomizer(seed=None, config_file='config.txt'):
     to_shuffle, must_be_reachable = read_config(variables, item_names, config_file=config_file)
     constraints = read_constraints(locations, variables, default_expressions, custom_items)
 
-    location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed)
+    location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed, egg_goals=egg_goals)
     return location_map.compute_item_locations()
 
-def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False):
+def remove_eggs(analyzer, assigned_locations, items):
+    actual_items = filter_items(assigned_locations.keys(), include_eggs=True, include_potions=False)
+    hard_to_reach_items = set(analyzer.compute_hard_to_reach_items(actual_items))
+    return list(item for item in items if not is_egg(item.name) or item.name in hard_to_reach_items)
+
+def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, egg_goals=False):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
-    items, assigned_locations, analyzer = run_item_randomizer(seed=seed, config_file=config_file)
+    items, assigned_locations, analyzer = run_item_randomizer(seed=seed, config_file=config_file, egg_goals=egg_goals)
     areaids = list(range(10))
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
+    if egg_goals:
+        items = remove_eggs(analyzer, assigned_locations, items)
     
     #print_allocation(assigned_locations)
     #print_analysis(analyzer, assigned_locations)
@@ -595,7 +664,7 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
 
     if not write_to_map_files: return
 
-    generate_analysis_file(assigned_locations, analyzer, output_dir)
+    generate_analysis_file(assigned_locations, analyzer, output_dir, egg_goals)
     print('Analysis Generated...')
 
     source_dir = 'original_maps'
@@ -628,4 +697,5 @@ if __name__ == '__main__':
             config_file=args.config_file,
             write_to_map_files=args.write,
             shuffle_music=args.shuffle_music,
+            egg_goals=args.egg_goals
         )

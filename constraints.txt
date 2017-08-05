@@ -820,10 +820,6 @@
 "exit_prereq": "NONE",
 }
 
-// 1) with slide
-// 2) with air jump + lv2 wall jump
-// 3) hammer roll zip, after blowing up a block near computer
-// Wall jump hack temporarily applied
 {
 "location": "SLIDING_POWDER",
 "entry_prereq": "NONE",
@@ -1349,21 +1345,18 @@
 "exit_prereq": "NONE",
 }
 
-// Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
 {
 "location": "EGG_CRESPIRIT",
 "entry_prereq": "WARP_DESTINATION",
 "exit_prereq": "NONE",
 }
 
-// Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
 {
 "location": "EGG_HOSPITAL_WALL",
 "entry_prereq": "WARP_DESTINATION & (POST_GAME & (CARROT_BOMB | CARROT_SHOOTER))",
 "exit_prereq": "NONE",
 }
 
-// Recommendation: Leave warp destination eggs out of the shuffle because they're semi-missable
 {
 "location": "EGG_HOSPITAL_BOX",
 "entry_prereq": "WARP_DESTINATION & (POST_GAME & (CARROT_BOMB | CARROT_SHOOTER))",

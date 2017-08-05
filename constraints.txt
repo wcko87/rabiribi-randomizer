@@ -477,7 +477,10 @@
 
 {
 "location": "ATK_UP_VANILLA",
-"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
+"entry_prereq": "
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST & ADVANCED)) &
+    SLIDING_POWDER
+",
 "exit_prereq": "SLIDING_POWDER",
 }
 
@@ -1234,7 +1237,7 @@
 
 {
 "location": "EGG_SNOWLAND_WARP",
-"entry_prereq": "NONE",
+"entry_prereq": "RABI_SLIPPERS | AIR_JUMP | AIR_DASH | ADVANCED",
 "exit_prereq": "NONE",
 }
 

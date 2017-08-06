@@ -1,5 +1,4 @@
 import struct
-import musicrandomizer
 
 MAP_SIZE = 100000
 MAP_COLLISION_OFFSET = 0
@@ -243,7 +242,7 @@ class StoredMapData(object):
 
 
 class ItemModifier(object):
-    def __init__(self, areaids, source_dir='.', no_load=False, shuffle_music=False):
+    def __init__(self, areaids, source_dir='.', no_load=False):
         self.areaids = list(areaids)
         self.items = dict((areaid, {}) for areaid in areaids)
 
@@ -261,9 +260,6 @@ class ItemModifier(object):
             stored_data = StoredMapData(map_filename(areaid, source_dir))
             stored_data.clear_items_and_eggs()
             self.stored_datas[areaid] = stored_data
-
-        if shuffle_music:
-            musicrandomizer.shuffle_music(self.stored_datas)
 
     def _set_all_dirty_flags(self, value):
         self.modified = dict((areaid, value) for areaid in self.areaids)

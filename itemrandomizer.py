@@ -1,10 +1,12 @@
 import random
 import re
 import json
-import itemreader
 import sys
 import os
 import argparse
+import itemreader
+from itemreader import to_position, to_index, xy_to_index
+import musicrandomizer
 
 def parse_args():
     args = argparse.ArgumentParser(description='Item Randomizer')
@@ -559,7 +561,6 @@ def get_all_warnings(assigned_locations):
         warnings.append('Carrot bomb not in carrot bomb original location!')
     if assigned_locations['SLIDING_POWDER'] != 'SLIDING_POWDER':
         warnings.append('Sliding powder not in sliding powder original location!')
-    warnings.append("Don't pick up rabi slippers if you see it before ribbon!")
     return warnings
 
 # returns (new_items, assigned_locations)
@@ -578,6 +579,34 @@ def run_item_randomizer(seed=None, config_file='config.txt'):
 
     location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed)
     return location_map.compute_item_locations()
+
+def apply_fixes_for_randomizer(areaid, data):
+    if areaid == 0:
+        # Place post-ribbon cutscene at (new) erina start location.
+        # this enables warp stones from the start of the game.
+        # this trigger causes erina to jump 5 tiles right to start at (96,98)
+        data.tiledata_event[xy_to_index(91,98)] = 281
+
+        # Place starting forest music trigger on (new+1)  erina start location
+        data.tiledata_event[xy_to_index(96,98)] = 129
+
+        # Relocate start position to 5 tiles left of the original position.
+        # Trigger 34 is where erina spawns. Erina walks 17 tiles left from the
+        # new starting position (108,98) to (91,98) after start.
+        # the warp stone trigger corrects this by making erina jump 5 tiles right,
+        # so that she is back in her correct starting position (96,98).
+        data.tiledata_event[xy_to_index(113,98)] = 0
+        data.tiledata_event[xy_to_index(108,98)] = 34
+        data.tiledata_event[xy_to_index(107,98)] = 129
+
+
+def pre_modify_map_data(mod, shuffle_music=False):
+    # apply rando fixes
+    for areaid, data in mod.stored_datas.items():
+        apply_fixes_for_randomizer(areaid, data)
+
+    if shuffle_music:
+        musicrandomizer.shuffle_music(mod.stored_datas)
 
 def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False):
     if write_to_map_files and not os.path.isdir(output_dir):
@@ -601,7 +630,9 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
     source_dir = 'original_maps'
     itemreader.grab_original_maps(source_dir, output_dir)
     print('Maps copied...')
-    mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True, shuffle_music=shuffle_music)
+    mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)
+    pre_modify_map_data(mod, shuffle_music=shuffle_music)
+
     mod.clear_items()
     for item in items:
         mod.add_item(item)

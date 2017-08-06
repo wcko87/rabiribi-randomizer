@@ -86,7 +86,7 @@
 {
 "location": "WALL_JUMP",
 "entry_prereq": "SLIDING_POWDER | (AIR_JUMP & AIR_DASH) | (ZIP & HAMMER_ROLL_LV3)",
-"exit_prereq": "NONE",
+"exit_prereq": "RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | AIR_DASH",
 }
 
 {

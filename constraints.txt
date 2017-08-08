@@ -1,282 +1,332 @@
+// Accessibility ratings:
+// free, near, mid, far, vfar
+
 
 {
 "location": "NATURE_ORB",
+"accessibility": "far",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_FOREST_NIGHT",
+"accessibility": "mid",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | BLOCK_CLIP",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_WEST_SPECTRAL",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_FOREST_NIGHT",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (RABI_SLIPPERS & AIR_JUMP)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_SPECTRAL",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_CAVE",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "HP_UP_CAVE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "BLESSED",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "TOXIC_STRIKE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PIKO_HAMMER",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_FOREST_CAVE",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "TOUGH_SKIN",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_CAVE",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST) | ADVANCED) & SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "HP_UP_NORTH_FOREST",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER | (ZIP & PIKO_HAMMER)) & SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "WALL_JUMP",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER | (AIR_JUMP & AIR_DASH) | (ZIP & HAMMER_ROLL_LV3)",
 "exit_prereq": "RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | AIR_DASH",
 }
 
 {
 "location": "REGEN_UP_MID_FOREST",
+"accessibility": "notyetdone",
 "entry_prereq": "BUNNY_WHIRL | AIR_JUMP | WALL_JUMP",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_MID_SPECTRAL",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_MID_SPECTRAL",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "CARROT_BOMB",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "DEF_TRADE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "LIGHT_ORB",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3))",
 "exit_prereq": "SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3)",
 }
 
 {
 "location": "HP_UP_FOREST_POST_COCOA",
+"accessibility": "notyetdone",
 "entry_prereq": "PIKO_HAMMER | CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "CHARGE_RING",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ARM_STRENGTH",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER | AIR_DASH | AIR_JUMP",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_EAST_FOREST",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MANA_WAGER",
+"accessibility": "notyetdone",
 "entry_prereq": "BUNNY_WHIRL | AIR_JUMP | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_EAST_FOREST",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_EAST_FOREST",
+"accessibility": "notyetdone",
 "entry_prereq": "(PIKO_HAMMER | CARROT_BOMB | CARROT_SHOOTER) & SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "MP_UP_CICINI",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_NORTHEAST_FOREST",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "SURVIVAL",
+"accessibility": "notyetdone",
 "entry_prereq": "BUNNY_WHIRL | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | (BUNNY_STRIKE & STUPID)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HEALTH_WAGER",
+"accessibility": "notyetdone",
 "entry_prereq": "AIR_JUMP | AIR_DASH | (STUPID & BUNNY_STRIKE)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_BEACH_CAVE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | (ZIP & PIKO_HAMMER & SLIDING_POWDER)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_GRAVEYARD_WARP",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_GRAVEYARD",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "SUNNY_BEAM",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_UPPER_GRAVEYARD",
+"accessibility": "notyetdone",
 "entry_prereq": "((BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH)) & (CARROT_BOMB | BLOCK_CLIP)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "AUTO_EARRINGS",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "AUTO_TRIGGER",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HEALTH_PLUS",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_PYRAMID_DARK_ROOM",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (ZIP & SLIDING_POWDER)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "CRISIS_BOOST",
+"accessibility": "notyetdone",
 "entry_prereq": "AIR_JUMP | (AIR_DASH & RABI_SLIPPERS)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_GRAVEYARD",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_INNER_PYRAMID",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_BEACH",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_PYRAMID",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_PYRAMID",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
@@ -284,6 +334,7 @@
 // entry_prereq was changed to NONE as the bunny can blow it up for you.
 {
 "location": "ARMORED",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 //"entry_prereq": "BLOCK_CLIP | CARROT_BOMB",
 "exit_prereq": "NONE",
@@ -291,6 +342,7 @@
 
 {
 "location": "CHAOS_ROD",
+"accessibility": "notyetdone",
 "entry_prereq": "
 (
     (SLIDING_POWDER  | (ZIP & HAMMER_ROLL_LV3)) & 
@@ -303,180 +355,210 @@
 
 {
 "location": "PACK_UP_BEACH",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | BLOCK_CLIP",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "TOP_FORM",
+"accessibility": "notyetdone",
 "entry_prereq": "BUNNY_STRIKE | AIR_JUMP | STUPID",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_PYRAMID_ENTRANCE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (SLIDING_POWDER & ZIP)",
 "exit_prereq": "CARROT_BOMB | (HAMMER_ROLL_LV3 & ZIP)",
 }
 
 {
 "location": "HITBOX_DOWN",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME & CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_PYRAMID_BOMBBLOCK_ROOM",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "AIR_DASH",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB & SLIDING_POWDER",
 "exit_prereq": "CARROT_BOMB",
 }
 
 {
 "location": "REGEN_UP_PYRAMID",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PURE_LOVE",
+"accessibility": "notyetdone",
 "entry_prereq": "(BUNNY_STRIKE | AIR_JUMP | STUPID) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "MP_UP_BEACH_TUNNEL",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HOURGLASS",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_SKY_ISLAND",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_SKY_ISLAND",
+"accessibility": "notyetdone",
 "entry_prereq": "(BUNNY_STRIKE | AIR_JUMP | STUPID) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_SKY_ISLAND",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_BEACH_PILLAR",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "DEF_GROW",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_PARK",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_TRADE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_PARK",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "RABI_SLIPPERS",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_PARK",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "HEALTH_SURGE",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID)) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 "exit_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
 }
 
 {
 "location": "MP_UP_SKY_BRIDGE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB & SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "MP_UP_UPRPRC_HQ",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_PARK",
+"accessibility": "notyetdone",
 "entry_prereq": "RABI_SLIPPERS | SLIDING_POWDER | AIR_DASH | AIR_JUMP | SPEED_BOOST",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HEX_CANCEL",
+"accessibility": "notyetdone",
 "entry_prereq": "((SLIDING_POWDER | HAMMER_ROLL_LV3) & ZIP) | (SLIDING_POWDER & CARROT_BOMB)",
 "exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
 {
 "location": "HP_UP_SKY_BRIDGE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_SKY_BRIDGE",
+"accessibility": "notyetdone",
 "entry_prereq": "((SLIDING_POWDER | HAMMER_ROLL_LV3) & ZIP) | (SLIDING_POWDER & CARROT_BOMB)",
 "exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
 {
 "location": "REGEN_UP_SKY_BRIDGE",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER | AIR_JUMP | AIR_DASH | (HAMMER_ROLL_LV3 & ZIP)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "LUCKY_SEVEN",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_VANILLA",
+"accessibility": "notyetdone",
 "entry_prereq": "
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST & ADVANCED)) &
     SLIDING_POWDER
@@ -486,114 +568,133 @@
 
 {
 "location": "HAMMER_WAVE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_WEST_RAVINE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_SOUTH_RAVINE",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 "exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
 {
 "location": "ATK_UP_NORTH_RAVINE",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | BLOCK_CLIP)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_MID_RAVINE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_RAVINE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_RAVINE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MANA_SURGE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_PALACE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "WATER_ORB",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_WEST_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MANA_PLUS",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_PALACE",
+"accessibility": "notyetdone",
 "entry_prereq": "FIRE_ORB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_SNOWLAND",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | HAMMER_ROLL | BLOCK_CLIP)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_PALACE",
+"accessibility": "notyetdone",
 "entry_prereq": "BUNNY_STRIKE | BUNNY_WHIRL | AIR_DASH | AIR_JUMP",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "STAMINA_PLUS",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_PALACE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "SELF_DEFENSE",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "HP_UP_UPPER_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
@@ -607,6 +708,7 @@
 
 {
 "location": "GOLD_CARROT",
+"accessibility": "notyetdone",
 "entry_prereq": "
     AIR_JUMP | (
         (BUNNY_WHIRL | AIR_DASH | (SLIDING_POWDER & RABI_SLIPPERS) | BUNNY_STRIKE)
@@ -617,6 +719,7 @@
 
 {
 "location": "ATK_UP_UPPER_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
@@ -630,300 +733,350 @@
 
 {
 "location": "PACK_UP_ICY_SUMMIT",
+"accessibility": "notyetdone",
 "entry_prereq": "AIR_JUMP | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_ICY_SUMMIT",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_MID_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_ICY_SUMMIT",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP) | RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | BUNNY_WHIRL",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_SNOWLAND",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "QUICK_BARRETTE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_ICY_SUMMIT",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "SUPER_CARROT",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_SNOWLAND_WATER",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP)",
 "exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP) | (SLIDING_POWDER & ZIP)",
 }
 
 {
 "location": "HP_UP_SNOWLAND",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "CARROT_BOOST",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "PACK_UP_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP)",
 "exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP) | (SLIDING_POWDER & ZIP)",
 }
 
 {
 "location": "REGEN_UP_NORTHWEST_RIVERBANK",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_RIVERBANK",
+"accessibility": "notyetdone",
 "entry_prereq": "((CARROT_SHOOTER & BOOST) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)) | ((CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_SOUTHWEST_RIVERBANK",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_GROW",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_SOUTH_RIVERBANK",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_RIVERBANK_PIT",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "BUNNY_WHIRL",
+"accessibility": "notyetdone",
 "entry_prereq": "PIKO_HAMMER | (CARROT_SHOOTER & BOOST & STUPID)",
 "exit_prereq": "BUNNY_WHIRL | AIR_DASH | (CARROT_SHOOTER & BOOST)",
 }
 
 {
 "location": "EXPLODE_SHOT",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_MID_RIVERBANK",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_EAST_RIVERBANK",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "SPIKE_BARRIER",
+"accessibility": "notyetdone",
 "entry_prereq": "AIR_JUMP | AIR_DASH | BUNNY_WHIRL | STUPID",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "FRAME_CANCEL",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "HP_UP_LAB_SLIDE_TUNNEL",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_LAB",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_RIVERBANK",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | BUNNY_WHIRL | AIR_DASH | BLOCK_CLIP",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_EVERNIGHT",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER & (AIR_JUMP | BUNNY_WHIRL)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_EVERNIGHT",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_LAB_PIT",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "SLIDING_POWDER",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "SLIDING_POWDER | (AIR_JUMP & WALL_JUMP_LV2) | (AIR_JUMP & RABI_SLIPPERS & SPEED_BOOST)",
 }
 
 {
 "location": "ATK_UP_EVERNIGHT_UPRPRC",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (PIKO_HAMMER & ZIP))",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "CASHBACK",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PLUS_NECKLACE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "WEAKEN",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_LAB_COMPUTER",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST) | BLOCK_CLIP",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_SOUTH_EVERNIGHT",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_NORTH_EVERNIGHT",
+"accessibility": "notyetdone",
 "entry_prereq": "AIR_DASH | AIR_JUMP | BUNNY_STRIKE | (RABI_SLIPPERS & STUPID)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_EVERNIGHT",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_EVERNIGHT",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ATK_UP_EAST_LAB",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (AIR_JUMP | AIR_DASH | STUPID)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_LAB",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HAMMER_ROLL",
+"accessibility": "notyetdone",
 "entry_prereq": "BUNNY_WHIRL",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "RIBBON_BADGE",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_IRISU & SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "ERINA_BADGE",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_IRISU & SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HP_UP_VOLCANIC",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "CARROT_SHOOTER",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "FIRE_ORB",
+"accessibility": "notyetdone",
 // 1.8 requirements
 "entry_prereq": "FIRE_ORB | CARROT_BOMB | (CARROT_SHOOTER & (BOOST | CHARGE_RING))",
 "exit_prereq": "FIRE_ORB | (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP_LV2)",
@@ -934,48 +1087,56 @@
 
 {
 "location": "PACK_UP_VOLCANIC",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "REGEN_UP_CYBERSPACE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB & (AIR_JUMP | AIR_DASH | BUNNY_STRIKE | STUPID)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_CYBERSPACE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "CYBER_FLOWER",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "AIR_JUMP",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "AIR_JUMP | AIR_DASH | BUNNY_STRIKE",
 }
 
 {
 "location": "HP_UP_CYBERSPACE",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER & CARROT_BOMB & ((AIR_JUMP & (RABI_SLIPPERS | STUPID)) | (BUNNY_WHIRL & STUPID))",
 "exit_prereq": "SLIDING_POWDER",
 }
 
 {
 "location": "ATK_UP_CYBERSPACE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_CYBERSPACE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
@@ -984,72 +1145,84 @@
 
 {
 "location": "EGG_CAVE_COCOA",
+"accessibility": "notyetdone",
 "entry_prereq": "STUPID | CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_CAVE_UNDER_HAMMER",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_FOREST_NE_LEDGE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | (AIR_JUMP & WALL_JUMP_LV2)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_FOREST_NE_PEDESTAL",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_FORESTNIGHT_ARURAUNE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_FORESTNIGHT_EAST",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_RUMI",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SPECTRAL_SLIDE",
+"accessibility": "notyetdone",
 "entry_prereq": "SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SPECTRAL_WEST",
+"accessibility": "notyetdone",
 "entry_prereq": "BUNNY_STRIKE | AIR_JUMP | (BUNNY_WHIRL & ADVANCED)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_BEACH_TO_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "(BUNNY_STRIKE & ZIP) | CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_GRAVEYARD_NEAR_LIBRARY",
+"accessibility": "notyetdone",
 "entry_prereq": "(BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_HALLOWEEN_CICINI_ROOM",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL)
@@ -1059,6 +1232,7 @@
 
 {
 "location": "EGG_HALLOWEEN_LEFT_PILLAR",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH)
@@ -1068,6 +1242,7 @@
 
 {
 "location": "EGG_HALLOWEEN_MID",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL)
@@ -1077,6 +1252,7 @@
 
 {
 "location": "EGG_HALLOWEEN_NEAR_BOSS",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (CARROT_BOMB & ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | SLIDING_POWDER))
@@ -1086,6 +1262,7 @@
 
 {
 "location": "EGG_HALLOWEEN_PAST_PILLARS1",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH)
@@ -1095,6 +1272,7 @@
 
 {
 "location": "EGG_HALLOWEEN_PAST_PILLARS2",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH)
@@ -1104,6 +1282,7 @@
 
 {
 "location": "EGG_HALLOWEEN_RIGHT_PILLAR",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL & AIR_DASH)
@@ -1113,6 +1292,7 @@
 
 {
 "location": "EGG_HALLOWEEN_SW_SLIDE",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL)
@@ -1122,6 +1302,7 @@
 
 {
 "location": "EGG_HALLOWEEN_WARP_ZONE",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (RABI_SLIPPERS & AIR_JUMP & WALL_JUMP & AIR_DASH)
@@ -1131,6 +1312,7 @@
 
 {
 "location": "EGG_HALLOWEEN_WEST",
+"accessibility": "notyetdone",
 "entry_prereq": "
     HALLOWEEN & 
     (AIR_JUMP & WALL_JUMP_LV2 & SLIDING_POWDER & CARROT_BOMB & BUNNY_WHIRL)
@@ -1140,12 +1322,14 @@
 
 {
 "location": "EGG_LIBRARY",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PYRAMID_LOWER",
+"accessibility": "notyetdone",
 "entry_prereq": "
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (SLIDING_POWDER | AIR_JUMP | AIR_DASH | STUPID)
@@ -1155,222 +1339,259 @@
 
 {
 "location": "EGG_PYRAMID_BEACH",
+"accessibility": "notyetdone",
 "entry_prereq": "STUPID | CARROT_BOMB | (CARROT_SHOOTER & BOOST) | AIR_JUMP | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SKY_TOWN",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PARK_SPIKES",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PARK_GREEN_KOTRI",
+"accessibility": "notyetdone",
 "entry_prereq": "(RABI_SLIPPERS & STUPID) | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_UPRPRC_BASE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SKY_BRIDGE_WARP",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SKY_BRIDGE_BY_VANILLA",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_RAVINE_ABOVE_CHOCOLATE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_RAVINE_MID",
+"accessibility": "notyetdone",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
 "exit_prereq": "CARROT_BOMB | (SLIDING_POWDER & ZIP)",
 }
 
 {
 "location": "EGG_SNOWLAND_TO_EVERNIGHT",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PALACE_BRIDGE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_AQUARIUM",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PALACE_WALL",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SNOWLAND_WARP",
+"accessibility": "notyetdone",
 "entry_prereq": "RABI_SLIPPERS | AIR_JUMP | AIR_DASH | ADVANCED",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_ICY_SUMMIT_NIXIE",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_ICY_SUMMIT_WARP",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SNOWLAND_LAKE",
+"accessibility": "notyetdone",
 "entry_prereq": "STUPID | AIR_JUMP | WALL_JUMP | WATER_ORB  | (BUNNY_WHIRL & ADVANCED)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_RIVERBANK_SPIDER_SPIKE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_RIVERBANK_WALL",
+"accessibility": "notyetdone",
 "entry_prereq": "(RABI_SLIPPERS & STUPID) | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH | SLIDING_POWDER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_LAB",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_EVERNIGHT_MID",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_EVERNIGHT_SAYA",
+"accessibility": "notyetdone",
 "entry_prereq": "STUPID | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_TOWN",
+"accessibility": "notyetdone",
 "entry_prereq": "AIR_JUMP & RABI_SLIPPERS",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PLURK_EAST",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PLURK_CAVE",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PLURK_CATS",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_VOLCANIC_BOMB_BUNNIES",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_MEMORIES_SYSINT",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME & (CARROT_BOMB | CARROT_SHOOTER)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_MEMORIES_RAVINE",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME & (CARROT_BOMB | CARROT_SHOOTER)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_VOLCANIC_FIRE_ORB",
+"accessibility": "notyetdone",
 "entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_VOLCANIC_NE",
+"accessibility": "notyetdone",
 "entry_prereq": "AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_VOLCANIC_BIG_DROP",
+"accessibility": "notyetdone",
 "entry_prereq": "ADVANCED | AIR_JUMP | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_CRESPIRIT",
+"accessibility": "notyetdone",
 "entry_prereq": "WARP_DESTINATION",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_HOSPITAL_WALL",
+"accessibility": "notyetdone",
 "entry_prereq": "WARP_DESTINATION & (POST_GAME & (CARROT_BOMB | CARROT_SHOOTER))",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_HOSPITAL_BOX",
+"accessibility": "notyetdone",
 "entry_prereq": "WARP_DESTINATION & (POST_GAME & (CARROT_BOMB | CARROT_SHOOTER))",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SYSINT1",
+"accessibility": "notyetdone",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_SYSINT2",
+"accessibility": "notyetdone",
 "entry_prereq": "POST_GAME",
 "exit_prereq": "NONE",
 }

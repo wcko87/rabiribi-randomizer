@@ -239,6 +239,14 @@ def parse_json(jsondata):
         print_error(e, jsondata)
         raise e
 
+convert_accessibility = {
+    'free': 050,
+    'near': 080,
+    'mid':  100,
+    'far':  130,
+    'vfar': 170,
+}
+
 # throws errors for invalid formats.
 # returns a dict mapping each location to its prereqs.
 def read_constraints(locations, variables, default_expressions, custom_items):
@@ -256,13 +264,15 @@ def read_constraints(locations, variables, default_expressions, custom_items):
         assert cdict['location'] in locations_set, 'Unknown location: %s' % cdict['location']
         entry_expression = parse_expression(cdict['entry_prereq'], variables, default_expressions)
         exit_expression = parse_expression(cdict['exit_prereq'], variables, default_expressions)
-        constraints[cdict['location']] = Constraint(entry_expression, exit_expression)
+        accessibility = convert_accessibility[cdict['accessibility']]
+        constraints[cdict['location']] = Constraint(entry_expression, exit_expression, accessibility)
 
     for item_name, cdict in custom_items.items():
         assert item_name in locations_set, 'Unknown custom item: %s' % item_name
         entry_expression = parse_expression(cdict['entry_prereq'], variables, default_expressions)
         exit_expression = parse_expression(cdict['exit_prereq'], variables, default_expressions)
-        constraints[item_name] = Constraint(entry_expression, exit_expression)
+        accessibility = convert_accessibility[cdict['accessibility']]
+        constraints[item_name] = Constraint(entry_expression, exit_expression, accessibility)
 
     return constraints
 
@@ -313,9 +323,10 @@ def read_items():
 # '''''''''''''''''''''''''''''''''''''''''''''
 
 class Constraint(object):
-    def __init__(self, entry_expression, exit_expression):
+    def __init__(self, entry_expression, exit_expression, accessibility):
         self.entry_expression = entry_expression
         self.exit_expression = exit_expression
+        self.accessibility = accessibility
 
     def can_enter(self, variables):
         return self.entry_expression.evaluate(variables)

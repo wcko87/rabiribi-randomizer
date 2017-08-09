@@ -45,22 +45,27 @@ def define_custom_items():
     # Generally used for items that require you to exit to the shop before you can fully utilize it
     return {
         "WALL_JUMP_LV2": {
+            "accessibility": "free",
             "entry_prereq": "WALL_JUMP",
             "exit_prereq": "NONE",
         },
         "HAMMER_ROLL_LV3": {
+            "accessibility": "free",
             "entry_prereq": "HAMMER_ROLL",
             "exit_prereq": "NONE",
         },
         "BUNNY_STRIKE": {
+            "accessibility": "free",
             "entry_prereq": "SLIDING_POWDER",
             "exit_prereq": "NONE",
         },
         "AIR_DASH_LV3": {
+            "accessibility": "free",
             "entry_prereq": "AIR_DASH",
             "exit_prereq": "NONE",
         },
         "SPEED_BOOST": {
+            "accessibility": "free",
             "entry_prereq": "NONE",
             "exit_prereq": "NONE",
         },
@@ -240,9 +245,10 @@ def parse_json(jsondata):
         print_error(e, jsondata)
         raise e
 
+DEFAULT_ACCESSIBILITY = 100
 convert_accessibility = {
-    'free': 050,
-    'near': 080,
+    'free': 50,
+    'near': 80,
     'mid':  100,
     'far':  130,
     'vfar': 170,
@@ -258,7 +264,7 @@ def read_constraints(locations, variables, default_expressions, custom_items):
     jsondata = '[' + jsondata + ']'
     cdicts = parse_json(jsondata)
 
-    DEFAULT_CONSTRAINT = Constraint(default_expressions['IMPOSSIBLE'], default_expressions['IMPOSSIBLE'])
+    DEFAULT_CONSTRAINT = Constraint(default_expressions['IMPOSSIBLE'], default_expressions['IMPOSSIBLE'], DEFAULT_ACCESSIBILITY)
     locations_set = set(locations)
     constraints = dict((location, DEFAULT_CONSTRAINT) for location in locations_set)
     for cdict in cdicts:

@@ -1,7 +1,4 @@
 
-// free, near, mid, far, vfar
-
-
 {
 "location": "NATURE_ORB",
 "accessibility": "far",

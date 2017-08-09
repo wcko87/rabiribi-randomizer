@@ -249,11 +249,11 @@ def parse_json(jsondata):
 
 DEFAULT_ACCESSIBILITY = 100
 convert_accessibility = {
-    'free': 30,
-    'near': 70,
-    'mid':  100,
-    'far':  140,
-    'vfar': 200,
+    'free': 20,
+    'near': 60,
+    'mid':  80,
+    'far':  100,
+    'vfar': 160,
 }
 
 # throws errors for invalid formats.

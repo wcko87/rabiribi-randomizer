@@ -1,13 +1,13 @@
 
 {
 "location": "NATURE_ORB",
-"entry_prereq": "NONE",
+"entry_prereq": "DARKNESS",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "PACK_UP_FOREST_NIGHT",
-"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | BLOCK_CLIP",
+"entry_prereq": "DARKNESS & (CARROT_BOMB | CARROT_SHOOTER | BLOCK_CLIP)",
 "exit_prereq": "NONE",
 }
 
@@ -86,12 +86,12 @@
 {
 "location": "WALL_JUMP",
 "entry_prereq": "SLIDING_POWDER | (AIR_JUMP & AIR_DASH) | (ZIP & HAMMER_ROLL_LV3)",
-"exit_prereq": "RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | AIR_DASH",
+"exit_prereq": "RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | (ADVANCED & (AIR_DASH | SLIDING_POWDER))",
 }
 
 {
 "location": "REGEN_UP_MID_FOREST",
-"entry_prereq": "BUNNY_WHIRL | AIR_JUMP | WALL_JUMP",
+"entry_prereq": "(ADVANCED & BUNNY_WHIRL) | AIR_JUMP | WALL_JUMP",
 "exit_prereq": "NONE",
 }
 
@@ -139,7 +139,7 @@
 
 {
 "location": "ARM_STRENGTH",
-"entry_prereq": "SLIDING_POWDER | AIR_DASH | AIR_JUMP",
+"entry_prereq": "(BUNNY_STRIKE & ADVANCED) | AIR_DASH | AIR_JUMP",
 "exit_prereq": "NONE",
 }
 
@@ -151,7 +151,7 @@
 
 {
 "location": "MANA_WAGER",
-"entry_prereq": "BUNNY_WHIRL | AIR_JUMP | AIR_DASH",
+"entry_prereq": "(BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
@@ -181,13 +181,13 @@
 
 {
 "location": "SURVIVAL",
-"entry_prereq": "BUNNY_WHIRL | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | (BUNNY_STRIKE & STUPID)",
+"entry_prereq": "(BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | (BUNNY_STRIKE & STUPID)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HEALTH_WAGER",
-"entry_prereq": "AIR_JUMP | AIR_DASH | (STUPID & BUNNY_STRIKE)",
+"entry_prereq": "AIR_JUMP | (AIR_DASH & ADVANCED) | (STUPID & BUNNY_STRIKE)",
 "exit_prereq": "NONE",
 }
 
@@ -217,7 +217,7 @@
 
 {
 "location": "MP_UP_UPPER_GRAVEYARD",
-"entry_prereq": "((BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH)) & (CARROT_BOMB | BLOCK_CLIP)",
+"entry_prereq": "((BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | (BUNNY_STRIKE & STUPID)) & (AIR_JUMP | AIR_DASH | ADVANCED) & (CARROT_BOMB | BLOCK_CLIP)",
 "exit_prereq": "NONE",
 }
 
@@ -241,13 +241,13 @@
 
 {
 "location": "MP_UP_PYRAMID_DARK_ROOM",
-"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (ZIP & SLIDING_POWDER)",
+"entry_prereq": "DARKNESS & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (ZIP & SLIDING_POWDER))",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "CRISIS_BOOST",
-"entry_prereq": "AIR_JUMP | (AIR_DASH & RABI_SLIPPERS)",
+"entry_prereq": "(AIR_JUMP & (RABI_SLIPPERS | ADVANCED)) | (AIR_DASH & RABI_SLIPPERS)",
 "exit_prereq": "NONE",
 }
 
@@ -259,7 +259,7 @@
 
 {
 "location": "HP_UP_INNER_PYRAMID",
-"entry_prereq": "CARROT_BOMB",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 "exit_prereq": "NONE",
 }
 
@@ -309,7 +309,7 @@
 
 {
 "location": "TOP_FORM",
-"entry_prereq": "BUNNY_STRIKE | AIR_JUMP | STUPID",
+"entry_prereq": "(BUNNY_STRIKE & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED)) | (AIR_DASH & (WALL_JUMP | STUPID))",
 "exit_prereq": "NONE",
 }
 
@@ -345,7 +345,7 @@
 
 {
 "location": "PURE_LOVE",
-"entry_prereq": "(BUNNY_STRIKE | AIR_JUMP | STUPID) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
+"entry_prereq": "((BUNNY_STRIKE & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED)) | (AIR_DASH & (WALL_JUMP | STUPID))) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
@@ -369,7 +369,7 @@
 
 {
 "location": "PACK_UP_SKY_ISLAND",
-"entry_prereq": "(BUNNY_STRIKE | AIR_JUMP | STUPID) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
+"entry_prereq": "((BUNNY_STRIKE & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED)) | (AIR_DASH & (WALL_JUMP | STUPID))) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 "exit_prereq": "NONE",
 }
 
@@ -423,7 +423,7 @@
 
 {
 "location": "HEALTH_SURGE",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID)) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
+"entry_prereq": "DARKNESS & ((CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID)) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)))",
 "exit_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
 }
 
@@ -441,13 +441,13 @@
 
 {
 "location": "MP_UP_PARK",
-"entry_prereq": "RABI_SLIPPERS | SLIDING_POWDER | AIR_DASH | AIR_JUMP | SPEED_BOOST",
+"entry_prereq": "RABI_SLIPPERS | SLIDING_POWDER | AIR_DASH | AIR_JUMP | (SPEED_BOOST & ADVANCED)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "HEX_CANCEL",
-"entry_prereq": "((SLIDING_POWDER | HAMMER_ROLL_LV3) & ZIP) | (SLIDING_POWDER & CARROT_BOMB)",
+"entry_prereq": "DARKNESS & (((SLIDING_POWDER | HAMMER_ROLL_LV3) & ZIP) | (SLIDING_POWDER & CARROT_BOMB & (AIR_DASH | AIR_JUMP | ADVANCED)))",
 "exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
@@ -459,13 +459,13 @@
 
 {
 "location": "PACK_UP_SKY_BRIDGE",
-"entry_prereq": "((SLIDING_POWDER | HAMMER_ROLL_LV3) & ZIP) | (SLIDING_POWDER & CARROT_BOMB)",
+"entry_prereq": "DARKNESS & (((SLIDING_POWDER | HAMMER_ROLL_LV3) & ZIP) | (SLIDING_POWDER & CARROT_BOMB & (AIR_DASH | AIR_JUMP | ADVANCED)))",
 "exit_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
 }
 
 {
 "location": "REGEN_UP_SKY_BRIDGE",
-"entry_prereq": "SLIDING_POWDER | AIR_JUMP | AIR_DASH | (HAMMER_ROLL_LV3 & ZIP)",
+"entry_prereq": "(SLIDING_POWDER & ADVANCED) | AIR_JUMP | AIR_DASH | (HAMMER_ROLL_LV3 & ZIP & DARKNESS)",
 "exit_prereq": "NONE",
 }
 
@@ -504,7 +504,7 @@
 
 {
 "location": "ATK_UP_NORTH_RAVINE",
-"entry_prereq": "SLIDING_POWDER & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | BLOCK_CLIP)",
+"entry_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | BLOCK_CLIP)",
 "exit_prereq": "NONE",
 }
 
@@ -546,13 +546,13 @@
 
 {
 "location": "HP_UP_WEST_AQUARIUM",
-"entry_prereq": "CARROT_BOMB",
+"entry_prereq": "DARKNESS & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MANA_PLUS",
-"entry_prereq": "NONE",
+"entry_prereq": "DARKNESS",
 "exit_prereq": "NONE",
 }
 
@@ -570,7 +570,7 @@
 
 {
 "location": "REGEN_UP_PALACE",
-"entry_prereq": "BUNNY_STRIKE | BUNNY_WHIRL | AIR_DASH | AIR_JUMP",
+"entry_prereq": "DARKNESS & ((ADVANCED & (BUNNY_STRIKE | BUNNY_WHIRL)) | AIR_DASH | AIR_JUMP)",
 "exit_prereq": "NONE",
 }
 
@@ -595,6 +595,7 @@
 {
 "location": "HP_UP_UPPER_AQUARIUM",
 "entry_prereq": "
+    DARKNESS &
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
@@ -618,10 +619,11 @@
 {
 "location": "ATK_UP_UPPER_AQUARIUM",
 "entry_prereq": "
+    DARKNESS &
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
-        (WALL_JUMP_LV2 & RABI_SLIPPERS) |
+        (WALL_JUMP_LV2 & RABI_SLIPPERS & STUPID) |
         (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
         (WALL_JUMP_LV2 & AIR_JUMP)
     )",
@@ -630,7 +632,7 @@
 
 {
 "location": "PACK_UP_ICY_SUMMIT",
-"entry_prereq": "AIR_JUMP | AIR_DASH",
+"entry_prereq": "(AIR_JUMP & ADVANCED) | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
@@ -648,7 +650,7 @@
 
 {
 "location": "MP_UP_ICY_SUMMIT",
-"entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP) | RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | BUNNY_WHIRL",
+"entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP) | RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | (BUNNY_WHIRL & ADVANCED)",
 "exit_prereq": "NONE",
 }
 
@@ -685,7 +687,7 @@
 {
 "location": "MP_UP_AQUARIUM",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP)",
-"exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP) | (SLIDING_POWDER & ZIP)",
+"exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 }
 
 {
@@ -709,7 +711,7 @@
 {
 "location": "PACK_UP_AQUARIUM",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP)",
-"exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) | (HAMMER_ROLL_LV3 & WATER_ORB & ZIP) | (SLIDING_POWDER & ZIP)",
+"exit_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 }
 
 {
@@ -720,13 +722,13 @@
 
 {
 "location": "PACK_UP_RIVERBANK",
-"entry_prereq": "((CARROT_SHOOTER & BOOST) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)) | ((CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER)",
+"entry_prereq": "((CARROT_SHOOTER & BOOST) & (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH)) | ((CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "MP_UP_SOUTHWEST_RIVERBANK",
-"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)",
+"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH)",
 "exit_prereq": "NONE",
 }
 
@@ -738,7 +740,7 @@
 
 {
 "location": "REGEN_UP_SOUTH_RIVERBANK",
-"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | BUNNY_WHIRL | AIR_JUMP | AIR_DASH)",
+"entry_prereq": "DARKNESS & (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH)",
 "exit_prereq": "NONE",
 }
 
@@ -751,7 +753,7 @@
 {
 "location": "BUNNY_WHIRL",
 "entry_prereq": "PIKO_HAMMER | (CARROT_SHOOTER & BOOST & STUPID)",
-"exit_prereq": "BUNNY_WHIRL | AIR_DASH | (CARROT_SHOOTER & BOOST)",
+"exit_prereq": "BUNNY_WHIRL | AIR_DASH | (CARROT_SHOOTER & BOOST & ADVANCED)",
 }
 
 {
@@ -762,7 +764,7 @@
 
 {
 "location": "MP_UP_MID_RIVERBANK",
-"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
@@ -774,14 +776,14 @@
 
 {
 "location": "SPIKE_BARRIER",
-"entry_prereq": "AIR_JUMP | AIR_DASH | BUNNY_WHIRL | STUPID",
+"entry_prereq": "AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED) | STUPID",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "FRAME_CANCEL",
-"entry_prereq": "CARROT_BOMB | SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
-"exit_prereq": "SLIDING_POWDER",
+"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP))",
+"exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | CARROT_SHOOTER)",
 }
 
 {
@@ -804,7 +806,7 @@
 
 {
 "location": "MP_UP_EVERNIGHT",
-"entry_prereq": "SLIDING_POWDER & (AIR_JUMP | BUNNY_WHIRL)",
+"entry_prereq": "DARKNESS & SLIDING_POWDER & (AIR_JUMP | (BUNNY_WHIRL & ADVANCED))",
 "exit_prereq": "NONE",
 }
 
@@ -822,7 +824,7 @@
 
 {
 "location": "SLIDING_POWDER",
-"entry_prereq": "NONE",
+"entry_prereq": "ADVANCED | CARROT_BOMB",
 "exit_prereq": "SLIDING_POWDER | (AIR_JUMP & WALL_JUMP_LV2) | (AIR_JUMP & RABI_SLIPPERS & SPEED_BOOST)",
 }
 
@@ -864,7 +866,7 @@
 
 {
 "location": "PACK_UP_NORTH_EVERNIGHT",
-"entry_prereq": "AIR_DASH | AIR_JUMP | BUNNY_STRIKE | (RABI_SLIPPERS & STUPID)",
+"entry_prereq": "AIR_DASH | AIR_JUMP | (BUNNY_STRIKE & ADVANCED) | (RABI_SLIPPERS & STUPID)",
 "exit_prereq": "NONE",
 }
 
@@ -882,7 +884,7 @@
 
 {
 "location": "ATK_UP_EAST_LAB",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (AIR_JUMP | AIR_DASH | STUPID)",
+"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (AIR_JUMP | AIR_DASH | (RABI_SLIPPERS & STUPID))",
 "exit_prereq": "NONE",
 }
 
@@ -940,7 +942,7 @@
 
 {
 "location": "REGEN_UP_CYBERSPACE",
-"entry_prereq": "CARROT_BOMB & (AIR_JUMP | AIR_DASH | BUNNY_STRIKE | STUPID)",
+"entry_prereq": "CARROT_BOMB & (AIR_JUMP | AIR_DASH | (BUNNY_STRIKE & ADVANCED) | STUPID)",
 "exit_prereq": "NONE",
 }
 
@@ -970,7 +972,7 @@
 
 {
 "location": "ATK_UP_CYBERSPACE",
-"entry_prereq": "CARROT_BOMB",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST & STUPID)",
 "exit_prereq": "NONE",
 }
 
@@ -1008,13 +1010,13 @@
 
 {
 "location": "EGG_FORESTNIGHT_ARURAUNE",
-"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"entry_prereq": "DARKNESS & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_FORESTNIGHT_EAST",
-"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"entry_prereq": "DARKNESS & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 "exit_prereq": "NONE",
 }
 
@@ -1032,13 +1034,13 @@
 
 {
 "location": "EGG_SPECTRAL_WEST",
-"entry_prereq": "BUNNY_STRIKE | AIR_JUMP | (BUNNY_WHIRL & ADVANCED)",
+"entry_prereq": "AIR_JUMP | ((BUNNY_STRIKE | BUNNY_WHIRL) & ADVANCED)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_BEACH_TO_AQUARIUM",
-"entry_prereq": "(BUNNY_STRIKE & ZIP) | CARROT_BOMB | CARROT_SHOOTER",
+"entry_prereq": "(SLIDING_POWDER & PIKO_HAMMER & ZIP) | CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
@@ -1148,7 +1150,7 @@
 "location": "EGG_PYRAMID_LOWER",
 "entry_prereq": "
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-    (SLIDING_POWDER | AIR_JUMP | AIR_DASH | STUPID)
+    (SLIDING_POWDER | AIR_JUMP | AIR_DASH | STUPID | (BUNNY_STRIKE & RABI_SLIPPERS))
 ",
 "exit_prereq": "NONE",
 }
@@ -1251,7 +1253,7 @@
 
 {
 "location": "EGG_SNOWLAND_LAKE",
-"entry_prereq": "STUPID | AIR_JUMP | WALL_JUMP | WATER_ORB  | (BUNNY_WHIRL & ADVANCED)",
+"entry_prereq": "STUPID | AIR_JUMP | WALL_JUMP | WATER_ORB | (BUNNY_WHIRL & ADVANCED)",
 "exit_prereq": "NONE",
 }
 

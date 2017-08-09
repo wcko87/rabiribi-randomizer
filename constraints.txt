@@ -187,7 +187,11 @@
 
 {
 "location": "HEALTH_WAGER",
-"entry_prereq": "AIR_JUMP | (AIR_DASH & ADVANCED) | (STUPID & BUNNY_STRIKE)",
+"entry_prereq": "
+AIR_JUMP
+| (AIR_DASH & (RABI_SLIPPERS | BUNNY_WHIRL) & ADVANCED)
+| (STUPID & BUNNY_STRIKE)
+",
 "exit_prereq": "NONE",
 }
 
@@ -217,7 +221,16 @@
 
 {
 "location": "MP_UP_UPPER_GRAVEYARD",
-"entry_prereq": "((BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | (BUNNY_STRIKE & STUPID)) & (AIR_JUMP | AIR_DASH | ADVANCED) & (CARROT_BOMB | BLOCK_CLIP)",
+"entry_prereq": "
+(
+    (BUNNY_WHIRL & ADVANCED) |
+    AIR_JUMP |
+    (RABI_SLIPPERS & AIR_DASH) |
+    (BUNNY_STRIKE & STUPID)
+)
+& (AIR_JUMP | AIR_DASH | ADVANCED)
+& (CARROT_BOMB | BLOCK_CLIP)
+",
 "exit_prereq": "NONE",
 }
 
@@ -309,7 +322,11 @@
 
 {
 "location": "TOP_FORM",
-"entry_prereq": "(BUNNY_STRIKE & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED)) | (AIR_DASH & (WALL_JUMP | STUPID))",
+"entry_prereq": "
+(BUNNY_STRIKE & ADVANCED)
+| (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED))
+| (AIR_DASH & (WALL_JUMP | STUPID))
+",
 "exit_prereq": "NONE",
 }
 
@@ -345,7 +362,15 @@
 
 {
 "location": "PURE_LOVE",
-"entry_prereq": "((BUNNY_STRIKE & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED)) | (AIR_DASH & (WALL_JUMP | STUPID))) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
+"entry_prereq": "
+(
+    (BUNNY_STRIKE & ADVANCED)
+    | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED))
+    | (AIR_DASH & (WALL_JUMP | STUPID))
+)
+& (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
+& SLIDING_POWDER
+",
 "exit_prereq": "SLIDING_POWDER",
 }
 
@@ -369,7 +394,14 @@
 
 {
 "location": "PACK_UP_SKY_ISLAND",
-"entry_prereq": "((BUNNY_STRIKE & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED)) | (AIR_DASH & (WALL_JUMP | STUPID))) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
+"entry_prereq": "
+(
+    (BUNNY_STRIKE & ADVANCED)
+    | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | WALL_JUMP | ADVANCED))
+    | (AIR_DASH & (WALL_JUMP | STUPID))
+)
+& (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
+",
 "exit_prereq": "NONE",
 }
 

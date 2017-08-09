@@ -534,6 +534,8 @@ class Analyzer(object):
         self.item_levels = item_levels
     def average_step_count(self, items_to_check):
         return mean(self.item_levels[item_name] for item_name in items_to_check)
+    def average_reachability_score(self, items_to_check):
+        return mean(self.reachability_cost[item_name] for item_name in items_to_check) / 100.0
     def compute_hard_to_reach_items(self, items_to_consider, MAX_ITEMS=5, MIN_ITEMS=2):
         if type(items_to_consider) is not set:
             items_to_consider = set(items_to_consider)
@@ -630,8 +632,11 @@ def print_analysis(analyzer, assigned_locations):
     # Print steps needed to get everything
     print('Steps needed: %d' % analyzer.step_count)
 
-    mean_important_level = mean(analyzer.item_levels[item_name] for item_name in items_to_check)
+    mean_important_level = analyzer.average_step_count(items_to_check)
     print('Mean Important Levels: %f' % mean_important_level)
+
+    mean_important_reachability_score = analyzer.average_reachability_score(items_to_check)
+    print('Mean Important Reachability Score: %f' % mean_important_reachability_score)
 
     items_to_consider = filter_items(assigned_locations.keys(), include_eggs=False, include_potions=False)
     hard_to_reach_items = analyzer.compute_hard_to_reach_items(items_to_consider)
@@ -641,22 +646,26 @@ def print_analysis(analyzer, assigned_locations):
     true_step_count = analyzer.average_step_count(hard_to_reach_items)
     print('True Step Count: %f' % true_step_count)
 
-    print('Difficulty: %s' % decide_difficulty(mean_important_level, true_step_count))
+    true_reachability_score = analyzer.average_reachability_score(hard_to_reach_items)
+    print('True Reachability Score: %f' % true_reachability_score)
+
+    print('Difficulty (SC): %s' % decide_difficulty(mean_important_level, true_step_count))
+    print('Difficulty (RS): %s' % decide_difficulty(mean_important_reachability_score, true_reachability_score))
 
 def generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals=False, write_to_map_files=False):
     important_items = ['PIKO_HAMMER', 'SLIDING_POWDER', 'CARROT_BOMB', 'AIR_JUMP']
-    mean_important_level = mean(analyzer.item_levels[item_name] for item_name in important_items)
+    mean_important_reachability_score = analyzer.average_reachability_score(important_items)
 
     if egg_goals:
         all_eggs = sorted(item.name for item in items if is_egg(item.name))
         hard_to_reach_eggs = analyzer.compute_hard_to_reach_items(all_eggs)
-        true_step_count = analyzer.average_step_count(hard_to_reach_eggs)
+        true_reachability_score = analyzer.average_reachability_score(hard_to_reach_eggs)
     else:
         items_to_consider = filter_items((item.name for item in items), include_eggs=False, include_potions=False)
         hard_to_reach_items = analyzer.compute_hard_to_reach_items(items_to_consider)
-        true_step_count = analyzer.average_step_count(hard_to_reach_items)
+        true_reachability_score = analyzer.average_reachability_score(hard_to_reach_items)
 
-    difficulty = decide_difficulty(mean_important_level, true_step_count)
+    difficulty = decide_difficulty(mean_important_reachability_score, true_reachability_score)
     warnings = get_all_warnings(assigned_locations)
 
     file_lines = []

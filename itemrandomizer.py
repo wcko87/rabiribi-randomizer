@@ -247,11 +247,11 @@ def parse_json(jsondata):
 
 DEFAULT_ACCESSIBILITY = 100
 convert_accessibility = {
-    'free': 50,
-    'near': 80,
+    'free': 30,
+    'near': 70,
     'mid':  100,
-    'far':  130,
-    'vfar': 170,
+    'far':  140,
+    'vfar': 200,
 }
 
 # throws errors for invalid formats.
@@ -330,10 +330,10 @@ def read_items():
 # '''''''''''''''''''''''''''''''''''''''''''''
 
 class Constraint(object):
-    def __init__(self, entry_expression, exit_expression, accessibility):
+    def __init__(self, entry_expression, exit_expression, accessibility_cost):
         self.entry_expression = entry_expression
         self.exit_expression = exit_expression
-        self.accessibility = accessibility
+        self.accessibility_cost = accessibility_cost
 
     def can_enter(self, variables):
         return self.entry_expression.evaluate(variables)
@@ -413,6 +413,7 @@ class LocationMap(object):
 
         analyzer = Analyzer()
         self.compute_unreachable(analyzer)
+        analyzer.compute_reachability_costs(self)
         return new_items, assigned_locations, analyzer
 
 def mean(values):
@@ -430,6 +431,43 @@ class Analyzer(object):
         self.step_count = -1
         self.levels = []
         self.unreachable = None
+
+    def compute_reachability_costs(self, location_map):
+        unreachable = set(location_map.locations) # copy
+        currently_reachable = set()
+        to_remove = set()
+        variables = dict(location_map.variables) # copy
+        reachability_costs = dict((item_name, -1) for item_name in location_map.locations)
+
+        current_cost = 0
+        while True:
+            for item_name in unreachable:
+                location = location_map.assigned_locations[item_name]
+                constraint = location_map.constraints[location]
+                if constraint.can_enter_and_exit(variables, item_name):
+                    # item can be reached.
+                    currently_reachable.add(item_name)
+                    to_remove.add(item_name)
+                    reachability_costs[item_name] = current_cost + constraint.accessibility_cost
+
+            if len(currently_reachable) == 0:
+                break
+
+            unreachable -= to_remove
+            to_remove.clear()
+            current_cost = min(reachability_costs[item_name] for item_name in currently_reachable)
+
+            # Mark all currently reachable items of minimum cost.
+            for item_name in currently_reachable:
+                if reachability_costs[item_name] == current_cost:
+                    variables[item_name] = True
+                    to_remove.add(item_name)
+
+            currently_reachable -= to_remove
+            to_remove.clear()
+
+        self.reachability_cost = reachability_costs
+
     def analyze(self, to_remove):
         if len(to_remove) == 0: return
         self.step_count += 1
@@ -508,7 +546,10 @@ def print_analysis(analyzer, assigned_locations):
     for index, items in enumerate(analyzer.levels):
         print('Level %d' % index)
         for item in items:
-            print('  %s' % item)
+            if item in assigned_locations:
+                print('  %s [%d] @ %s' % (item, analyzer.reachability_cost[item], assigned_locations[item]))
+            else:
+                print('  %s [%d]' % (item, analyzer.reachability_cost[item]))
 
     # Print all unreachable items
     print('Unreachable items:')
@@ -522,7 +563,7 @@ def print_analysis(analyzer, assigned_locations):
         'AIR_JUMP'
     ]
     for item_name in items_to_check:
-        print('%s: level %d' % (item_name, analyzer.item_levels[item_name]))
+        print('%s: level %d [%d]' % (item_name, analyzer.item_levels[item_name], analyzer.reachability_cost[item_name]))
     # Print steps needed to get everything
     print('Steps needed: %d' % analyzer.step_count)
 

@@ -1,7 +1,7 @@
 # Rabi-Ribi Randomizer
 Randomizes items in Rabi-Ribi maps
 
-[Download](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/build/artifacts?branch=egg_goals) [branch: egg_goals]
+[Download](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/build/artifacts?branch=egg_goals_and_accessibility) [branch: egg_goals_and_accessibility]
 
 ### How to use
 Here's a 1-minute guide to how to run the randomizer. Make do with this until I get around to writing a proper guide.

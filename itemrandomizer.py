@@ -590,13 +590,13 @@ def randomize(items, locations, variables, to_shuffle, must_be_reachable, constr
 def decide_difficulty(mean_important_level, true_step_count):
     score = mean_important_level + true_step_count
     if score >= 7:
-        return 'V.HARD (%s)' % score
+        return 'V.HARD (%.2f)' % score
     if score >= 5.5:
-        return 'HARD (%s)' % score
+        return 'HARD (%.2f)' % score
     if score >= 3.5:
-        return 'MEDIUM (%s)' % score
+        return 'MEDIUM (%.2f)' % score
     else:
-        return 'EASY (%s)' % score
+        return 'EASY (%.2f)' % score
 
 def print_allocation(assigned_locations):
     print('Assignment:')

@@ -701,10 +701,6 @@ def generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_
 
 def get_all_warnings(assigned_locations):
     warnings = []
-    if assigned_locations['CARROT_BOMB'] != 'CARROT_BOMB':
-        warnings.append('Carrot bomb not in carrot bomb original location!')
-    if assigned_locations['SLIDING_POWDER'] != 'SLIDING_POWDER':
-        warnings.append('Sliding powder not in sliding powder original location!')
     return warnings
 
 # returns (new_items, assigned_locations)
@@ -742,6 +738,32 @@ def apply_fixes_for_randomizer(areaid, data):
         data.tiledata_event[xy_to_index(113,98)] = 0
         data.tiledata_event[xy_to_index(108,98)] = 34
         data.tiledata_event[xy_to_index(107,98)] = 129
+
+        # Remove save point and autosave point before Cocoa1
+        for y in range(84,88):
+            data.tiledata_event[xy_to_index(358,y)] = 0
+            data.tiledata_event[xy_to_index(363,y)] = 0
+            data.tiledata_event[xy_to_index(364,y)] = 0
+        for y in range(85,88):
+            data.tiledata_event[xy_to_index(361,y)] = 0
+            data.tiledata_event[xy_to_index(365,y)] = 0
+
+        # Add autosave point at ledge above Cocoa1
+        data.tiledata_event[xy_to_index(378,80)] = 42
+        data.tiledata_event[xy_to_index(378,81)] = 42
+        data.tiledata_event[xy_to_index(380,80)] = 44
+        data.tiledata_event[xy_to_index(380,81)] = 44
+        data.tiledata_event[xy_to_index(376,80)] = 44
+        data.tiledata_event[xy_to_index(376,81)] = 44
+        data.tiledata_event[xy_to_index(376,82)] = 44
+
+    if areaid == 4:
+        # Remove save point at slide location in lab
+        for y in range(185,189):
+            data.tiledata_event[xy_to_index(309,y)] = 0
+        for y in range(186,189):
+            data.tiledata_event[xy_to_index(310,y)] = 0
+
 
 
 def pre_modify_map_data(mod, shuffle_music=False):

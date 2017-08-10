@@ -558,10 +558,6 @@ def generate_analysis_file(assigned_locations, analyzer, output_dir):
 
 def get_all_warnings(assigned_locations):
     warnings = []
-    if assigned_locations['CARROT_BOMB'] != 'CARROT_BOMB':
-        warnings.append('Carrot bomb not in carrot bomb original location!')
-    if assigned_locations['SLIDING_POWDER'] != 'SLIDING_POWDER':
-        warnings.append('Sliding powder not in sliding powder original location!')
     return warnings
 
 # returns (new_items, assigned_locations)

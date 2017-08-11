@@ -1633,7 +1633,7 @@ DARKNESS
 
 {
 "location": "EGG_SYSINT1",
-"accessibility": "mid",
+"accessibility": "far",
 "entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }

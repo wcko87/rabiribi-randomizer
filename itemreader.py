@@ -1,8 +1,10 @@
 import struct
 
 MAP_SIZE = 100000
+MINIMAP_SIZE = 450
 MAP_COLLISION_OFFSET = 0
 MAP_EVENTS_OFFSET = 200000
+MAP_ROOMCOLOR_OFFSET = 400900
 MAP_ITEMS_OFFSET = 402700
 MAP_TILES1_OFFSET = 802704
 MAP_TILES3_OFFSET = 1202704
@@ -210,6 +212,8 @@ class StoredMapData(object):
         self.tiledata_map = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_EVENTS_OFFSET)
         self.tiledata_event = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
+        f.seek(MAP_ROOMCOLOR_OFFSET)
+        self.tiledata_roomcolor = list(struct.unpack('%dh' % MINIMAP_SIZE, f.read(MINIMAP_SIZE*2)))
         f.seek(MAP_ITEMS_OFFSET)
         self.tiledata_items = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_TILES3_OFFSET)

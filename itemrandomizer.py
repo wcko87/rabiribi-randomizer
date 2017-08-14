@@ -16,8 +16,8 @@ def parse_args():
     args.add_argument('--no-write', dest='write', default=True, action='store_false', help='Flag to disable map generation, and do only map analysis')
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
     args.add_argument('--shuffle-music', action='store_true', help='Experimental: Shuffles the music in the map.')
-    args.add_argument('--egg-goals', action='store_true', help='Experimental: Shuffles the music in the map.')
-    args.add_argument('-extra-eggs', default=None, type=int, help='Number of extra eggs for egg-goals mode')
+    args.add_argument('--egg-goals', action='store_true', help='Experimental: Egg goals mode. Hard-to-reach items are replaced with easter eggs. All other eggs are removed from the map.')
+    args.add_argument('-extra-eggs', default=None, type=int, help='Number of extra randomly-chosen eggs for egg-goals mode (in addition to the hard-to-reach eggs)')
 
     return args.parse_args(sys.argv[1:])
 

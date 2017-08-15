@@ -1,0 +1,14 @@
+f = open('version_info.txt')
+lines = f.read().split('\n')
+f.close()
+
+VERSION_STRING = 'Revision %s (commit %s)' % (lines[0], lines[1])
+
+f = open('itemrandomizer.py')
+data = f.read()
+data = data.replace('{PLACEHOLDER_VERSION}', VERSION_STRING)
+f.close()
+
+f = open('itemrandomizer.py', 'w+')
+f.write(data)
+f.close()

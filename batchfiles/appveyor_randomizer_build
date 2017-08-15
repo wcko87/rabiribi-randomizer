@@ -1,0 +1,9 @@
+git rev-list --count HEAD > version_info.txt
+git rev-parse --short=10 HEAD >> version_info.txt
+python inject_version_info
+set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
+pip install pyinstaller
+pyinstaller itemrandomizer.py
+move dist\itemrandomizer bin
+move batchfiles\RabiRibiRandomizer.bat .
+md generated_maps

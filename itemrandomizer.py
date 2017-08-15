@@ -8,8 +8,11 @@ import itemreader
 from itemreader import to_position, to_index, xy_to_index
 import musicrandomizer
 
+VERSION_STRING = '{PLACEHOLDER_VERSION}'
+
 def parse_args():
-    args = argparse.ArgumentParser(description='Item Randomizer')
+    args = argparse.ArgumentParser(description='Rabi-Ribi Randomizer - %s' % VERSION_STRING)
+    args.add_argument('--version', action='store_true', help='Print Randomizer Version')
     args.add_argument('-output_dir', default='generated_maps', help='Output directory for generated maps')
     args.add_argument('-config_file', default='config.txt', help='Config file to use')
     args.add_argument('-seed', default=None, type=int, help='Random seed')
@@ -670,7 +673,9 @@ def reset_maps(output_dir='.'):
 
 if __name__ == '__main__':
     args = parse_args()
-    if args.reset:
+    if args.version:
+        print('Rabi-Ribi Randomizer - %s' % VERSION_STRING)
+    elif args.reset:
         # copy over the default maps without randomization.
         reset_maps(
             output_dir=args.output_dir

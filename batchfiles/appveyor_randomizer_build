@@ -6,4 +6,4 @@ pip install pyinstaller
 pyinstaller itemrandomizer.py
 move dist\itemrandomizer bin
 move batchfiles\RabiRibiRandomizer.bat .
-md generated_maps
+if not exist generated_maps md generated_maps

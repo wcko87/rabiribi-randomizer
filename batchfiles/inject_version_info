@@ -2,9 +2,12 @@ f = open('version_info.txt')
 lines = f.read().split('\n')
 f.close()
 
-branch_name = lines[0].strip()
-revision_number = lines[1].strip()
-commit_hash = lines[2].strip()
+branch_name = lines[0].strip() # used for rabiribi-randomizer-ui build
+repo_branch = lines[1].strip() # used for rabiribi-randomizer build
+revision_number = lines[2].strip()
+commit_hash = lines[3].strip()
+
+if branch_name == 'HEAD': branch_name = repo_branch
 
 if branch_name == 'master': branch_name = 'M'
 elif branch_name == 'dev': branch_name = 'D'

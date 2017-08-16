@@ -812,7 +812,9 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
     generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals, write_to_map_files)
     print('Analysis Generated.')
 
-    if not write_to_map_files: return
+    if not write_to_map_files:
+        print('No maps generated as no-write flag is on.')
+        return
 
     source_dir = 'original_maps'
     itemreader.grab_original_maps(source_dir, output_dir)

@@ -822,6 +822,10 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
         return
 
     source_dir = 'original_maps'
+    if not itemreader.exists_map_files(areaids, source_dir):
+        fail('Maps not found in the directory %s! Place the original Rabi-Ribi maps '
+             'in this directory for the randomizer to work.' % source_dir)
+
     itemreader.grab_original_maps(source_dir, output_dir)
     print('Maps copied...')
     mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)

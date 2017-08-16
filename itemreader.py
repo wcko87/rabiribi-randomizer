@@ -300,6 +300,13 @@ class ItemModifier(object):
         # Reset dirty flags
         self._set_all_dirty_flags(False)
 
+def exists_map_files(areaids, path='.'):
+    import os
+    for areaid in areaids:
+        if not os.path.isfile(map_filename(areaid, path)):
+            return False
+    return True
+
 def grab_original_maps(source_dir='original_maps', output_dir='.'):
     areaids = list(range(10))
     import shutil

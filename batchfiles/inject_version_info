@@ -2,7 +2,15 @@ f = open('version_info.txt')
 lines = f.read().split('\n')
 f.close()
 
-VERSION_STRING = 'Revision %s (commit %s)' % (lines[0], lines[1])
+branch_name = lines[0].strip()
+revision_number = lines[1].strip()
+commit_hash = lines[2].strip()
+
+if branch_name == 'master': branch_name = 'M'
+elif branch_name == 'dev': branch_name = 'D'
+else: branch_name = branch_name + '-'
+
+VERSION_STRING = 'Revision %s%s (commit %s)' % (branch_name, revision_number, commit_hash)
 
 f = open('itemrandomizer.py')
 data = f.read()

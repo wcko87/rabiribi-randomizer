@@ -1,3 +1,4 @@
+from __future__ import print_function
 import random
 import re
 import json
@@ -7,6 +8,7 @@ import argparse
 import itemreader
 from itemreader import to_position, to_index, xy_to_index
 import musicrandomizer
+
 
 VERSION_STRING = '{PLACEHOLDER_VERSION}'
 
@@ -114,8 +116,11 @@ def define_default_expressions(variables):
 # | :: CONFIG FILE PARSING - START :: |
 # '''''''''''''''''''''''''''''''''''''
 
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
 def fail(message):
-    print(message)
+    eprint(message)
     sys.exit(1)
 
 # Used in string parsing. We only have either strings or expressions
@@ -131,8 +136,8 @@ def parse_expression(line, variables, default_expressions={}):
         # the str(line) cast is used because sometimes <line> is a u'unicode string' on unix machines.
         return parse_expression_logic(str(line), variables, default_expressions)
     except Exception as e:
-        print('Error parsing expression:')
-        print(line)
+        eprint('Error parsing expression:')
+        eprint(line)
         raise e
 
 def parse_expression_logic(line, variables, default_expressions):
@@ -237,11 +242,11 @@ def print_error(error, jsondata):
     VIEW_RANGE = 100
     start = max(pos-VIEW_RANGE, 0)
     end = min(pos+VIEW_RANGE, len(jsondata))
-    print('File parsing error')
-    print(error)
-    print('Error location:')
-    print(jsondata[start:pos])
-    print(jsondata[pos:end])
+    eprint('File parsing error')
+    eprint(error)
+    eprint('Error location:')
+    eprint(jsondata[start:pos])
+    eprint(jsondata[pos:end])
 
 def parse_json(jsondata):
     try:
@@ -812,9 +817,15 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
     generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals, write_to_map_files)
     print('Analysis Generated.')
 
-    if not write_to_map_files: return
+    if not write_to_map_files:
+        print('No maps generated as no-write flag is on.')
+        return
 
     source_dir = 'original_maps'
+    if not itemreader.exists_map_files(areaids, source_dir):
+        fail('Maps not found in the directory %s! Place the original Rabi-Ribi maps '
+             'in this directory for the randomizer to work.' % source_dir)
+
     itemreader.grab_original_maps(source_dir, output_dir)
     print('Maps copied...')
     mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)

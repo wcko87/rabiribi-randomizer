@@ -1,4 +1,4 @@
-git rev-parse --abbrev-ref HEAD > verion_info.txt
+git rev-parse --abbrev-ref HEAD > version_info.txt
 git rev-list --count HEAD >> version_info.txt
 git rev-parse --short=10 HEAD >> version_info.txt
 python inject_version_info

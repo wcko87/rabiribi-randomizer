@@ -4,7 +4,9 @@ MAP_SIZE = 100000
 MINIMAP_SIZE = 450
 MAP_COLLISION_OFFSET = 0
 MAP_EVENTS_OFFSET = 200000
+MAP_ROOMTYPE_OFFSET = 400000
 MAP_ROOMCOLOR_OFFSET = 400900
+MAP_ROOMBG_OFFSET = 401800
 MAP_ITEMS_OFFSET = 402700
 MAP_TILES1_OFFSET = 802704
 MAP_TILES3_OFFSET = 1202704
@@ -78,6 +80,8 @@ def write_all(areaid, items, stored_data, path='.'):
     tiledata_map = list(stored_data.tiledata_map)
     tiledata_event = list(stored_data.tiledata_event)
     tiledata_items = list(stored_data.tiledata_items)
+    tiledata_roomcolor = list(stored_data.tiledata_roomcolor)
+    tiledata_roombg = list(stored_data.tiledata_roombg)
     tiledata_tiles3 = list(stored_data.tiledata_tiles3)
     tiledata_tiles4 = list(stored_data.tiledata_tiles4)
     tiledata_tiles1 = list(stored_data.tiledata_tiles1)
@@ -112,6 +116,10 @@ def write_all(areaid, items, stored_data, path='.'):
     f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_event))
     f.seek(MAP_ITEMS_OFFSET)
     f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_items))
+    f.seek(MAP_ROOMCOLOR_OFFSET)
+    f.write(struct.pack('%dh' % MINIMAP_SIZE, *tiledata_roomcolor))
+    f.seek(MAP_ROOMBG_OFFSET)
+    f.write(struct.pack('%dh' % MINIMAP_SIZE, *tiledata_roombg))
     f.seek(MAP_TILES3_OFFSET)
     f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_tiles3))
     f.seek(MAP_TILES4_OFFSET)
@@ -214,6 +222,8 @@ class StoredMapData(object):
         self.tiledata_event = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_ROOMCOLOR_OFFSET)
         self.tiledata_roomcolor = list(struct.unpack('%dh' % MINIMAP_SIZE, f.read(MINIMAP_SIZE*2)))
+        f.seek(MAP_ROOMBG_OFFSET)
+        self.tiledata_roombg = list(struct.unpack('%dh' % MINIMAP_SIZE, f.read(MINIMAP_SIZE*2)))
         f.seek(MAP_ITEMS_OFFSET)
         self.tiledata_items = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_TILES3_OFFSET)

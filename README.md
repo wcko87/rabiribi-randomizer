@@ -5,9 +5,9 @@
 # Rabi-Ribi Randomizer
 Randomizes items in Rabi-Ribi maps
 
-[Download](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/build/artifacts?branch=master) [branch: master]
-
-Note that this is a command-line tool. A UI for the randomizer is also currently in development. It can be found [here](https://github.com/AzureHakua/rabiribi-randomizer-ui).
+This page is for the command-line tool. A [UI for the randomizer](https://github.com/AzureHakua/rabiribi-randomizer-ui) has also been developed.
+* [Download (Randomizer UI)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer-ui-rc94b/build/artifacts)
+* [Download (command line tool)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/build/artifacts?branch=master) [branch: master]
 
 ### How to use
 Here's a 1-minute guide to how to run the randomizer. Make do with this until I get around to writing a proper guide.

@@ -3,7 +3,8 @@
 ![Rabi-Ribi Randomizer](https://user-images.githubusercontent.com/27341392/29487152-663767ce-8527-11e7-8eaa-62347acd3112.png)
 
 A Randomizer for [Rabi-Ribi](http://store.steampowered.com/app/400910/RabiRibi/). Brought to you by the [Rabi-Ribi Speedrunning Community](http://www.speedrun.com/rabiribi)
-- <a href="https://discord.gg/dDfpNAr"><img src="https://discordapp.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg" height="20">Rabi-Ribi Speedrunning Discord</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://discord.gg/dDfpNAr"><img src="https://discordapp.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg" height="20">Rabi-Ribi Speedrunning Discord</a>
 
 What the randomizer can currently randomize:
 * Item and egg locations

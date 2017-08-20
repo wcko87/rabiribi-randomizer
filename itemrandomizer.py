@@ -805,7 +805,7 @@ def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
     return list(item for item in items if not is_egg(item.name) or item.name in eggs)
 
 
-def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, shuffle_backgrounds=False, egg_goals=False, extra_eggs=None):
+def generate_randomized_maps(seed=None, source_dir='original_maps', output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, shuffle_backgrounds=False, egg_goals=False, extra_eggs=None):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
@@ -828,7 +828,6 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
         print('No maps generated as no-write flag is on.')
         return
 
-    source_dir = 'original_maps'
     if not itemreader.exists_map_files(areaids, source_dir):
         fail('Maps not found in the directory %s! Place the original Rabi-Ribi maps '
              'in this directory for the randomizer to work.' % source_dir)
@@ -845,24 +844,31 @@ def generate_randomized_maps(seed=None, output_dir='.', config_file='config.txt'
     print('Maps saved successfully to %s.' % output_dir)
 
 
-def reset_maps(output_dir='.'):
+def reset_maps(source_dir='original_maps', output_dir='.'):
     if not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
-    itemreader.grab_original_maps(output_dir)
+    itemreader.grab_original_maps(source_dir, output_dir)
+    analysis_file = '%s/analysis.txt' % output_dir
+    if os.path.isfile(analysis_file):
+        os.remove(analysis_file)
     print('Original maps copied to %s.' % output_dir)
 
 if __name__ == '__main__':
     args = parse_args()
+    source_dir='original_maps'
+    
     if args.version:
         print('Rabi-Ribi Randomizer - %s' % VERSION_STRING)
     elif args.reset:
         # copy over the default maps without randomization.
         reset_maps(
-            output_dir=args.output_dir
+            source_dir=source_dir,
+            output_dir=args.output_dir,
         )
     else:
         generate_randomized_maps(
             seed=args.seed,
+            source_dir=source_dir,
             output_dir=args.output_dir,
             config_file=args.config_file,
             write_to_map_files=args.write,

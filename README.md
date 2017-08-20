@@ -1,7 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/wv15wfiegbymmyg3/branch/dev?svg=true)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/branch/dev)
 
-<a href="https://discord.gg/dDfpNAr"><img src="https://discordapp.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg" height="30">Rabi-Ribi Speedrunning Discord Server</a>
-
 # Rabi-Ribi Randomizer
 Randomizes items in Rabi-Ribi maps.
 * Refer to the [Rabi-Ribi Randomizer Website](https://wcko87.github.io/rabiribi-randomizer/) for more information.

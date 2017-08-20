@@ -11,7 +11,7 @@ This page is for the command-line tool. A [UI for the randomizer](https://github
 * [Download (command line tool)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/build/artifacts?branch=dev) [branch: dev]
 
 ### How to use
-Here's a 1-minute guide to how to run the randomizer. Make do with this until I get around to writing a proper guide.
+Here's a 1-minute guide to how to run the randomizer. I probably won't make a proper guide for this since we have a UI now. Go check out the UI instead. If you want command line, you can try `RabiRibiRandomizer.bat --help` or `bin\itemrandomizer.exe --help` for help.
 
 1. download randomizer from above link
 2. put original maps into original_maps folder

@@ -2,6 +2,7 @@ import random
 import time
 from itemreader import to_position, to_index, xy_to_index
 
+# NOTE: Music must be shuffled before room colors!
 def shuffle_music(stored_datas):
     #start_time = time.time()
     shuffler = MusicShuffler(stored_datas)

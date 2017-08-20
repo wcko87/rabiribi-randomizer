@@ -1,8 +1,8 @@
 // Configure generation flags here
 "settings": {
     "ZIP_REQUIRED": false,
-    "ADVANCED_TRICKS_REQUIRED": true,
-    "BLOCK_CLIPS_REQUIRED": true,
+    "ADVANCED_TRICKS_REQUIRED": false,
+    "BLOCK_CLIPS_REQUIRED": false,
     "POST_GAME_ALLOWED": false,
     "STUPID_HARD_TRICKS": false,
     "POST_IRISU_ALLOWED": false,
@@ -53,7 +53,7 @@
     "MANA_SURGE",
     "MANA_WAGER",
     "NATURE_ORB",
-    //"PIKO_HAMMER",
+    "PIKO_HAMMER",
     "PLUS_NECKLACE",
     "PURE_LOVE",
     "QUICK_BARRETTE",

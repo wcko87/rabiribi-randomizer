@@ -4,6 +4,7 @@
 
 # Rabi-Ribi Randomizer
 Randomizes items in Rabi-Ribi maps
+* Refer to the [Rabi-Ribi Randomizer Website](https://wcko87.github.io/rabiribi-randomizer/) for more information.
 
 This page is for the command-line tool. A [UI for the randomizer](https://github.com/AzureHakua/rabiribi-randomizer-ui) has also been developed.
 * [Download (Randomizer UI)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer-ui-rc94b/build/artifacts)

@@ -1,6 +1,6 @@
 # Rabi-Ribi Randomizer
 
-![Rabi-Ribi Randomizer](https://user-images.githubusercontent.com/27341392/29487152-663767ce-8527-11e7-8eaa-62347acd3112.png)
+![Rabi-Ribi Randomizer](https://user-images.githubusercontent.com/27341392/29525297-bc4087d8-86c4-11e7-8c1a-235de711994d.gif)
 
 A Randomizer for [Rabi-Ribi](http://store.steampowered.com/app/400910/RabiRibi/). Brought to you by the [Rabi-Ribi Speedrunning Community](http://www.speedrun.com/rabiribi)
 
@@ -111,4 +111,7 @@ In addition to the options offered in the UI, the item randomization can be furt
 Minor changes have been made to prevent the player from being permanently stuck. Note that you are only permanently stuck if you have been autosaved in a location which you cannot exit from. If you are able to quick-reload to escape, you are not stuck.
 * At the entrace to Cocoa1, the save point has been removed, and the autosave point has been moved to the top of the ledge.
 * The save point at the sliding powder location in exotic laboratory has been removed.
+* Warp Stones are active from the start, instead of only after viewing the cutscene one room after the ribbon fight.
+  * This means that you no longer need to walk right after fighting ribbon, and can go straight back to the warp.
+  * This prevents a softlock when Rabi Slippers or Air Jump is picked up before the cutscene, disabling the cutscene and leaving you stuck in Spectral Cave without the ability to warp out.
 

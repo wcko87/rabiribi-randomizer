@@ -237,7 +237,7 @@ AIR_JUMP
 {
 "location": "MP_UP_GRAVEYARD_WARP",
 "accessibility": "near",
-"entry_prereq": "CARROT_BOMB",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 
@@ -532,7 +532,7 @@ AIR_JUMP
 {
 "location": "MP_UP_SKY_BRIDGE",
 "accessibility": "mid",
-"entry_prereq": "CARROT_BOMB & SLIDING_POWDER",
+"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER",
 }
 
@@ -731,7 +731,8 @@ AIR_JUMP
     (
         (WALL_JUMP_LV2 & RABI_SLIPPERS & STUPID) | // you can't do it if you bought speed boost lv3
         (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
-        (WALL_JUMP_LV2 & AIR_JUMP)
+        (WALL_JUMP_LV2 & AIR_JUMP) |
+        (WALL_JUMP_LV2 & BUNNY_WHIRL & STUPID)
     )",
 "exit_prereq": "NONE",
 }
@@ -757,7 +758,8 @@ AIR_JUMP
     (
         (WALL_JUMP_LV2 & RABI_SLIPPERS & STUPID) |
         (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
-        (WALL_JUMP_LV2 & AIR_JUMP)
+        (WALL_JUMP_LV2 & AIR_JUMP) |
+        (WALL_JUMP_LV2 & BUNNY_WHIRL & STUPID)
     )",
 "exit_prereq": "NONE",
 }
@@ -807,7 +809,7 @@ AIR_JUMP
 {
 "location": "HP_UP_ICY_SUMMIT",
 "accessibility": "mid",
-"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"entry_prereq": "NONE",
 "exit_prereq": "NONE",
 }
 
@@ -1599,7 +1601,7 @@ DARKNESS
 {
 "location": "EGG_VOLCANIC_NE",
 "accessibility": "far",
-"entry_prereq": "AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED)",
+"entry_prereq": "AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED) | (SLIDING_POWDER & WALL_JUMP)",
 "exit_prereq": "NONE",
 }
 

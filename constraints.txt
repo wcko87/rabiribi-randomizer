@@ -732,7 +732,7 @@ AIR_JUMP
         (WALL_JUMP_LV2 & RABI_SLIPPERS & STUPID) | // you can't do it if you bought speed boost lv3
         (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
         (WALL_JUMP_LV2 & AIR_JUMP) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL & STUPID)
+        (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
     )",
 "exit_prereq": "NONE",
 }
@@ -756,10 +756,10 @@ AIR_JUMP
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
-        (WALL_JUMP_LV2 & RABI_SLIPPERS & STUPID) |
+        (WALL_JUMP_LV2 & RABI_SLIPPERS & STUPID) | // you can't do it if you bought speed boost lv3
         (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
         (WALL_JUMP_LV2 & AIR_JUMP) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL & STUPID)
+        (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
     )",
 "exit_prereq": "NONE",
 }
@@ -1545,7 +1545,7 @@ DARKNESS
 {
 "location": "EGG_TOWN",
 "accessibility": "free",
-"entry_prereq": "AIR_JUMP & RABI_SLIPPERS",
+"entry_prereq": "(AIR_JUMP & RABI_SLIPPERS) | (AIR_JUMP & BUNNY_STRIKE & ADVANCED)",
 "exit_prereq": "NONE",
 }
 

@@ -143,7 +143,7 @@
 "location": "LIGHT_ORB",
 "accessibility": "mid",
 "entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & (SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3))",
-"exit_prereq": "SLIDING_POWDER | ((CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & ZIP & HAMMER_ROLL_LV3))",
+"exit_prereq": "SLIDING_POWDER | ((CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & ZIP & HAMMER_ROLL_LV3)",
 }
 
 {

@@ -1324,7 +1324,7 @@ SLIDING_POWDER &
 "entry_prereq": "
     HALLOWEEN &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-    ((BUNNY_WHIRL & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH))
+    ((BUNNY_WHIRL & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH)))
 ",
 "exit_prereq": "NONE",
 }
@@ -1667,7 +1667,7 @@ SLIDING_POWDER &
 {
 "location": "EGG_HOSPITAL_WALL",
 "accessibility": "vfar",
-"entry_prereq": "WARP_DESTINATION & POST_GAME & (CARROT_BOMB | CARROT_SHOOTER & BOOST))",
+"entry_prereq": "WARP_DESTINATION & POST_GAME & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))",
 "exit_prereq": "NONE",
 }
 

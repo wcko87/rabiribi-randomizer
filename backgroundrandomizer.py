@@ -31,7 +31,8 @@ class BackgroundShuffler(object):
     def filter_function(self, val):
         # don't shuffle DLC backgrounds
         # don't shuffle Noah3 background because it does weird things to boss doors
-        return val <= 118 and val not in (0,23,17,104,110)
+        # don't shuffle library entrance background because it removes springs
+        return val <= 118 and val not in (0,23,17,83,104,110)
 
     def shuffle(self):
         backgrounds = list(set(val for areaid, posindex, val in self.original_locations))

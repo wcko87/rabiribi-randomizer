@@ -1364,47 +1364,23 @@ DARKNESS
 "accessibility": "vfar",
 "entry_prereq": "
     HALLOWEEN &
-    ((
-// Enter through the standard path
-        (BUNNY_WHIRL | (CARROT_SHOOTER & BOOST)) &
-        ((BUNNY_WHIRL & ADVANCED) | AIR_DASH | AIR_JUMP) &
+    SLIDING_POWDER &
+    ( ZIP | (
         (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-        SLIDING_POWDER &
-        ((
-// Slide zip on the spikes to enter the egg room
-            ZIP
-         ) | (
-// or navigate the tall room to exit on the right side and re-enter
-            ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP) & WALL_JUMP_LV2 &
-            (RABI_SLIPPERS | AIR_DASH | AIR_JUMP | WALL_JUMP | STUPID?)
-        ))
-     ) | (
-// or reverse slide tunnel/ zip in the first halloween room and work backwards
-        SLIDING_POWDER & ZIP &
-        (RABI_SLIPPERS | AIR_DASH | AIR_JUMP | WALL_JUMP | STUPID?) &
+        ((WALL_JUMP_LV2 & ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP)) | (BUNNY_WHIRL & AIR_JUMP & RABI_SLIPPERS))
     )) &
-// last, destroy the yellow blocks in the egg room itself
+// destroy the yellow blocks in the egg room itself
     (BUNNY_WHIRL | ((CARROT_SHOOTER & BOOST) & (CARROT_BOMB | PIKO_HAMMER)))
 ",
 "exit_prereq": "
-    (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     ((
-// leaving back through the entrance
-        (AIR_JUMP | WALL_JUMP_LV2 | (RABI_SLIPPERS & BUNNY_WHIRL)) &
-        ((BUNNY_WHIRL & ADVANCED) | AIR_DASH | AIR_JUMP)
+        SLIDING_POWDER &
+        (AIR_JUMP | (WALL_JUMP_LV2 & AIR_DASH))
      ) | (
-// proceeding to the exit
-        (WALL_JUMP_LV2 & ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP )) &
-// zip to the room before cicini's or proceed normally,
-// either way passing through the long room with infinite enemies
-        ((
-            ((HAMMER_ROLL_LV3 & ZIP) | BUNNY_WHIRL) &
-            (BUNNY_WHIRL | AIR_JUMP | AIR_DASH | BUNNY_STRIKE)
-         ) | (
-// proceed to the water rooms and hammer roll zip out at the bottom spikes
-            BUNNY_WHIRL & HAMMER_ROLL_LV3 & ZIP
-        ))
+        BUNNY_WHIRL &
+        (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) &
+        (((WALL_JUMP_LV2 | RABI_SLIPPERS) & (ADVANCED | AIR_JUMP)) | (RABI_SLIPPERS & AIR_DASH))
     ))
 ",
 }

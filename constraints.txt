@@ -742,7 +742,7 @@ AIR_JUMP
 "accessibility": "mid",
 "entry_prereq": "
     AIR_JUMP | (
-        (BUNNY_WHIRL | AIR_DASH | RABI_SLIPPERS | BUNNY_STRIKE)
+        (BUNNY_WHIRL | AIR_DASH | ((SLIDING_POWDER | (SPEED_BOOST & ADVANCED)) & RABI_SLIPPERS) | BUNNY_STRIKE)
         & WALL_JUMP_LV2
     )",
 "exit_prereq": "NONE",
@@ -922,7 +922,11 @@ DARKNESS
 {
 "location": "BUNNY_WHIRL",
 "accessibility": "near",
-"entry_prereq": "PIKO_HAMMER | (CARROT_SHOOTER & BOOST & ADVANCED)",
+"entry_prereq": "
+    PIKO_HAMMER | (CARROT_SHOOTER & BOOST & ADVANCED) |
+    // slide zip from bomb block slide tunnel in room to the left
+    (ZIP & SLIDING_POWDER & (CARROT_BOMB | CARROT_SHOOTER))
+",
 "exit_prereq": "BUNNY_WHIRL | AIR_DASH | (CARROT_SHOOTER & BOOST & ADVANCED)",
 }
 
@@ -1646,7 +1650,14 @@ SLIDING_POWDER &
 {
 "location": "EGG_VOLCANIC_NE",
 "accessibility": "far",
-"entry_prereq": "AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED) | ((SLIDING_POWDER | RABI_SLIPPERS) & WALL_JUMP)",
+"entry_prereq": "
+    AIR_JUMP | AIR_DASH | BUNNY_STRIKE |
+    // 0% stupid jump: walljump off left wall, damage boost off dog, wallkick off left wall, amulet
+    STUPID |
+    (BUNNY_WHIRL & ADVANCED) |
+    (SLIDING_POWDER & (RABI_SLIPPERS | WALL_JUMP | ADVANCED)) |
+    (RABI_SLIPPERS & WALL_JUMP)
+",
 "exit_prereq": "NONE",
 }
 

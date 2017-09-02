@@ -1279,8 +1279,15 @@ DARKNESS
 "location": "EGG_HALLOWEEN_CICINI_ROOM",
 "accessibility": "vfar",
 "entry_prereq": "
+BUNNY_WHIRL &
+(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+(SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3)) &
+((ZIP & SLIDING_POWDER) | (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) | (AIR_JUMP & RABI_SLIPPERS))
 ",
 "exit_prereq": "
+(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+SLIDING_POWDER &
+(BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | RABI_SLIPPERS | AIR_DASH)
 ",
 }
 
@@ -1289,9 +1296,12 @@ DARKNESS
 "location": "EGG_HALLOWEEN_LEFT_PILLAR",
 "accessibility": "vfar",
 "entry_prereq": "
+BUNNY_WHIRL &
+(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+(SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3)) &
+((ZIP & SLIDING_POWDER) | (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) | (AIR_JUMP & RABI_SLIPPERS))
 ",
-"exit_prereq": "
-",
+"exit_prereq": "NONE",
 }
 
 
@@ -1299,8 +1309,16 @@ DARKNESS
 "location": "EGG_HALLOWEEN_MID",
 "accessibility": "vfar",
 "entry_prereq": "
+(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+SLIDING_POWDER & BUNNY_WHIRL &
+(ZIP | (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) | (AIR_JUMP & RABI_SLIPPERS))
 ",
 "exit_prereq": "
+(ZIP & HAMMER_ROLL_LV3) |
+(
+    SLIDING_POWDER & BUNNY_WHIRL &
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
+)
 ",
 }
 
@@ -1320,6 +1338,10 @@ DARKNESS
 "location": "EGG_HALLOWEEN_PAST_PILLARS1",
 "accessibility": "vfar",
 "entry_prereq": "
+BUNNY_WHIRL &
+(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+(SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3)) &
+((ZIP & SLIDING_POWDER) | (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) | (AIR_JUMP & RABI_SLIPPERS))
 ",
 "exit_prereq": "NONE",
 }
@@ -1328,6 +1350,11 @@ DARKNESS
 "location": "EGG_HALLOWEEN_PAST_PILLARS2",
 "accessibility": "vfar",
 "entry_prereq": "
+BUNNY_WHIRL &
+(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+(SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3)) &
+((ZIP & SLIDING_POWDER) | (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) | (AIR_JUMP & RABI_SLIPPERS)) &
+((WALL_JUMP_LV2 & (AIR_DASH | AIR_JUMP)) | (AIR_DASH & AIR_JUMP))
 ",
 "exit_prereq": "NONE",
 }
@@ -1336,6 +1363,10 @@ DARKNESS
 "location": "EGG_HALLOWEEN_RIGHT_PILLAR",
 "accessibility": "vfar",
 "entry_prereq": "
+BUNNY_WHIRL &
+(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+(SLIDING_POWDER | (ZIP & HAMMER_ROLL_LV3)) &
+((ZIP & SLIDING_POWDER) | (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) | (AIR_JUMP & RABI_SLIPPERS))
 ",
 "exit_prereq": "NONE",
 }
@@ -1344,8 +1375,16 @@ DARKNESS
 "location": "EGG_HALLOWEEN_SW_SLIDE",
 "accessibility": "vfar",
 "entry_prereq": "
+(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+SLIDING_POWDER & BUNNY_WHIRL &
+(ZIP | (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) | (AIR_JUMP & RABI_SLIPPERS))
 ",
 "exit_prereq": "
+(ZIP & HAMMER_ROLL_LV3) |
+(
+    SLIDING_POWDER & BUNNY_WHIRL &
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
+)
 ",
 }
 

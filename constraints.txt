@@ -1413,14 +1413,17 @@ SLIDING_POWDER & BUNNY_WHIRL &
 ",
 "exit_prereq": "
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-    ((
-        SLIDING_POWDER &
-        (AIR_JUMP | (WALL_JUMP_LV2 & AIR_DASH))
-     ) | (
-        BUNNY_WHIRL &
-        (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) &
-        (((WALL_JUMP_LV2 | RABI_SLIPPERS) & (ADVANCED | AIR_JUMP)) | (RABI_SLIPPERS & AIR_DASH))
-    ))
+    (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) &
+    (
+// leave through the entrance, requires the blocks to not have been bombed
+        AIR_JUMP  |
+        (RABI_SLIPPERS & BUNNY_WHIRL) |
+        (WALL_JUMP_LV2 & BUNNY_WHIRL) | 
+        (WALL_JUMP_LV2 & AIR_DASH)
+// forward only
+// this is a stronger constraint that is encompassed in the previous disjunction
+//        (WALL_JUMP_LV2 & ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP))
+    )
 ",
 }
 

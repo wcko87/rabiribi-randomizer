@@ -355,9 +355,9 @@ AIR_JUMP
 "accessibility": "mid",
 "entry_prereq": "
 (
-    (SLIDING_POWDER  | (ZIP & HAMMER_ROLL_LV3)) & 
+    (SLIDING_POWDER  | (ZIP & HAMMER_ROLL_LV3)) &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
-) | 
+) |
 (SLIDING_POWDER & (AIR_JUMP | AIR_DASH | STUPID))
 ",
 "exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | ZIP)",
@@ -1292,7 +1292,6 @@ SLIDING_POWDER &
 ",
 }
 
-
 {
 "location": "EGG_HALLOWEEN_LEFT_PILLAR",
 "accessibility": "vfar",
@@ -1306,7 +1305,6 @@ BUNNY_WHIRL &
 "exit_prereq": "NONE",
 }
 
-
 {
 "location": "EGG_HALLOWEEN_MID",
 "accessibility": "vfar",
@@ -1319,12 +1317,12 @@ SLIDING_POWDER & BUNNY_WHIRL &
 "exit_prereq": "
 (ZIP & HAMMER_ROLL_LV3) |
 (
-    SLIDING_POWDER & BUNNY_WHIRL &
+    SLIDING_POWDER &
+    (BUNNY_WHIRL | (WALL_JUMP_LV2 & AIR_DASH) | AIR_JUMP) &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
 )
 ",
 }
-
 
 {
 "location": "EGG_HALLOWEEN_NEAR_BOSS",
@@ -1389,7 +1387,8 @@ SLIDING_POWDER & BUNNY_WHIRL &
 "exit_prereq": "
 (ZIP & HAMMER_ROLL_LV3) |
 (
-    SLIDING_POWDER & BUNNY_WHIRL &
+    SLIDING_POWDER &
+    (BUNNY_WHIRL | (WALL_JUMP_LV2 & AIR_DASH) | AIR_JUMP) &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
 )
 ",
@@ -1425,7 +1424,7 @@ SLIDING_POWDER & BUNNY_WHIRL &
 // leave through the entrance, requires the blocks to not have been bombed
         AIR_JUMP  |
         (RABI_SLIPPERS & BUNNY_WHIRL) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL) | 
+        (WALL_JUMP_LV2 & BUNNY_WHIRL) |
         (WALL_JUMP_LV2 & AIR_DASH)
 // forward only
 // this is a stronger constraint that is encompassed in the previous disjunction

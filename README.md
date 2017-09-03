@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/wv15wfiegbymmyg3/branch/master?svg=true)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/wv15wfiegbymmyg3/branch/dev?svg=true)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/branch/dev)
 
 <a href="https://discord.gg/dDfpNAr"><img src="https://discordapp.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg" height="30">Rabi-Ribi Speedrunning Discord Server</a>
 
@@ -8,7 +8,7 @@ Randomizes items in Rabi-Ribi maps.
 
 This page is for the command-line tool. A [UI for the randomizer](https://github.com/AzureHakua/rabiribi-randomizer-ui) has also been developed.
 * [Download (Randomizer UI)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer-ui-rc94b/build/artifacts)
-* [Download (command line tool)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/build/artifacts?branch=master) [branch: master]
+* [Download (command line tool)](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer/build/artifacts?branch=dev) [branch: dev]
 
 ### How to use
 Here's a 1-minute guide to how to run the randomizer. I probably won't make a proper guide for this since we have a UI now. Go check out the UI instead. If you want command line, you can try `RabiRibiRandomizer.bat --help` or `bin\itemrandomizer.exe --help` for help.

@@ -9,6 +9,7 @@ import itemreader
 from itemreader import to_position, to_index, xy_to_index
 import musicrandomizer
 import backgroundrandomizer
+import hashlib
 
 VERSION_STRING = '{PLACEHOLDER_VERSION}'
 
@@ -20,6 +21,7 @@ def parse_args():
     args.add_argument('-seed', default=None, type=int, help='Random seed')
     args.add_argument('--no-write', dest='write', default=True, action='store_false', help='Flag to disable map generation, and do only map analysis')
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
+    args.add_argument('--hash', action='store_true', help='Generate a hash of the maps in the output directory.')
     args.add_argument('--shuffle-music', action='store_true', help='Experimental: Shuffles the music in the map.')
     args.add_argument('--shuffle-backgrounds', action='store_true', help='Experimental: Shuffles the backgrounds in the map.')
     args.add_argument('--egg-goals', action='store_true', help='Experimental: Egg goals mode. Hard-to-reach items are replaced with easter eggs. All other eggs are removed from the map.')
@@ -598,6 +600,21 @@ def randomize(items, locations, variables, to_shuffle, must_be_reachable, constr
 #  \ :: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ :: /
 #   '''''''''''''''''''''''''''''''''''''''
 
+def hash_map_files(areaids, maps_dir):
+    hash  = hashlib.md5()
+
+    for areaid in sorted(areaids):
+        hash.update(str(areaid).encode('utf-8'))
+        filename = '%s/area%d.map' % (maps_dir, areaid) 
+        if not os.path.isfile(filename):
+            fail('file %s does not exist!' % filename)
+        with open(filename, 'rb') as f:
+            for chunk in iter(lambda: f.read(4096), b''):
+                hash.update(chunk)
+            
+    digest = hash.hexdigest()
+    return ('%s-%s' % (digest[:4], digest[4:8])).upper()
+
 def decide_difficulty(mean_important_level, true_step_count):
     score = mean_important_level + true_step_count
     if score >= 7:
@@ -809,13 +826,15 @@ def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
     eggs.update(random.sample(sorted(remaining_eggs), extra_eggs))
     return list(item for item in items if not is_egg(item.name) or item.name in eggs)
 
+def get_default_areaids():
+    return list(range(10))
 
 def generate_randomized_maps(seed=None, source_dir='original_maps', output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, shuffle_backgrounds=False, egg_goals=False, extra_eggs=None):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
     items, assigned_locations, analyzer = run_item_randomizer(seed=seed, config_file=config_file, egg_goals=egg_goals)
-    areaids = list(range(10))
+    areaids = get_default_areaids()
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     if egg_goals:
         items = remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs)
@@ -848,6 +867,8 @@ def generate_randomized_maps(seed=None, source_dir='original_maps', output_dir='
     mod.save(output_dir)
     print('Maps saved successfully to %s.' % output_dir)
 
+    hash_digest = hash_map_files(areaids, output_dir)
+    print('Hash: %s' % hash_digest)
 
 def reset_maps(source_dir='original_maps', output_dir='.'):
     if not os.path.isdir(output_dir):
@@ -857,6 +878,11 @@ def reset_maps(source_dir='original_maps', output_dir='.'):
     if os.path.isfile(analysis_file):
         os.remove(analysis_file)
     print('Original maps copied to %s.' % output_dir)
+
+def hash_maps(output_dir):
+    areaids = get_default_areaids()
+    hash_digest = hash_map_files(areaids, output_dir)
+    print('Hash: %s' % hash_digest)
 
 if __name__ == '__main__':
     args = parse_args()
@@ -868,6 +894,10 @@ if __name__ == '__main__':
         # copy over the default maps without randomization.
         reset_maps(
             source_dir=source_dir,
+            output_dir=args.output_dir,
+        )
+    elif args.hash:
+        hash_maps(
             output_dir=args.output_dir,
         )
     else:

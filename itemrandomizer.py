@@ -20,6 +20,7 @@ def parse_args():
     args.add_argument('-config_file', default='config.txt', help='Config file to use')
     args.add_argument('-seed', default=None, type=int, help='Random seed')
     args.add_argument('--no-write', dest='write', default=True, action='store_false', help='Flag to disable map generation, and do only map analysis')
+    args.add_argument('--no-fixes', dest='apply_fixes', default=True, action='store_false', help='Flag to disable randomizer-specific map fixes')
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
     args.add_argument('--hash', action='store_true', help='Generate a hash of the maps in the output directory.')
     args.add_argument('--shuffle-music', action='store_true', help='Experimental: Shuffles the music in the map.')
@@ -797,10 +798,12 @@ def apply_fixes_for_randomizer(areaid, data):
 
 
 
-def pre_modify_map_data(mod, shuffle_music=False, shuffle_backgrounds=False):
+def pre_modify_map_data(mod, apply_fixes=True, shuffle_music=False, shuffle_backgrounds=False):
     # apply rando fixes
-    for areaid, data in mod.stored_datas.items():
-        apply_fixes_for_randomizer(areaid, data)
+    if apply_fixes:
+        for areaid, data in mod.stored_datas.items():
+            apply_fixes_for_randomizer(areaid, data)
+        print('Map fixes applied')
 
     # Note: because musicrandomizer requires room color info, the music
     # must be shuffled before the room colors!
@@ -829,7 +832,7 @@ def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
 def get_default_areaids():
     return list(range(10))
 
-def generate_randomized_maps(seed=None, source_dir='original_maps', output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, shuffle_backgrounds=False, egg_goals=False, extra_eggs=None):
+def generate_randomized_maps(seed=None, source_dir='original_maps', output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, shuffle_backgrounds=False, apply_fixes=True, egg_goals=False, extra_eggs=None):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
@@ -859,7 +862,7 @@ def generate_randomized_maps(seed=None, source_dir='original_maps', output_dir='
     itemreader.grab_original_maps(source_dir, output_dir)
     print('Maps copied...')
     mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)
-    pre_modify_map_data(mod, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds)
+    pre_modify_map_data(mod, apply_fixes=apply_fixes, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds)
 
     mod.clear_items()
     for item in items:
@@ -909,6 +912,7 @@ if __name__ == '__main__':
             write_to_map_files=args.write,
             shuffle_music=args.shuffle_music,
             shuffle_backgrounds=args.shuffle_backgrounds,
+            apply_fixes=args.apply_fixes,
             egg_goals=args.egg_goals,
             extra_eggs=args.extra_eggs,
         )

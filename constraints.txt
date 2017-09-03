@@ -729,7 +729,7 @@ AIR_JUMP
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
-        (WALL_JUMP_LV2 & RABI_SLIPPERS & STUPID) | // you can't do it if you bought speed boost lv3
+        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) | // you need to disable speed boost
         (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
         (WALL_JUMP_LV2 & AIR_JUMP) |
         (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
@@ -756,7 +756,7 @@ AIR_JUMP
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
-        (WALL_JUMP_LV2 & RABI_SLIPPERS & STUPID) | // you can't do it if you bought speed boost lv3
+        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) | // you need to disable speed boost
         (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
         (WALL_JUMP_LV2 & AIR_JUMP) |
         (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
@@ -767,7 +767,7 @@ AIR_JUMP
 {
 "location": "PACK_UP_ICY_SUMMIT",
 "accessibility": "mid",
-"entry_prereq": "AIR_JUMP | AIR_DASH",
+"entry_prereq": "AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED)",
 "exit_prereq": "NONE",
 }
 

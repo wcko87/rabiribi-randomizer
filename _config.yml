@@ -1,1 +1,4 @@
 theme: jekyll-theme-slate
+
+title: Rabi-Ribi Randomizer
+description: This program shuffles item and egg locations around in Rabi-Ribi in such a way that all the required items are always reachable. Also optionally randomizes other things like music and backgrounds.

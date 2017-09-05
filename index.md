@@ -6,6 +6,8 @@ A Randomizer for [Rabi-Ribi](http://store.steampowered.com/app/400910/RabiRibi/)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://discord.gg/dDfpNAr"><img src="https://discordapp.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg" height="20">Rabi-Ribi Speedrunning Discord</a>
 
+This program shuffles item and egg locations around in Rabi-Ribi in such a way that all the required items are always reachable. Also optionally randomizes other things like music and backgrounds.
+
 What the randomizer can currently randomize:
 * Item and egg locations
 * Music triggers

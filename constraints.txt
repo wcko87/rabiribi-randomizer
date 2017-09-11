@@ -1083,7 +1083,7 @@ DARKNESS
 {
 "location": "ATK_UP_EAST_LAB",
 "accessibility": "mid",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (AIR_JUMP | AIR_DASH | (RABI_SLIPPERS & STUPID))",
+"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (AIR_JUMP | AIR_DASH | (RABI_SLIPPERS & STUPID) | (HAMMER_ROLL_LV3 & ZIP))",
 "exit_prereq": "NONE",
 }
 
@@ -1327,7 +1327,7 @@ DARKNESS & (
 )))
 ",
 "exit_prereq": "
-(ZIP & HAMMER_ROLL_LV3) |
+(ZIP & HAMMER_ROLL_LV3 & WATER_ORB) |
 (
     SLIDING_POWDER &
     (BUNNY_WHIRL | (WALL_JUMP_LV2 & AIR_DASH) | AIR_JUMP) &
@@ -1413,7 +1413,7 @@ SLIDING_POWDER & BUNNY_WHIRL &
 )))
 ",
 "exit_prereq": "
-(ZIP & HAMMER_ROLL_LV3) |
+(ZIP & HAMMER_ROLL_LV3 & WATER_ORB) |
 (
     SLIDING_POWDER &
     (BUNNY_WHIRL | (WALL_JUMP_LV2 & AIR_DASH) | AIR_JUMP) &

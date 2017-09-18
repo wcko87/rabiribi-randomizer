@@ -30,7 +30,11 @@ class MusicShuffler(object):
 
 
     def shuffle(self):
-        musics = list(set(eventid for areaid, posindex, eventid in self.original_locations))
+        musics = set(eventid for areaid, posindex, eventid in self.original_locations)
+        # Add music trigger 136 (Bounce Bounce), which does not exist in the maps.
+        musics.add(136)
+        musics = list(musics)
+
         new_musics = list(musics)
         random.shuffle(new_musics)
         allocation = dict(zip(musics, new_musics))

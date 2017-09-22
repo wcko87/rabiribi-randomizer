@@ -102,6 +102,7 @@ def define_default_expressions(variables):
         "AIR_DASH": parse_expression("AIR_DASH & PIKO_HAMMER", variables),
         "HAMMER_ROLL_LV3": parse_expression("HAMMER_ROLL_LV3 & BUNNY_WHIRL & PIKO_HAMMER", variables),
         "DARKNESS": parse_expression("TRUE", variables),
+        "UNDERWATER": parse_expression("TRUE", variables),
         "BOOST": parse_expression("TRUE", variables),
         #"RIBBON": parse_expression("TRUE", variables),
         #"WARP": parse_expression("TRUE", variables),

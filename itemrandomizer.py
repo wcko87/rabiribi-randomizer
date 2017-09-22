@@ -48,6 +48,7 @@ def define_variables(item_names):
         "STUPID_HARD_TRICKS": False,
         "HALLOWEEN_REACHABLE": False,
         "WARP_DESTINATION_REACHABLE": False,
+        "DARKNESS_WITHOUT_LIGHT_ORB": True,
     }
     for item_name in item_names:
         variables[item_name] = False
@@ -101,7 +102,7 @@ def define_default_expressions(variables):
         "BUNNY_WHIRL": parse_expression("BUNNY_WHIRL & PIKO_HAMMER", variables),
         "AIR_DASH": parse_expression("AIR_DASH & PIKO_HAMMER", variables),
         "HAMMER_ROLL_LV3": parse_expression("HAMMER_ROLL_LV3 & BUNNY_WHIRL & PIKO_HAMMER", variables),
-        "DARKNESS": parse_expression("TRUE", variables),
+        "DARKNESS": parse_expression("DARKNESS_WITHOUT_LIGHT_ORB", variables),
         "UNDERWATER": parse_expression("TRUE", variables),
         "BOOST": parse_expression("TRUE", variables),
         #"RIBBON": parse_expression("TRUE", variables),

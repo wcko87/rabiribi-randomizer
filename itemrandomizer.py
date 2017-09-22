@@ -40,6 +40,7 @@ def define_variables(item_names):
         "TRUE": True,
         "FALSE": False,
         "ZIP_REQUIRED": False,
+        "SEMISOLID_CLIPS_REQUIRED": False,
         "ADVANCED_TRICKS_REQUIRED": True,
         "BLOCK_CLIPS_REQUIRED": True,
         "POST_GAME_ALLOWED": True,
@@ -88,6 +89,7 @@ def define_default_expressions(variables):
     # however, the expressions parsed in define_default_expressions (just below) cannot use default expressions in their expressions.
     return {
         "ZIP": parse_expression("ZIP_REQUIRED", variables),
+        "SEMISOLID_CLIP": parse_expression("SEMISOLID_CLIPS_REQUIRED", variables),
         "BLOCK_CLIP": parse_expression("BLOCK_CLIPS_REQUIRED", variables),
         "POST_GAME": parse_expression("POST_GAME_ALLOWED", variables),
         "STUPID": parse_expression("STUPID_HARD_TRICKS", variables),

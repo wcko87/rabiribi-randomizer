@@ -93,7 +93,10 @@
 {
 "location": "HP_UP_NORTH_FOREST",
 "accessibility": "mid",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER | (ZIP & PIKO_HAMMER)) & SLIDING_POWDER",
+"entry_prereq": "
+    (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) &
+    (((CARROT_BOMB | CARROT_SHOOTER) & SLIDING_POWDER) | (SEMISOLID_CLIP & PIKO_HAMMER))
+",
 "exit_prereq": "NONE",
 }
 
@@ -230,7 +233,7 @@ AIR_JUMP
 {
 "location": "ATK_UP_BEACH_CAVE",
 "accessibility": "near",
-"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | (ZIP & PIKO_HAMMER & SLIDING_POWDER)",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | (SEMISOLID_CLIP & PIKO_HAMMER)",
 "exit_prereq": "NONE",
 }
 
@@ -1020,7 +1023,7 @@ DARKNESS
 {
 "location": "ATK_UP_EVERNIGHT_UPRPRC",
 "accessibility": "mid",
-"entry_prereq": "SLIDING_POWDER & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (PIKO_HAMMER & ZIP))",
+"entry_prereq": "SLIDING_POWDER & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (PIKO_HAMMER & SEMISOLID_CLIP))",
 "exit_prereq": "NONE",
 }
 

@@ -1,6 +1,7 @@
 // Configure generation flags here
 "settings": {
     "ZIP_REQUIRED": false,
+    "SEMISOLID_CLIPS_REQUIRED": false,
     "ADVANCED_TRICKS_REQUIRED": false,
     "BLOCK_CLIPS_REQUIRED": false,
     "POST_GAME_ALLOWED": false,

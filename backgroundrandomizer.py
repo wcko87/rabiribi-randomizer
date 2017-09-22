@@ -45,6 +45,23 @@ class BackgroundShuffler(object):
             # Fix for pyramid super-trampoline bug
             if areaid == 1 and posindex == to_tile_index(16,11): continue
 
+            # Fix for Alius3 Noah becoming the Noah1 boss fight bug
+            if areaid == 8 and posindex == to_tile_index(18,7): continue
+            # Fix for Noah1 becoming the Alius3 Noah boss fight bug
+            if areaid == 8 and posindex == to_tile_index(18,5) and allocation[val] == 9: continue
+
+            # Fix for early sysint computer bug
+            if areaid == 4 and posindex == to_tile_index(17,16): continue
+
+            # Fix for bug where you can't enter warps if it has computer room background.
+            if allocation[val] == 64:
+                # plurkwood warp from starting forest
+                if areaid == 0 and posindex == to_tile_index(8,4): continue
+                # warp to exit plurkwood
+                if areaid == 6 and posindex == to_tile_index(9,3): continue
+                # warp to exit sysint
+                if areaid == 9 and posindex == to_tile_index(14,8): continue
+
             stored_datas[areaid].tiledata_roombg[posindex] = allocation[val]
 
 

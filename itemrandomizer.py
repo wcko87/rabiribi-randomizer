@@ -766,6 +766,13 @@ def apply_fixes_for_randomizer(areaid, data):
         data.tiledata_event[xy_to_index(108,98)] = 34
         data.tiledata_event[xy_to_index(107,98)] = 129
 
+        # For v1.85 custom maps mode: Add second warp CS trigger
+        for y in range(79,99):
+            data.tiledata_event[xy_to_index(125,y)] = 524
+            data.tiledata_event[xy_to_index(126,y)] = 525
+            data.tiledata_event[xy_to_index(127,y)] = 281
+            data.tiledata_event[xy_to_index(128,y)] = 524
+
         # Remove save point and autosave point before Cocoa1
         for y in range(84,88):
             data.tiledata_event[xy_to_index(358,y)] = 0

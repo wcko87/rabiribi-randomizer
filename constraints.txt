@@ -359,7 +359,7 @@ AIR_JUMP
 "entry_prereq": "
 (
     (SLIDING_POWDER  | (ZIP & HAMMER_ROLL_LV3)) &
-    (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (PIKO_HAMMER & SEMISOLID_CLIP))
 ) |
 (SLIDING_POWDER & (AIR_JUMP | AIR_DASH | STUPID))
 ",
@@ -387,8 +387,8 @@ AIR_JUMP
 {
 "location": "HP_UP_PYRAMID_ENTRANCE",
 "accessibility": "free",
-"entry_prereq": "CARROT_BOMB | (SLIDING_POWDER & ZIP)",
-"exit_prereq": "CARROT_BOMB | (HAMMER_ROLL_LV3 & ZIP)",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST & ADVANCED)",
+"exit_prereq": "NONE",
 }
 
 {

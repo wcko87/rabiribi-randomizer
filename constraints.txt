@@ -1283,16 +1283,22 @@ DARKNESS
 "accessibility": "vfar",
 "entry_prereq": "
 HALLOWEEN &
-(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
 ((
-    DARKNESS & (
-        (AIR_JUMP & (WALL_JUMP_LV2 | RABI_SLIPPERS)) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
-    ) & (
-        (ZIP & HAMMER_ROLL_LV3) |
-        (BUNNY_WHIRL & SLIDING_POWDER)
-    )
-) | (ZIP & SLIDING_POWDER))
+    SLIDING_POWDER & ZIP &
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST & STUPID))
+) | (
+// If zips are not enabled, this location may be inaccessible without recruits
+// Watching the cutscene opens the intended route
+// Otherwise SLIDING_POWDER & CARROT_SHOOTER & BOOST is the only way in
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
+    ((ZIP & HAMMER_ROLL_LV3) | (BUNNY_WHIRL & SLIDING_POWDER)) &
+    ((ZIP & SLIDING_POWDER) | (
+        DARKNESS & (
+            (AIR_JUMP & (WALL_JUMP_LV2 | RABI_SLIPPERS)) |
+            (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        )
+    ))
+))
 ",
 "exit_prereq": "
 SLIDING_POWDER &
@@ -1451,9 +1457,9 @@ HALLOWEEN &
 HALLOWEEN &
 SLIDING_POWDER & BUNNY_WHIRL &
 (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-(ZIP | 
+(ZIP |
 (DARKNESS & (
-    (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) | 
+    (WALL_JUMP_LV2 & (ADVANCED | AIR_JUMP)) |
     (AIR_JUMP & RABI_SLIPPERS)
 )))
 ",

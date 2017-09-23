@@ -82,7 +82,7 @@ def define_custom_items():
             "entry_prereq": "NONE",
             "exit_prereq": "NONE",
         },
-        "PIKO_HAMMER_LEVELLED": {
+        "PIKO_HAMMER_LEVELED": {
             "accessibility": "free",
             "entry_prereq": "PIKO_HAMMER",
             "exit_prereq": "NONE",

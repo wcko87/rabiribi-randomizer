@@ -298,7 +298,7 @@ AIR_JUMP
 {
 "location": "MP_UP_PYRAMID_DARK_ROOM",
 "accessibility": "mid",
-"entry_prereq": "DARKNESS & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (ZIP & SLIDING_POWDER))",
+"entry_prereq": "DARKNESS & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (ZIP & SLIDING_POWDER) | (PIKO_HAMMER & SEMISOLID_CLIP))",
 "exit_prereq": "NONE",
 }
 
@@ -363,7 +363,7 @@ AIR_JUMP
 ) |
 (SLIDING_POWDER & (AIR_JUMP | AIR_DASH | STUPID))
 ",
-"exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | ZIP)",
+"exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | ZIP | (PIKO_HAMMER & SEMISOLID_CLIP))",
 }
 
 {
@@ -930,7 +930,7 @@ DARKNESS
     // slide zip from bomb block slide tunnel in room to the left
     (ZIP & SLIDING_POWDER & (CARROT_BOMB | CARROT_SHOOTER))
 ",
-"exit_prereq": "BUNNY_WHIRL | AIR_DASH | (CARROT_SHOOTER & BOOST & ADVANCED)",
+"exit_prereq": "BUNNY_WHIRL | AIR_DASH | (CARROT_SHOOTER & BOOST & ADVANCED) | (PIKO_HAMMER & SEMISOLID_CLIP)",
 }
 
 {
@@ -950,7 +950,7 @@ DARKNESS
 {
 "location": "ATK_UP_EAST_RIVERBANK",
 "accessibility": "near",
-"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
+"entry_prereq": "((CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER) | (PIKO_HAMMER & SEMISOLID_CLIP)",
 "exit_prereq": "NONE",
 }
 
@@ -1093,7 +1093,7 @@ DARKNESS
 {
 "location": "PACK_UP_LAB",
 "accessibility": "mid",
-"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
+"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (PIKO_HAMMER & SEMISOLID_CLIP)",
 "exit_prereq": "NONE",
 }
 
@@ -1175,7 +1175,7 @@ DARKNESS
 "location": "AIR_JUMP",
 "accessibility": "far",
 "entry_prereq": "NONE",
-"exit_prereq": "AIR_JUMP | AIR_DASH | BUNNY_STRIKE",
+"exit_prereq": "AIR_JUMP | AIR_DASH | BUNNY_STRIKE | (PIKO_HAMMER & SEMISOLID_CLIP)",
 }
 
 {
@@ -1267,7 +1267,7 @@ DARKNESS
 {
 "location": "EGG_BEACH_TO_AQUARIUM",
 "accessibility": "mid",
-"entry_prereq": "(SLIDING_POWDER & PIKO_HAMMER & ZIP) | CARROT_BOMB | CARROT_SHOOTER",
+"entry_prereq": "(PIKO_HAMMER & SEMISOLID_CLIP) | CARROT_BOMB | CARROT_SHOOTER",
 "exit_prereq": "NONE",
 }
 

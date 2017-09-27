@@ -100,6 +100,8 @@ def write_all(areaid, items, stored_data, path='.'):
                 else:
                     tiledata_map[index] = 0
                     tiledata_tiles1[index] = 0
+            else:
+                tiledata_tiles1[index] = 0
             tiledata_event[index] = EGG_EVENT_ID
             tiledata_tiles3[index] = 0
             tiledata_tiles4[index] = 0

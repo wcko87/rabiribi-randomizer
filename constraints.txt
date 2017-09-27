@@ -100,7 +100,7 @@
 {
 "location": "WALL_JUMP",
 "accessibility": "mid",
-"entry_prereq": "SLIDING_POWDER | (AIR_JUMP & AIR_DASH) | (ZIP & HAMMER_ROLL_LV3)",
+"entry_prereq": "SLIDING_POWDER | (AIR_JUMP & (AIR_DASH | STUPID)) | (ZIP & HAMMER_ROLL_LV3)",
 "exit_prereq": "RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | (ADVANCED & (AIR_DASH | SLIDING_POWDER))",
 }
 
@@ -954,7 +954,7 @@ DARKNESS
 {
 "location": "SPIKE_BARRIER",
 "accessibility": "mid",
-"entry_prereq": "AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED) | STUPID",
+"entry_prereq": "SLIDING_POWDER | AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED) | STUPID",
 "exit_prereq": "NONE",
 }
 

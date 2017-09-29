@@ -1,5 +1,6 @@
 // Configure generation flags here
 "settings": {
+    "DARKNESS_WITHOUT_LIGHT_ORB": false,
     "ZIP_REQUIRED": false,
     "SEMISOLID_CLIPS_REQUIRED": false,
     "ADVANCED_TRICKS_REQUIRED": false,
@@ -9,7 +10,6 @@
     "POST_IRISU_ALLOWED": false,
     "HALLOWEEN_REACHABLE": false,
     "WARP_DESTINATION_REACHABLE": false,
-    "DARKNESS_WITHOUT_LIGHT_ORB": false,
 },
 
 // Only these items will be shuffled

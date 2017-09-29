@@ -107,7 +107,7 @@ def define_default_expressions(variables):
         "BUNNY_WHIRL": parse_expression("BUNNY_WHIRL & PIKO_HAMMER", variables),
         "AIR_DASH": parse_expression("AIR_DASH & PIKO_HAMMER", variables),
         "HAMMER_ROLL_LV3": parse_expression("HAMMER_ROLL_LV3 & BUNNY_WHIRL & PIKO_HAMMER", variables),
-        "DARKNESS": parse_expression("DARKNESS_WITHOUT_LIGHT_ORB", variables),
+        "DARKNESS": parse_expression("DARKNESS_WITHOUT_LIGHT_ORB | LIGHT_ORB", variables),
         "UNDERWATER": parse_expression("TRUE", variables),
         "BOOST": parse_expression("TRUE", variables),
         #"RIBBON": parse_expression("TRUE", variables),

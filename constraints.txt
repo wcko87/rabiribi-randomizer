@@ -180,7 +180,7 @@
 {
 "location": "MANA_WAGER",
 "accessibility": "mid",
-"entry_prereq": "(BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH",
+"entry_prereq": "(BUNNY_WHIRL & ADVANCED) | (AIR_JUMP & (RABI_SLIPPERS | ADVANCED)) | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
@@ -878,7 +878,7 @@ AIR_JUMP
 "entry_prereq": "
 (
     (CARROT_SHOOTER & BOOST)
-    & (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH)
+    & (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))
 ) | (
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
     & SLIDING_POWDER
@@ -892,7 +892,7 @@ AIR_JUMP
 "accessibility": "far",
 "entry_prereq": "
 (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
-& (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH)
+& (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))
 ",
 "exit_prereq": "NONE",
 }
@@ -910,7 +910,7 @@ AIR_JUMP
 "entry_prereq": "
 DARKNESS
 & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
-& (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH)
+& (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))
 ",
 "exit_prereq": "NONE",
 }
@@ -1688,7 +1688,7 @@ HALLOWEEN & (CARROT_BOMB | CARROT_SHOOTER) &
 {
 "location": "EGG_EVERNIGHT_SAYA",
 "accessibility": "mid",
-"entry_prereq": "STUPID | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP",
+"entry_prereq": "STUPID | ((BUNNY_WHIRL | BUNNY_STRIKE) & ADVANCED) | AIR_JUMP",
 "exit_prereq": "NONE",
 }
 

@@ -15,7 +15,7 @@ What the randomizer can currently randomize:
 
 ## Who made this?
 
-The Randomizer is not the work of one person. It is a collaborative effort of the speedrunning community.
+The Randomizer is not the work of one person. It is a collaborative effort of the Rabi-Ribi speedrunning community.
 - [How the Randomizer came about](https://wcko87.github.io/acknowledgements/)
 
 ## Download

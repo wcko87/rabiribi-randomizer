@@ -13,6 +13,11 @@ What the randomizer can currently randomize:
 * Music triggers
 * Backgrounds
 
+## Who made this?
+
+The Randomizer is not the work of one person. It is a collaborative effort of the speedrunning community.
+- [How the Randomizer came about](https://wcko87.github.io/acknowledgements/)
+
 ## Download
 The following download links are automatically updated with the latest changes to the randomizer.
 * [**Download** *(Randomizer with UI)*](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer-ui-rc94b/build/artifacts)

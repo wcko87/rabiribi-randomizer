@@ -87,6 +87,11 @@ def define_custom_items():
             "entry_prereq": "PIKO_HAMMER",
             "exit_prereq": "NONE",
         },
+        "SHOP": {
+            "accessibility": "free",
+            "entry_prereq": "NONE",
+            "exit_prereq": "NONE",
+        },
     }
 
 def define_default_expressions(variables):
@@ -111,7 +116,6 @@ def define_default_expressions(variables):
         "DARKNESS": parse_expression("DARKNESS_WITHOUT_LIGHT_ORB | LIGHT_ORB", variables),
         "UNDERWATER": parse_expression("TRUE", variables),
         "BOOST": parse_expression("TRUE", variables),
-        "SHOP": parse_expression("TRUE", variables),
         #"RIBBON": parse_expression("TRUE", variables),
         #"WARP": parse_expression("TRUE", variables),
         #"EXIT_PROLOGUE": parse_expression("TRUE", variables),

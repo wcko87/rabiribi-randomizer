@@ -59,27 +59,27 @@ def define_custom_items():
     return {
         "WALL_JUMP_LV2": {
             "accessibility": "free",
-            "entry_prereq": "WALL_JUMP",
+            "entry_prereq": "WALL_JUMP & SHOP",
             "exit_prereq": "NONE",
         },
         "HAMMER_ROLL_LV3": {
             "accessibility": "free",
-            "entry_prereq": "HAMMER_ROLL",
+            "entry_prereq": "HAMMER_ROLL & SHOP",
             "exit_prereq": "NONE",
         },
         "BUNNY_STRIKE": {
             "accessibility": "free",
-            "entry_prereq": "SLIDING_POWDER",
+            "entry_prereq": "SLIDING_POWDER & SHOP",
             "exit_prereq": "NONE",
         },
         "AIR_DASH_LV3": {
             "accessibility": "free",
-            "entry_prereq": "AIR_DASH",
+            "entry_prereq": "AIR_DASH & SHOP",
             "exit_prereq": "NONE",
         },
         "SPEED_BOOST": {
             "accessibility": "free",
-            "entry_prereq": "NONE",
+            "entry_prereq": "SHOP",
             "exit_prereq": "NONE",
         },
         "PIKO_HAMMER_LEVELED": {
@@ -110,6 +110,7 @@ def define_default_expressions(variables):
         "DARKNESS": parse_expression("DARKNESS_WITHOUT_LIGHT_ORB | LIGHT_ORB", variables),
         "UNDERWATER": parse_expression("TRUE", variables),
         "BOOST": parse_expression("TRUE", variables),
+        "SHOP": parse_expression("TRUE", variables),
         #"RIBBON": parse_expression("TRUE", variables),
         #"WARP": parse_expression("TRUE", variables),
         #"EXIT_PROLOGUE": parse_expression("TRUE", variables),

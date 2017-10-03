@@ -18,7 +18,7 @@ def parse_args():
     args.add_argument('--version', action='store_true', help='Print Randomizer Version')
     args.add_argument('-output_dir', default='generated_maps', help='Output directory for generated maps')
     args.add_argument('-config_file', default='config.txt', help='Config file to use')
-    args.add_argument('-seed', default=None, type=int, help='Random seed')
+    args.add_argument('-seed', default=None, type=str, help='Random seed')
     args.add_argument('--no-write', dest='write', default=True, action='store_false', help='Flag to disable map generation, and do only map analysis')
     args.add_argument('--no-fixes', dest='apply_fixes', default=True, action='store_false', help='Flag to disable randomizer-specific map fixes')
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
@@ -632,6 +632,9 @@ def hash_map_files(areaids, maps_dir):
     digest = hash.hexdigest()
     return ('%s-%s' % (digest[:4], digest[4:8])).upper()
 
+def string_to_integer_seed(s):
+    return int(hashlib.md5(s.encode('utf-8')).hexdigest(), base=16)
+
 def decide_difficulty(mean_important_level, true_step_count):
     score = mean_important_level + true_step_count
     if score >= 7:
@@ -913,6 +916,8 @@ def hash_maps(output_dir):
 if __name__ == '__main__':
     args = parse_args()
     source_dir='original_maps'
+
+    seed = string_to_integer_seed('%s' % (args.seed))
     
     if args.version:
         print('Rabi-Ribi Randomizer - %s' % VERSION_STRING)
@@ -928,7 +933,7 @@ if __name__ == '__main__':
         )
     else:
         generate_randomized_maps(
-            seed=args.seed,
+            seed=seed,
             source_dir=source_dir,
             output_dir=args.output_dir,
             config_file=args.config_file,

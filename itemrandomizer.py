@@ -23,9 +23,9 @@ def parse_args():
     args.add_argument('--no-fixes', dest='apply_fixes', default=True, action='store_false', help='Flag to disable randomizer-specific map fixes')
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
     args.add_argument('--hash', action='store_true', help='Generate a hash of the maps in the output directory.')
-    args.add_argument('--shuffle-music', action='store_true', help='Experimental: Shuffles the music in the map.')
-    args.add_argument('--shuffle-backgrounds', action='store_true', help='Experimental: Shuffles the backgrounds in the map.')
-    args.add_argument('--egg-goals', action='store_true', help='Experimental: Egg goals mode. Hard-to-reach items are replaced with easter eggs. All other eggs are removed from the map.')
+    args.add_argument('--shuffle-music', action='store_true', help='Shuffles the music in the map.')
+    args.add_argument('--shuffle-backgrounds', action='store_true', help='Shuffles the backgrounds in the map.')
+    args.add_argument('--egg-goals', action='store_true', help='Egg goals mode. Hard-to-reach items are replaced with easter eggs. All other eggs are removed from the map.')
     args.add_argument('-extra-eggs', default=None, type=int, help='Number of extra randomly-chosen eggs for egg-goals mode (in addition to the hard-to-reach eggs)')
 
     return args.parse_args(sys.argv[1:])

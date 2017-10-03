@@ -26,6 +26,8 @@ def parse_args():
     args.add_argument('--shuffle-music', action='store_true', help='Shuffles the music in the map.')
     args.add_argument('--shuffle-backgrounds', action='store_true', help='Shuffles the backgrounds in the map.')
     args.add_argument('--no-laggy-backgrounds', action='store_true', help='Don\'t include laggy backgrounds in background shuffle.')
+    args.add_argument('--hide-unreachable', action='store_true', help='Hide list of unreachable items. Affects seed.')
+    args.add_argument('--hide-difficulty', action='store_true', help='Hide difficulty rating. Affects seed.')
     args.add_argument('--egg-goals', action='store_true', help='Egg goals mode. Hard-to-reach items are replaced with easter eggs. All other eggs are removed from the map.')
     args.add_argument('-extra-eggs', default=None, type=int, help='Number of extra randomly-chosen eggs for egg-goals mode (in addition to the hard-to-reach eggs)')
 
@@ -698,7 +700,7 @@ def print_analysis(analyzer, assigned_locations):
     print('Difficulty (SC): %s' % decide_difficulty(mean_important_level, true_step_count))
     print('Difficulty (RS): %s' % decide_difficulty(mean_important_reachability_score, true_reachability_score))
 
-def generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals=False, write_to_map_files=False):
+def generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals, write_to_map_files, hide_unreachable, hide_difficulty):
     important_items = ['PIKO_HAMMER', 'SLIDING_POWDER', 'CARROT_BOMB', 'AIR_JUMP']
     mean_important_reachability_score = analyzer.average_reachability_score(important_items)
 
@@ -720,8 +722,10 @@ def generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_
         file_lines.append(str(line))
 
     printline('-- analysis --')
-    printline('Difficulty: %s' % difficulty)
-    printline()
+    if not hide_difficulty:
+        printline('Difficulty: %s' % difficulty)
+        printline()
+
     if egg_goals:
         printline('Number of eggs: %d' % len(all_eggs))
         printline()
@@ -730,12 +734,15 @@ def generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_
         for item in sorted(hard_to_reach_items):
             printline(item)
         printline()
-    printline('Unreachable Items:')
-    for item in analyzer.unreachable:
-        if item.startswith('UNKNOWN'): continue # Skip DLC items
-        if egg_goals and is_egg(item): continue
-        printline(item)
-    printline()
+
+    if not hide_unreachable:
+        printline('Unreachable Items:')
+        for item in analyzer.unreachable:
+            if item.startswith('UNKNOWN'): continue # Skip DLC items
+            if egg_goals and is_egg(item): continue
+            printline(item)
+        printline()
+
     for warning in warnings:
         printline('WARNING: %s' % warning)
 
@@ -824,7 +831,7 @@ def apply_fixes_for_randomizer(areaid, data):
 
 
 
-def pre_modify_map_data(mod, apply_fixes=True, shuffle_music=False, shuffle_backgrounds=False, no_laggy_backgrounds=False):
+def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds):
     # apply rando fixes
     if apply_fixes:
         for areaid, data in mod.stored_datas.items():
@@ -858,7 +865,7 @@ def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
 def get_default_areaids():
     return list(range(10))
 
-def generate_randomized_maps(seed=None, source_dir='original_maps', output_dir='.', config_file='config.txt', write_to_map_files=False, shuffle_music=False, shuffle_backgrounds=False, no_laggy_backgrounds=False, apply_fixes=True, egg_goals=False, extra_eggs=None):
+def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to_map_files, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, apply_fixes, egg_goals, extra_eggs, hide_unreachable, hide_difficulty):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
@@ -874,7 +881,7 @@ def generate_randomized_maps(seed=None, source_dir='original_maps', output_dir='
     #for warning in warnings:
         #print('WARNING: %s' % warning)
 
-    generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals, write_to_map_files)
+    generate_analysis_file(items, assigned_locations, analyzer, output_dir, egg_goals, write_to_map_files, hide_unreachable, hide_difficulty)
     print('Analysis Generated.')
 
     if not write_to_map_files:
@@ -917,7 +924,7 @@ if __name__ == '__main__':
     args = parse_args()
     source_dir='original_maps'
 
-    seed = string_to_integer_seed('%s' % (args.seed))
+    seed = string_to_integer_seed('%s_ha:%s_hd:%s' % (args.seed, args.hide_unreachable, args.hide_difficulty))
     
     if args.version:
         print('Rabi-Ribi Randomizer - %s' % VERSION_STRING)
@@ -944,4 +951,6 @@ if __name__ == '__main__':
             apply_fixes=args.apply_fixes,
             egg_goals=args.egg_goals,
             extra_eggs=args.extra_eggs,
+            hide_unreachable=args.hide_unreachable,
+            hide_difficulty=args.hide_difficulty,
         )

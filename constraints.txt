@@ -284,7 +284,7 @@ AIR_JUMP
 {
 "location": "AUTO_TRIGGER",
 "accessibility": "vfar",
-"entry_prereq": "POST_GAME",
+"entry_prereq": "POST_GAME & IMPOSSIBLE",
 "exit_prereq": "NONE",
 }
 
@@ -394,7 +394,7 @@ AIR_JUMP
 {
 "location": "HITBOX_DOWN",
 "accessibility": "vfar",
-"entry_prereq": "POST_GAME & CARROT_BOMB",
+"entry_prereq": "POST_GAME & CARROT_BOMB & IMPOSSIBLE",
 "exit_prereq": "NONE",
 }
 
@@ -1167,7 +1167,7 @@ DARKNESS
 {
 "location": "CYBER_FLOWER",
 "accessibility": "far",
-"entry_prereq": "POST_GAME",
+"entry_prereq": "POST_GAME & IMPOSSIBLE",
 "exit_prereq": "NONE",
 }
 
@@ -1524,7 +1524,7 @@ HALLOWEEN & (CARROT_BOMB | CARROT_SHOOTER) &
 {
 "location": "EGG_LIBRARY",
 "accessibility": "vfar",
-"entry_prereq": "POST_GAME",
+"entry_prereq": "POST_GAME & IMPOSSIBLE",
 "exit_prereq": "NONE",
 }
 
@@ -1800,6 +1800,6 @@ HALLOWEEN & (CARROT_BOMB | CARROT_SHOOTER) &
 {
 "location": "EGG_SYSINT2",
 "accessibility": "vfar",
-"entry_prereq": "POST_GAME",
+"entry_prereq": "POST_GAME & IMPOSSIBLE",
 "exit_prereq": "NONE",
 }

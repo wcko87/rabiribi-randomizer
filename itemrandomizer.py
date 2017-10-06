@@ -924,7 +924,10 @@ if __name__ == '__main__':
     args = parse_args()
     source_dir='original_maps'
 
-    seed = string_to_integer_seed('%s_ha:%s_hd:%s' % (args.seed, args.hide_unreachable, args.hide_difficulty))
+    if args.seed == None:
+        seed = None
+    else:
+        seed = string_to_integer_seed('%s_ha:%s_hd:%s' % (args.seed, args.hide_unreachable, args.hide_difficulty))
     
     if args.version:
         print('Rabi-Ribi Randomizer - %s' % VERSION_STRING)

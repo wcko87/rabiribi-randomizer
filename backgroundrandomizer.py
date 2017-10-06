@@ -1,7 +1,7 @@
 import random
 import time
 
-LAGGY_BACKGROUNDS = set(())
+LAGGY_BACKGROUNDS = set((37, 65, 66, 80, 84, 88, 89, 99))
 
 def to_tile_index(x, y):
     return x*18 + y

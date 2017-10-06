@@ -23,6 +23,7 @@ def parse_args():
     args.add_argument('--no-fixes', dest='apply_fixes', default=True, action='store_false', help='Flag to disable randomizer-specific map fixes')
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
     args.add_argument('--hash', action='store_true', help='Generate a hash of the maps in the output directory.')
+    args.add_argument('--check-for-updates', action='store_true', help='Check for the latest version of randomizer.')
     args.add_argument('--shuffle-music', action='store_true', help='Experimental: Shuffles the music in the map.')
     args.add_argument('--shuffle-backgrounds', action='store_true', help='Experimental: Shuffles the backgrounds in the map.')
     args.add_argument('--egg-goals', action='store_true', help='Experimental: Egg goals mode. Hard-to-reach items are replaced with easter eggs. All other eggs are removed from the map.')
@@ -114,6 +115,56 @@ def define_default_expressions(variables):
 # | :: KEY DEFINITIONS - END :: |
 #  \ :: ~~~~~~~~~~~~~~~~~~~ :: /
 #   '''''''''''''''''''''''''''
+
+def get_current_branch():
+    return VERSION_STRING[len('Revision '):][:1]
+
+def fetch_latest_version_id():
+    import requests
+    import json
+    PREFIX = 'https://ci.appveyor.com/api/'
+    try:
+        req = requests.get(PREFIX + 'projects/wcko87/rabiribi-randomizer-ui-rc94b')
+        jobs = json.loads(req.text)['build']['jobs']
+        if len(jobs) == 0:
+            return False, 'The Randomizer version is currently being updated on AppVeyor'
+        jobid = jobs[0]['jobId']
+
+        req = requests.get(PREFIX + 'buildjobs/%s/messages' % jobid)
+        messages = json.loads(req.text)['list']
+        messages = [d['message'] for d in messages]
+
+        branch = get_current_branch()
+        for message in messages:
+            if message.startswith(branch):
+                return True, message[message.find(':')+1:].lstrip()
+        return False, 'Unable to deduce version number.'
+    except:
+        return False, 'Unknown error retrieving latest version number.'
+    
+
+def check_for_updates():
+    result, message = fetch_latest_version_id()
+    if result:
+        if VERSION_STRING == message:
+            result = 'You have the latest version of Randomizer.'
+        else:
+            result = 'Randomizer version does not match latest version.'
+
+        sb = [
+            result,
+            '',
+            'Current Version: %s' % VERSION_STRING,
+            'Latest Version: %s' % message
+        ]
+    else:
+        sb = [
+            'Failed to check for updates:',
+            message,
+            '',
+            'Current Version: %s' % VERSION_STRING,
+        ]
+    print('\n'.join(sb))
 
 #   _________________________________
 #  / :: ~~~~~~~~~~~~~~~~~~~~~~~~~ :: \
@@ -900,6 +951,8 @@ if __name__ == '__main__':
     
     if args.version:
         print('Rabi-Ribi Randomizer - %s' % VERSION_STRING)
+    elif args.check_for_updates:
+        check_for_updates()
     elif args.reset:
         # copy over the default maps without randomization.
         reset_maps(

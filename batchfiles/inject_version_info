@@ -23,3 +23,7 @@ f.close()
 f = open('itemrandomizer.py', 'w+')
 f.write(data)
 f.close()
+
+import os
+message = '%s: %s' % (branch_name, VERSION_STRING)
+os.system('appveyor AddMessage "%s"' % message)

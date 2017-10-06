@@ -1,6 +1,8 @@
 // Configure generation flags here
 "settings": {
+    "DARKNESS_WITHOUT_LIGHT_ORB": false,
     "ZIP_REQUIRED": false,
+    "SEMISOLID_CLIPS_REQUIRED": false,
     "ADVANCED_TRICKS_REQUIRED": false,
     "BLOCK_CLIPS_REQUIRED": false,
     "POST_GAME_ALLOWED": false,

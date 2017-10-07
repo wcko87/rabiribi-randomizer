@@ -5,6 +5,7 @@ import json
 import sys
 import os
 import argparse
+import requests
 import itemreader
 from itemreader import to_position, to_index, xy_to_index
 import musicrandomizer
@@ -138,8 +139,6 @@ def get_current_branch():
     return VERSION_STRING[len('Revision '):][:1]
 
 def fetch_latest_version_id():
-    import requests
-    import json
     PREFIX = 'https://ci.appveyor.com/api/'
     try:
         req = requests.get(PREFIX + 'projects/wcko87/rabiribi-randomizer-ui-rc94b')

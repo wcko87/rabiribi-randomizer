@@ -1702,21 +1702,21 @@ HALLOWEEN & (CARROT_BOMB | CARROT_SHOOTER) &
 {
 "location": "EGG_PLURK_EAST",
 "accessibility": "vfar",
-"entry_prereq": "NONE",
+"entry_prereq": "PLURKWOOD",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PLURK_CAVE",
 "accessibility": "vfar",
-"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER",
+"entry_prereq": "PLURKWOOD & (CARROT_BOMB | CARROT_SHOOTER)",
 "exit_prereq": "NONE",
 }
 
 {
 "location": "EGG_PLURK_CATS",
 "accessibility": "vfar",
-"entry_prereq": "NONE",
+"entry_prereq": "PLURKWOOD",
 "exit_prereq": "NONE",
 }
 

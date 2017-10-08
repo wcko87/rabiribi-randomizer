@@ -52,6 +52,7 @@ def define_variables(item_names):
         "POST_IRISU_ALLOWED": True,
         "STUPID_HARD_TRICKS": False,
         "HALLOWEEN_REACHABLE": False,
+        "PLURKWOOD_REACHABLE": True,
         "WARP_DESTINATION_REACHABLE": False,
         "DARKNESS_WITHOUT_LIGHT_ORB": True,
     }
@@ -112,6 +113,7 @@ def define_default_expressions(variables):
         "ADVANCED": parse_expression("ADVANCED_TRICKS_REQUIRED", variables),
         "POST_IRISU": parse_expression("POST_IRISU_ALLOWED", variables),
         "HALLOWEEN": parse_expression("HALLOWEEN_REACHABLE", variables),
+        "PLURKWOOD": parse_expression("PLURKWOOD_REACHABLE", variables),
         "WARP_DESTINATION": parse_expression("WARP_DESTINATION_REACHABLE", variables),
         "BUNNY_STRIKE": parse_expression("BUNNY_STRIKE & PIKO_HAMMER", variables),
         "BUNNY_WHIRL": parse_expression("BUNNY_WHIRL & PIKO_HAMMER", variables),

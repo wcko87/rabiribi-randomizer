@@ -866,6 +866,19 @@ def apply_fixes_for_randomizer(areaid, data):
         # Remove trampoline at crisis boost location
         data.tiledata_event[xy_to_index(246,63)] = 0
         data.tiledata_event[xy_to_index(246,64)] = 0
+        # Remove three autosaves in the lower halloween area.
+        # Each of these can cause a potential softlock as they are reachable
+        # with slide and explosives, but require at least one more item
+        # to exit the halloween area
+        # The autosave leading to the underwater segment:
+        data.tiledata_event[xy_to_index(158,92)] = 0
+        data.tiledata_event[xy_to_index(158,93)] = 0
+        # The autosave after the underwater segment:
+        data.tiledata_event[xy_to_index(173,97)] = 0
+        data.tiledata_event[xy_to_index(173,98)] = 0
+        data.tiledata_event[xy_to_index(173,99)] = 0
+        # The autosave outside Cicini's room:
+        data.tiledata_event[xy_to_index(199,98)] = 0
 
     if areaid == 4:
         # Remove save point at slide location in lab

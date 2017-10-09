@@ -28,6 +28,7 @@ def parse_args():
     args.add_argument('--shuffle-music', action='store_true', help='Shuffles the music in the map.')
     args.add_argument('--shuffle-backgrounds', action='store_true', help='Shuffles the backgrounds in the map.')
     args.add_argument('--no-laggy-backgrounds', action='store_true', help='Don\'t include laggy backgrounds in background shuffle.')
+    args.add_argument('--no-difficult-backgrounds', action='store_true', help='Don\'t include backgrounds in background shuffle that interfere with visibility.')
     args.add_argument('--super-attack-mode', action='store_true', help='Start the game with a bunch of attack ups, so you do lots more damage.')
     args.add_argument('--hide-unreachable', action='store_true', help='Hide list of unreachable items. Affects seed.')
     args.add_argument('--hide-difficulty', action='store_true', help='Hide difficulty rating. Affects seed.')
@@ -912,7 +913,7 @@ def apply_super_attack_mode(areaid, data):
 
 
 
-def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, super_attack_mode):
+def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, no_difficult_backgrounds, super_attack_mode):
     # apply rando fixes
     if apply_fixes:
         for areaid, data in mod.stored_datas.items():
@@ -926,7 +927,7 @@ def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no
         musicrandomizer.shuffle_music(mod.stored_datas)
 
     if shuffle_backgrounds:
-        backgroundrandomizer.shuffle_backgrounds(mod.stored_datas, no_laggy_backgrounds)
+        backgroundrandomizer.shuffle_backgrounds(mod.stored_datas, no_laggy_backgrounds, no_difficult_backgrounds)
 
     # super attack mode
     if super_attack_mode:
@@ -951,7 +952,7 @@ def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
 def get_default_areaids():
     return list(range(10))
 
-def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to_map_files, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, super_attack_mode, apply_fixes, egg_goals, extra_eggs, hide_unreachable, hide_difficulty):
+def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to_map_files, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, no_difficult_backgrounds, super_attack_mode, apply_fixes, egg_goals, extra_eggs, hide_unreachable, hide_difficulty):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
@@ -981,7 +982,7 @@ def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to
     itemreader.grab_original_maps(source_dir, output_dir)
     print('Maps copied...')
     mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)
-    pre_modify_map_data(mod, apply_fixes=apply_fixes, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds, no_laggy_backgrounds=no_laggy_backgrounds, super_attack_mode=super_attack_mode)
+    pre_modify_map_data(mod, apply_fixes=apply_fixes, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds, no_laggy_backgrounds=no_laggy_backgrounds, no_difficult_backgrounds=no_difficult_backgrounds, super_attack_mode=super_attack_mode)
 
     mod.clear_items()
     for item in items:
@@ -1039,6 +1040,7 @@ if __name__ == '__main__':
             shuffle_music=args.shuffle_music,
             shuffle_backgrounds=args.shuffle_backgrounds,
             no_laggy_backgrounds=args.no_laggy_backgrounds,
+            no_difficult_backgrounds=args.no_difficult_backgrounds,
             super_attack_mode=args.super_attack_mode,
             apply_fixes=args.apply_fixes,
             egg_goals=args.egg_goals,

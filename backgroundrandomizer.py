@@ -2,13 +2,14 @@ import random
 import time
 
 LAGGY_BACKGROUNDS = set((37, 65, 66, 80, 84, 88, 89, 99))
+DIFFICULT_BACKGROUNDS = set((36, 37, 56, 57, 60, 65, 66, 80, 84, 89, 103, 110))
 
 def to_tile_index(x, y):
     return x*18 + y
 
-def shuffle_backgrounds(stored_datas, no_laggy_backgrounds):
+def shuffle_backgrounds(stored_datas, no_laggy_backgrounds, no_difficult_backgrounds):
     #start_time = time.time()
-    shuffler = BackgroundShuffler(stored_datas, no_laggy_backgrounds)
+    shuffler = BackgroundShuffler(stored_datas, no_laggy_backgrounds, no_difficult_backgrounds)
     shuffler.shuffle()
     print('Backgrounds shuffled')
 
@@ -19,7 +20,7 @@ def shuffle_backgrounds(stored_datas, no_laggy_backgrounds):
 
 
 class BackgroundShuffler(object):
-    def __init__(self, stored_datas, no_laggy_backgrounds):
+    def __init__(self, stored_datas, no_laggy_backgrounds, no_difficult_backgrounds):
         self.stored_datas = stored_datas
         original_locations = []
 
@@ -31,6 +32,7 @@ class BackgroundShuffler(object):
 
         self.original_locations = original_locations
         self.no_laggy_backgrounds = no_laggy_backgrounds
+        self.no_difficult_backgrounds = no_difficult_backgrounds
 
     def filter_function(self, val):
         # don't shuffle DLC backgrounds
@@ -53,12 +55,13 @@ class BackgroundShuffler(object):
 
     def shuffle(self):
         backgrounds = list(set(val for areaid, posindex, val in self.original_locations))
+        new_backgrounds = list(backgrounds)
         if self.no_laggy_backgrounds:
-            new_backgrounds = [b for b in backgrounds if b not in LAGGY_BACKGROUNDS]
-            while len(new_backgrounds) < len(backgrounds):
-                new_backgrounds += new_backgrounds
-        else:
-            new_backgrounds = list(backgrounds)
+            new_backgrounds = [b for b in new_backgrounds if b not in LAGGY_BACKGROUNDS]
+        if self.no_difficult_backgrounds:
+            new_backgrounds = [b for b in new_backgrounds if b not in DIFFICULT_BACKGROUNDS]
+        while len(new_backgrounds) < len(backgrounds):
+            new_backgrounds += new_backgrounds
 
         random.shuffle(new_backgrounds)
         allocation = dict(zip(backgrounds, new_backgrounds))

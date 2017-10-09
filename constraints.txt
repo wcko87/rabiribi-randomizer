@@ -269,7 +269,7 @@ AIR_JUMP
     (BUNNY_STRIKE & STUPID)
 )
 & (AIR_JUMP | AIR_DASH | ADVANCED)
-& (CARROT_BOMB | BLOCK_CLIP)
+& (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | BLOCK_CLIP)
 ",
 "exit_prereq": "NONE",
 }
@@ -408,8 +408,8 @@ AIR_JUMP
 {
 "location": "AIR_DASH",
 "accessibility": "far",
-"entry_prereq": "CARROT_BOMB & SLIDING_POWDER",
-"exit_prereq": "CARROT_BOMB",
+"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST)) & SLIDING_POWDER",
+"exit_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST)",
 }
 
 {
@@ -1016,7 +1016,7 @@ DARKNESS
 {
 "location": "SLIDING_POWDER",
 "accessibility": "mid",
-"entry_prereq": "ADVANCED | CARROT_BOMB",
+"entry_prereq": "ADVANCED | CARROT_BOMB | CARROT_SHOOTER | SLIDING_POWDER",
 "exit_prereq": "SLIDING_POWDER | (AIR_JUMP & WALL_JUMP_LV2) | (AIR_JUMP & RABI_SLIPPERS & SPEED_BOOST)",
 }
 
@@ -1153,7 +1153,7 @@ DARKNESS
 {
 "location": "REGEN_UP_CYBERSPACE",
 "accessibility": "far",
-"entry_prereq": "CARROT_BOMB & (AIR_JUMP | AIR_DASH | (BUNNY_STRIKE & ADVANCED) | STUPID)",
+"entry_prereq": "(CARROT_BOMB | (CARROT_SHOOTER & BOOST & STUPID)) & (AIR_JUMP | AIR_DASH | (BUNNY_STRIKE & ADVANCED) | STUPID)",
 "exit_prereq": "NONE",
 }
 

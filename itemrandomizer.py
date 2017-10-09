@@ -831,24 +831,7 @@ def run_item_randomizer(seed=None, config_file='config.txt', egg_goals=False):
 
 def apply_fixes_for_randomizer(areaid, data):
     if areaid == 0:
-        # Place post-ribbon cutscene at (new) erina start location.
-        # this enables warp stones from the start of the game.
-        # this trigger causes erina to jump 5 tiles right to start at (96,98)
-        data.tiledata_event[xy_to_index(91,98)] = 281
-
-        # Place starting forest music trigger on (new+1)  erina start location
-        data.tiledata_event[xy_to_index(96,98)] = 129
-
-        # Relocate start position to 5 tiles left of the original position.
-        # Trigger 34 is where erina spawns. Erina walks 17 tiles left from the
-        # new starting position (108,98) to (91,98) after start.
-        # the warp stone trigger corrects this by making erina jump 5 tiles right,
-        # so that she is back in her correct starting position (96,98).
-        data.tiledata_event[xy_to_index(113,98)] = 0
-        data.tiledata_event[xy_to_index(108,98)] = 34
-        data.tiledata_event[xy_to_index(107,98)] = 129
-
-        # For v1.85 custom maps mode: Add second warp CS trigger
+        # Add warp CS trigger to enable warps from start of game.
         for y in range(79,100):
             data.tiledata_event[xy_to_index(125,y)] = 524
             data.tiledata_event[xy_to_index(126,y)] = 525

@@ -27,6 +27,7 @@ class BackgroundShuffler(object):
         for areaid, data in stored_datas.items():
             original_locations += ((areaid, posindex, val)
                 for posindex, val in enumerate(data.tiledata_roombg) if filter_function(val))
+        self.specify_original_backgrounds(original_locations)
 
         self.original_locations = original_locations
         self.no_laggy_backgrounds = no_laggy_backgrounds
@@ -36,6 +37,19 @@ class BackgroundShuffler(object):
         # don't shuffle Noah3 background because it does weird things to boss doors
         # don't shuffle library entrance background because it removes springs
         return val <= 118 and val not in (0,23,17,83,104,110)
+
+    def specify_original_backgrounds(self, original_locations):
+        # Replace roombg == 0 tiles with specified backgrounds.
+        # This is required for some bg fixes to work.
+        original_locations += [
+            # Area around the Saya boss fight
+            (4, to_tile_index(21,3), 6),
+            (4, to_tile_index(22,3), 6),
+            (4, to_tile_index(23,3), 6),
+            (4, to_tile_index(24,3), 6),
+            (4, to_tile_index(23,4), 6),
+            (4, to_tile_index(24,4), 6),
+        ]
 
     def shuffle(self):
         backgrounds = list(set(val for areaid, posindex, val in self.original_locations))
@@ -70,6 +84,13 @@ class BackgroundShuffler(object):
                 if areaid == 6 and posindex == to_tile_index(9,3): continue
                 # warp to exit sysint
                 if areaid == 9 and posindex == to_tile_index(14,8): continue
+
+            # Fix for bug where saya escapes if evernight dark passageway background used in saya fight.
+            if allocation[val] == 56:
+                if areaid == 4 and posindex == to_tile_index(21,3): continue
+                if areaid == 4 and posindex == to_tile_index(22,3): continue
+                if areaid == 4 and posindex == to_tile_index(23,3): continue
+                if areaid == 4 and posindex == to_tile_index(24,3): continue
 
             stored_datas[areaid].tiledata_roombg[posindex] = allocation[val]
 

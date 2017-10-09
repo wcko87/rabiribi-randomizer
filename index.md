@@ -38,14 +38,15 @@ These instructions will be for the Randomizer UI.
 2. Find the directory which stores your Rabi-Ribi game data. Copy the map files `area0.map` to `area9.map` from `Rabi-Ribi\data\area\` into the `original_maps` folder in the randomizer.
     * Usually the Rabi-Ribi game data can be found at `C:\Program Files (x86)\Steam\SteamApps\common\Rabi-Ribi`.
 3. Run the Randomizer to generate a set of modified maps. By default, the generated maps will be placed in the `generated_maps` folder. You can also configure your own output location for the modified maps.
-4. Copy the generated map files back into the `Rabi-Ribi\data\area\` directory.
-5. Start Rabi-Ribi normally to play on the randomized maps.
+4. Create a new folder (e.g. `randomizer`) in the `Rabi-Ribi\custom\`  directory. Copy the generated map files into that directory (`Rabi-Ribi\custom\randomizer\`).
+5. Start Rabi-Ribi, press F5, and select `randomizer` (or whatever you decided to name the folder).
+6. Start a new game, preferably in Speedrun Mode.
 
-Note: We recommend playing on Rabi-Ribi Version 1.8. This is because of one change to the Fire Orb item location. The exit from the Fire Orb room now requires the Fire Orb, instead of bombs. The Randomizer's item shuffle makes use of this.
+Note: This should be played on Rabi-Ribi 1.85 and above. Randomizer should be played from the custom maps option, and not by replacing the default maps.
 
 ## Item Shuffle
 
-* The main feature of the Rabi-Ribi randomizer is the item shuffle. Item (and egg) locations are shuffled in such a way that all items specified in the config will be reachable.
+* The main feature of the Rabi-Ribi Randomizer is the item shuffle. Item (and egg) locations are shuffled in such a way that all items specified in the config will be reachable.
 * The difficulty rating shown is an indicator of how difficult it is to find the marked hard-to-reach items.
 
 The challenge is to obtain the items marked as "Hard-to-Reach" by the randomizer.
@@ -55,6 +56,8 @@ The challenge is to obtain the items marked as "Hard-to-Reach" by the randomizer
 Of course, you can do whatever you want with the randomized maps instead. Note that because the entire game is completable on 0%, completing the game on randomized maps isn't much of a challenge.
 
 ### Egg Goals Mode
+
+**Note: It is more common to play egg goals mode now, instead of the original mode.**
 
 The randomizer features an alternate mode, named Egg Goals.
 
@@ -72,7 +75,9 @@ In addition to the options offered in the UI, the item randomization can be furt
   ```
   // Configure generation flags here
   "settings": {
+      "DARKNESS_WITHOUT_LIGHT_ORB": false,
       "ZIP_REQUIRED": false,
+      "SEMISOLID_CLIPS_REQUIRED": false,
       "ADVANCED_TRICKS_REQUIRED": true,
       "BLOCK_CLIPS_REQUIRED": true,
       "POST_GAME_ALLOWED": false,
@@ -83,11 +88,13 @@ In addition to the options offered in the UI, the item randomization can be furt
   },
   ```
   In here, you can set the flags used by the item shuffle.
-  * `ZIPS_REQUIRED`: Zips are glitches that allow you to clip through terrain. The main types of zips are slide zips, hammer roll zips and semisolid clips. If this flag is turned on, reaching some of the items may require zips to be performed. If turned off, all the required items can be obtained without the need for zips.
+  * `DARKNESS_WITHOUT_LIGHT_ORB`: If this flag is true, the game might expect you to go into dark areas, even if you don't have the Light Orb.
+  * `ZIPS_REQUIRED`: Zips are glitches that allow you to clip through terrain. The main types of zips are slide zips and hammer roll zips. If this flag is turned on, reaching some of the items may require zips to be performed. If turned off, all the required items can be obtained without the need for zips.
+  * `SEMISOLID_CLIPS_REQUIRED`: Semisolid Clips refers to clipping through semisolid (one-way) platforms via a specific glitch. If this flag is turned on, reaching some of the items may require semisolid clips to be performed. If turned off, all the required items can be obtained without the need for semisolid clips.
   * `ADVANCED_TRICKS_REQUIRED`: There are many tricks in the game that requires advanced knowledge of how the game works to perform. Turning off this flag removes the need for some of the more advanced tricks to obtain all the required items.
   * `BLOCK_CLIPS_REQUIRED`: Block clips are performed by quick-dropping onto the top of a one-tile block to obtain the item inside the block. Turning off this flag removes the need for block clips.
   * `STUPID_HARD_TRICKS`: There are some tricks that we consider ridiculous, even for speedrunners. Keeping this flag off removes the need for any of these tricks to be performed. We recommend keeping this off to preserve sanity.
-  * `POST_GAME_ALLOWED`/`POST_IRISU_ALLOWED`/`HALLOWEEN_REACHABLE`/`WARP_DESTINATION_REACHABLE`: These flags determine whether it is required to enter these areas/chapters to obtain all the required items. For example, turning `POST_GAME_ALLOWED` off means that there is no need to enter post-game to obtain the requried items.
+  * `PLURKWOOD_REACHABLE/POST_GAME_ALLOWED`/`POST_IRISU_ALLOWED`/`HALLOWEEN_REACHABLE`/`WARP_DESTINATION_REACHABLE`: These flags determine whether it is required to enter these areas/chapters to obtain all the required items. For example, turning `POST_GAME_ALLOWED` off means that there is no need to enter post-game to obtain the requried items.
 
 * The next part of the config file is the `to_shuffle` list.
   ```
@@ -121,4 +128,6 @@ Minor changes have been made to prevent the player from being permanently stuck.
 * Warp Stones are active from the start, instead of only after viewing the cutscene one room after the ribbon fight.
   * This means that you no longer need to walk right after fighting ribbon, and can go straight back to the warp.
   * This prevents a softlock when Rabi Slippers or Air Jump is picked up before the cutscene, disabling the cutscene and leaving you stuck in Spectral Cave without the ability to warp out.
+  
+These map changes can be turned off by the "No Fixes" (--no-fixes) option.
 

@@ -1318,7 +1318,7 @@ HALLOWEEN &
 // Otherwise SLIDING_POWDER & CARROT_SHOOTER & BOOST is the only way in
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
 // For the second segment, the underwater rooms
-    ((ZIP & (SLIDING_POWDER | HAMMER_ROLL_LV3)) | (BUNNY_WHIRL & SLIDING_POWDER)) &
+    ((ZIP & HAMMER_ROLL_LV3) | (BUNNY_WHIRL & SLIDING_POWDER)) &
 // For the first segment of halloween, through the dark rooms
     ((ZIP & SLIDING_POWDER) | (
         DARKNESS & (
@@ -1331,9 +1331,16 @@ HALLOWEEN &
 "exit_prereq": "
 SLIDING_POWDER &
 (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-// slippers allow one to exit backwards through the entrance
-// the other items allow one to continue to the end of halloween
-(BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | RABI_SLIPPERS | AIR_DASH)
+(
+    (
+    // cross the long room
+        (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | (RABI_SLIPPERS & AIR_DASH)) &
+    // destroy the bomb and hammer blocks in the next room or zip by them
+        (ZIP | (CARROT_SHOOTER & BOOST) | (CARROT_BOMB & BUNNY_WHIRL))
+    ) |
+    // leave through the entrance
+    (WALL_JUMP_LV2 & (ADVANCED | AIR_DASH))
+)
 ",
 }
 
@@ -1351,15 +1358,14 @@ HALLOWEEN &
 // Slide zips, including a one tile ceiling set up
     SLIDING_POWDER & ZIP &
     (CARROT_BOMB | (CARROT_SHOOTER & STUPID)) &
-// AD and slippers are needed to cross the long room and jump to the pillar itself
-// The other possibilities cover both situations
+// Clear the long room
     (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | (AIR_DASH & RABI_SLIPPERS))
 ) | (
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-// To clear the tall column in the long room
-    (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | AIR_DASH) &
-// For the underwater segment, additionally covering getting onto the pillar
-    ((ZIP & (SLIDING_POWDER | HAMMER_ROLL_LV3)) | (BUNNY_WHIRL & SLIDING_POWDER)) &
+// To clear the tall column in the long room - BUNNY_WHIRL is always required
+//    (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | (AIR_DASH & RABI_SLIPPERS)) &
+// For the underwater segment
+    ((ZIP & HAMMER_ROLL_LV3) | (BUNNY_WHIRL & SLIDING_POWDER)) &
 // The tall dark room imposes strict movement requirements
     ((ZIP & SLIDING_POWDER) | (
         DARKNESS & (
@@ -1391,7 +1397,9 @@ DARKNESS & (
 (
     SLIDING_POWDER &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-    (BUNNY_WHIRL | (WALL_JUMP_LV2 & AIR_DASH) | AIR_JUMP)
+// Continuing through the halloween area requires whirl
+// Otherwise, one can leave through the entrance by sliding left
+    (BUNNY_WHIRL | (WALL_JUMP_LV2 & (ADVANCED | AIR_DASH)) | AIR_JUMP)
 )
 ",
 }
@@ -1422,13 +1430,13 @@ HALLOWEEN &
 // Slide zips, including a one tile ceiling set up
     SLIDING_POWDER & ZIP &
     (CARROT_BOMB | (CARROT_SHOOTER & STUPID)) &
-    (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | AIR_DASH)
+    (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | (AIR_DASH & RABI_SLIPPERS))
 ) | (
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-// To clear the tall column in the long room
-    (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | AIR_DASH) &
+// To clear the tall column in the long room - BUNNY_WHIRL is strictly required
+//    (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | (AIR_DASH & RABI_SLIPPERS)) &
 // For the underwater segment
-    ((ZIP & (SLIDING_POWDER | HAMMER_ROLL_LV3)) | (BUNNY_WHIRL & SLIDING_POWDER)) &
+    ((ZIP & HAMMER_ROLL_LV3) | (BUNNY_WHIRL & SLIDING_POWDER)) &
 // The tall dark room imposes strict movement requirements
     ((ZIP & SLIDING_POWDER) | (
         DARKNESS & (
@@ -1487,14 +1495,14 @@ HALLOWEEN &
 // Slide zips, including a one tile ceiling set up
     SLIDING_POWDER & ZIP &
     (CARROT_BOMB | (CARROT_SHOOTER & STUPID)) &
-// AD and slippers are needed to cross the long room and jump to the pillar itself
-// The other possibilities cover both situations
+// Crossing the long room
     (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | (AIR_DASH & RABI_SLIPPERS))
 ) | (
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-    (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | AIR_DASH) &
-// For the underwater segment, additionally covering getting onto the pillar
-    ((ZIP & (SLIDING_POWDER | HAMMER_ROLL_LV3)) | (BUNNY_WHIRL & SLIDING_POWDER)) &
+// Crossing the long room - BUNNY_WHIRL is strictly required
+//    (BUNNY_WHIRL | AIR_JUMP | BUNNY_STRIKE | (AIR_DASH & RABI_SLIPPERS)) &
+// For the underwater segment
+    ((ZIP & HAMMER_ROLL_LV3) | (BUNNY_WHIRL & SLIDING_POWDER)) &
 // The tall dark room imposes strict movement requirements
     ((ZIP & SLIDING_POWDER) | (
         DARKNESS & (
@@ -1521,14 +1529,16 @@ SLIDING_POWDER & BUNNY_WHIRL &
 )))
 ",
 "exit_prereq": "
-// These exit requirements are always met by entry requirements
 (ZIP & HAMMER_ROLL_LV3 & WATER_ORB) |
 (
-    SLIDING_POWDER &
-    (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
-    (BUNNY_WHIRL | (WALL_JUMP_LV2 & AIR_DASH) | AIR_JUMP)
+    SLIDING_POWDER & BUNNY_WHIRL &
+    (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
 )
 ",
+// There are potentially more ways to leave by going back out of the water
+// Then through the EGG_HALLOWEEN_MID room, replacing BUNNY_WHIRL
+// This should not matter as it requires cracked blocks to be set up conveniently
+// and these exit requirements are always met by entry requirements anyway
 }
 
 {
@@ -1550,8 +1560,8 @@ HALLOWEEN & (CARROT_BOMB | CARROT_SHOOTER) &
 "entry_prereq": "
     HALLOWEEN &
     SLIDING_POWDER & DARKNESS &
-// Zip/ reverse slide tunnel at the entrance or cross throught the tall dark room and go back
-    ( ZIP | (
+// Zip at the entrance or cross the tall dark room and go back
+    (ZIP | (
         (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
         ((WALL_JUMP_LV2 & ((BUNNY_WHIRL & ADVANCED) | AIR_JUMP)) | (BUNNY_WHIRL & AIR_JUMP & RABI_SLIPPERS))
     )) &
@@ -1562,12 +1572,10 @@ HALLOWEEN & (CARROT_BOMB | CARROT_SHOOTER) &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) &
     (
-// Leave through the entrance, it requires fewer items
-// It also requires the blocks to not have been bombed
-        AIR_JUMP  |
-        (RABI_SLIPPERS & BUNNY_WHIRL) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL) |
-        (WALL_JUMP_LV2 & AIR_DASH)
+// Leaving through the entrance is better as it requires fewer items
+// These requirements assume the bomb blocks have not been destroyed
+        (AIR_JUMP | WALL_JUMP_LV2 | (BUNNY_WHIRL & BUNNY_STRIKE & ADVANCED) |  (BUNNY_WHIRL & RABI_SLIPPERS)) &
+        (AIR_JUMP | AIR_DASH | (ADVANCED & (SLIDING_POWDER | BUNNY_WHIRL)))
     )
 ",
 }

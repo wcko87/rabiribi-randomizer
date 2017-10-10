@@ -25,6 +25,7 @@ def parse_args():
     args.add_argument('--reset', action='store_true', help='Reset maps by copying the original maps to the output directory.')
     args.add_argument('--hash', action='store_true', help='Generate a hash of the maps in the output directory.')
     args.add_argument('--check-for-updates', action='store_true', help='Check for the latest version of randomizer.')
+    args.add_argument('--check-branch', action='store_true', help='Displays which branch the randomizer is currently on (D or M).')
     args.add_argument('--shuffle-music', action='store_true', help='Shuffles the music in the map.')
     args.add_argument('--shuffle-backgrounds', action='store_true', help='Shuffles the backgrounds in the map.')
     args.add_argument('--no-laggy-backgrounds', action='store_true', help='Don\'t include laggy backgrounds in background shuffle.')
@@ -168,6 +169,8 @@ def fetch_latest_version_id():
     except:
         return False, ERROR_UNKNOWN
     
+def check_branch():
+    print(get_current_branch())
 
 def check_for_updates():
     result, message = fetch_latest_version_id()
@@ -1021,6 +1024,8 @@ if __name__ == '__main__':
         print('Rabi-Ribi Randomizer - %s' % VERSION_STRING)
     elif args.check_for_updates:
         check_for_updates()
+    elif args.check_branch:
+        check_branch()
     elif args.reset:
         # copy over the default maps without randomization.
         reset_maps(

@@ -879,6 +879,13 @@ def apply_fixes_for_randomizer(areaid, data):
         data.tiledata_event[xy_to_index(173,99)] = 0
         # The autosave outside Cicini's room:
         data.tiledata_event[xy_to_index(199,98)] = 0
+        # Add an autosave at the end of the long room
+        data.tiledata_event[xy_to_index(278,86)] = 42
+        data.tiledata_event[xy_to_index(278,87)] = 42
+        data.tiledata_event[xy_to_index(279,86)] = 44
+        data.tiledata_event[xy_to_index(279,87)] = 44
+        data.tiledata_event[xy_to_index(277,86)] = 44
+        data.tiledata_event[xy_to_index(277,87)] = 44
 
     if areaid == 4:
         # Remove save point at slide location in lab

@@ -72,6 +72,7 @@ class BackgroundShuffler(object):
             if areaid == 1 and posindex == to_tile_index(16,11): continue
 
             # Fix for Alius3 Noah becoming the Noah1 boss fight bug
+            if areaid == 8 and posindex == to_tile_index(17,7): continue
             if areaid == 8 and posindex == to_tile_index(18,7): continue
             # Fix for Noah1 becoming the Alius3 Noah boss fight bug
             if areaid == 8 and posindex == to_tile_index(18,5) and allocation[val] == 9: continue
@@ -88,12 +89,42 @@ class BackgroundShuffler(object):
                 # warp to exit sysint
                 if areaid == 9 and posindex == to_tile_index(14,8): continue
 
-            # Fix for bug where saya escapes if evernight dark passageway background used in saya fight.
+            # Fix for Evernight dark passage background bugs:
             if allocation[val] == 56:
+                # Saya escapes her boss fight
                 if areaid == 4 and posindex == to_tile_index(21,3): continue
                 if areaid == 4 and posindex == to_tile_index(22,3): continue
                 if areaid == 4 and posindex == to_tile_index(23,3): continue
                 if areaid == 4 and posindex == to_tile_index(24,3): continue
+                
+                # Vanilla doesn't spawn at all
+                if areaid == 2 and posindex == to_tile_index(14,4): continue
+                
+                # UPRPRC bombers can't bomb in pyramid
+                if areaid == 1 and posindex == to_tile_index(14,13): continue
+                if areaid == 1 and posindex == to_tile_index(15,13): continue
+                if areaid == 1 and posindex == to_tile_index(18,13): continue
+                if areaid == 1 and posindex == to_tile_index(17,13): continue
+                
+                # UPRPRC bombers can't bomb in cocoa cave
+                if areaid == 0 and posindex == to_tile_index(13,11): continue
+                if areaid == 0 and posindex == to_tile_index(14,11): continue
+                if areaid == 0 and posindex == to_tile_index(15,11): continue
+                if areaid == 0 and posindex == to_tile_index(16,11): continue
+                if areaid == 0 and posindex == to_tile_index(17,11): continue
+                if areaid == 0 and posindex == to_tile_index(18,11): continue
+                if areaid == 0 and posindex == to_tile_index(19,11): continue
+                if areaid == 0 and posindex == to_tile_index(20,11): continue
+                
+                # UPRPRC bombers can't bomb in volcanic caverns
+                if areaid == 7 and posindex == to_tile_index(7,4): continue
+                if areaid == 7 and posindex == to_tile_index(8,4): continue
+                if areaid == 7 and posindex == to_tile_index(9,4): continue
+                
+                # Night forest UPRPRC fight doesn't work properly (unconfirmed)
+                if areaid == 0 and posindex == to_tile_index(7,6): continue
+                if areaid == 0 and posindex == to_tile_index(8,6): continue
+                if areaid == 0 and posindex == to_tile_index(9,6): continue
 
             stored_datas[areaid].tiledata_roombg[posindex] = allocation[val]
 

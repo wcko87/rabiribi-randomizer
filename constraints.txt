@@ -110,7 +110,7 @@
 {
 "location": "REGEN_UP_MID_FOREST",
 "accessibility": "mid",
-"entry_prereq": "(ADVANCED & BUNNY_WHIRL) | AIR_JUMP | WALL_JUMP",
+"entry_prereq": "(ADVANCED & (WALL_JUMP_LV2 | BUNNY_WHIRL)) | AIR_JUMP",
 "exit_prereq": "NONE",
 }
 
@@ -215,7 +215,12 @@
 {
 "location": "SURVIVAL",
 "accessibility": "mid",
-"entry_prereq": "(BUNNY_WHIRL & ADVANCED) | AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | (BUNNY_STRIKE & STUPID)",
+"entry_prereq": "
+(BUNNY_WHIRL & ADVANCED)
+| AIR_JUMP
+| (((ADVANCED & WALL_JUMP) | RABI_SLIPPERS) & AIR_DASH)
+| (BUNNY_STRIKE & STUPID)
+",
 "exit_prereq": "NONE",
 }
 
@@ -223,9 +228,19 @@
 "location": "HEALTH_WAGER",
 "accessibility": "mid",
 "entry_prereq": "
-AIR_JUMP
-| (AIR_DASH & (RABI_SLIPPERS | BUNNY_WHIRL) & ADVANCED)
-| (STUPID & BUNNY_STRIKE)
+// Upper graveyard
+(
+    (BUNNY_WHIRL & ADVANCED)
+    | AIR_JUMP
+    | (((ADVANCED & WALL_JUMP) | RABI_SLIPPERS) & AIR_DASH)
+    | (BUNNY_STRIKE & STUPID)
+) &
+// Health wager jump
+(
+    (AIR_JUMP & AIR_DASH)
+    | ((AIR_JUMP | AIR_DASH) & (ADVANCED | WALL_JUMP))
+    | (STUPID & BUNNY_STRIKE)
+)
 ",
 "exit_prereq": "NONE",
 }
@@ -262,14 +277,16 @@ AIR_JUMP
 "location": "MP_UP_UPPER_GRAVEYARD",
 "accessibility": "mid",
 "entry_prereq": "
+// Upper graveyard
 (
-    (BUNNY_WHIRL & ADVANCED) |
-    AIR_JUMP |
-    (RABI_SLIPPERS & AIR_DASH) |
-    (BUNNY_STRIKE & STUPID)
+    (BUNNY_WHIRL & ADVANCED)
+    | AIR_JUMP
+    | (((ADVANCED & WALL_JUMP) | RABI_SLIPPERS) & AIR_DASH)
+    | (BUNNY_STRIKE & STUPID)
 )
+// Getting onto the ledge
 & (AIR_JUMP | AIR_DASH | ADVANCED)
-& (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | BLOCK_CLIP)
+& (CARROT_BOMB | BLOCK_CLIP)
 ",
 "exit_prereq": "NONE",
 }
@@ -298,7 +315,14 @@ AIR_JUMP
 {
 "location": "MP_UP_PYRAMID_DARK_ROOM",
 "accessibility": "mid",
-"entry_prereq": "DARKNESS & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (ZIP & SLIDING_POWDER) | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))",
+"entry_prereq": "
+DARKNESS & 
+(
+    CARROT_BOMB | (CARROT_SHOOTER & BOOST)
+    | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP)
+    | (ZIP & SLIDING_POWDER & (AIR_JUMP | (AIR_DASH & (RABI_SLIPPERS | ADVANCED)) | STUPID))
+)
+",
 "exit_prereq": "NONE",
 }
 
@@ -361,7 +385,7 @@ AIR_JUMP
     (SLIDING_POWDER  | (ZIP & HAMMER_ROLL_LV3)) &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))
 ) |
-(SLIDING_POWDER & (AIR_JUMP | AIR_DASH | STUPID))
+(SLIDING_POWDER & (AIR_JUMP | (AIR_DASH & (RABI_SLIPPERS | ADVANCED)) | STUPID))
 ",
 "exit_prereq": "SLIDING_POWDER & (CARROT_BOMB | ZIP | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))",
 }

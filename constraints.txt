@@ -981,7 +981,7 @@ DARKNESS
 {
 "location": "SPIKE_BARRIER",
 "accessibility": "mid",
-"entry_prereq": "SLIDING_POWDER | AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED) | STUPID",
+"entry_prereq": "(SLIDING_POWDER & (ADVANCED | RABI_SLIPPERS)) | BUNNY_STRIKE | AIR_JUMP | AIR_DASH | (BUNNY_WHIRL & ADVANCED) | STUPID",
 "exit_prereq": "NONE",
 }
 

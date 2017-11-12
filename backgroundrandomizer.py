@@ -2,13 +2,14 @@ import random
 import time
 
 LAGGY_BACKGROUNDS = set((37, 65, 66, 80, 84, 88, 89, 99))
+DIFFICULT_BACKGROUNDS = set((36, 37, 56, 57, 60, 65, 66, 80, 84, 89, 103, 110))
 
 def to_tile_index(x, y):
     return x*18 + y
 
-def shuffle_backgrounds(stored_datas, no_laggy_backgrounds):
+def shuffle_backgrounds(stored_datas, no_laggy_backgrounds, no_difficult_backgrounds):
     #start_time = time.time()
-    shuffler = BackgroundShuffler(stored_datas, no_laggy_backgrounds)
+    shuffler = BackgroundShuffler(stored_datas, no_laggy_backgrounds, no_difficult_backgrounds)
     shuffler.shuffle()
     print('Backgrounds shuffled')
 
@@ -19,7 +20,7 @@ def shuffle_backgrounds(stored_datas, no_laggy_backgrounds):
 
 
 class BackgroundShuffler(object):
-    def __init__(self, stored_datas, no_laggy_backgrounds):
+    def __init__(self, stored_datas, no_laggy_backgrounds, no_difficult_backgrounds):
         self.stored_datas = stored_datas
         original_locations = []
 
@@ -27,9 +28,11 @@ class BackgroundShuffler(object):
         for areaid, data in stored_datas.items():
             original_locations += ((areaid, posindex, val)
                 for posindex, val in enumerate(data.tiledata_roombg) if filter_function(val))
+        self.specify_original_backgrounds(original_locations)
 
         self.original_locations = original_locations
         self.no_laggy_backgrounds = no_laggy_backgrounds
+        self.no_difficult_backgrounds = no_difficult_backgrounds
 
     def filter_function(self, val):
         # don't shuffle DLC backgrounds
@@ -37,14 +40,28 @@ class BackgroundShuffler(object):
         # don't shuffle library entrance background because it removes springs
         return val <= 118 and val not in (0,23,17,83,104,110)
 
+    def specify_original_backgrounds(self, original_locations):
+        # Replace roombg == 0 tiles with specified backgrounds.
+        # This is required for some bg fixes to work.
+        original_locations += [
+            # Area around the Saya boss fight
+            (4, to_tile_index(21,3), 6),
+            (4, to_tile_index(22,3), 6),
+            (4, to_tile_index(23,3), 6),
+            (4, to_tile_index(24,3), 6),
+            (4, to_tile_index(23,4), 6),
+            (4, to_tile_index(24,4), 6),
+        ]
+
     def shuffle(self):
         backgrounds = list(set(val for areaid, posindex, val in self.original_locations))
+        new_backgrounds = list(backgrounds)
         if self.no_laggy_backgrounds:
-            new_backgrounds = [b for b in backgrounds if b not in LAGGY_BACKGROUNDS]
-            while len(new_backgrounds) < len(backgrounds):
-                new_backgrounds += new_backgrounds
-        else:
-            new_backgrounds = list(backgrounds)
+            new_backgrounds = [b for b in new_backgrounds if b not in LAGGY_BACKGROUNDS]
+        if self.no_difficult_backgrounds:
+            new_backgrounds = [b for b in new_backgrounds if b not in DIFFICULT_BACKGROUNDS]
+        while len(new_backgrounds) < len(backgrounds):
+            new_backgrounds += new_backgrounds
 
         random.shuffle(new_backgrounds)
         allocation = dict(zip(backgrounds, new_backgrounds))

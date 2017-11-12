@@ -57,6 +57,9 @@ def to_index(position):
 
 def xy_to_index(x, y):
     return x*200 + y
+    
+def to_tile_index(x, y):
+    return x*18 + y
 
 def load_eggs(areaid, path='.'):
     f = open(map_filename(areaid, path), 'rb')
@@ -80,6 +83,7 @@ def write_all(areaid, items, stored_data, path='.'):
     tiledata_map = list(stored_data.tiledata_map)
     tiledata_event = list(stored_data.tiledata_event)
     tiledata_items = list(stored_data.tiledata_items)
+    tiledata_roomtype = list(stored_data.tiledata_roomtype)
     tiledata_roomcolor = list(stored_data.tiledata_roomcolor)
     tiledata_roombg = list(stored_data.tiledata_roombg)
     tiledata_tiles3 = list(stored_data.tiledata_tiles3)
@@ -118,6 +122,8 @@ def write_all(areaid, items, stored_data, path='.'):
     f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_event))
     f.seek(MAP_ITEMS_OFFSET)
     f.write(struct.pack('%dh' % MAP_SIZE, *tiledata_items))
+    f.seek(MAP_ROOMTYPE_OFFSET)
+    f.write(struct.pack('%dh' % MINIMAP_SIZE, *tiledata_roomtype))
     f.seek(MAP_ROOMCOLOR_OFFSET)
     f.write(struct.pack('%dh' % MINIMAP_SIZE, *tiledata_roomcolor))
     f.seek(MAP_ROOMBG_OFFSET)
@@ -222,6 +228,8 @@ class StoredMapData(object):
         self.tiledata_map = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
         f.seek(MAP_EVENTS_OFFSET)
         self.tiledata_event = list(struct.unpack('%dh' % MAP_SIZE, f.read(MAP_SIZE*2)))
+        f.seek(MAP_ROOMTYPE_OFFSET)
+        self.tiledata_roomtype = list(struct.unpack('%dh' % MINIMAP_SIZE, f.read(MINIMAP_SIZE*2)))
         f.seek(MAP_ROOMCOLOR_OFFSET)
         self.tiledata_roomcolor = list(struct.unpack('%dh' % MINIMAP_SIZE, f.read(MINIMAP_SIZE*2)))
         f.seek(MAP_ROOMBG_OFFSET)

@@ -5,6 +5,7 @@
     "SEMISOLID_CLIPS_REQUIRED": false,
     "ADVANCED_TRICKS_REQUIRED": false,
     "BLOCK_CLIPS_REQUIRED": false,
+    "PLURKWOOD_REACHABLE": true,
     "POST_GAME_ALLOWED": false,
     "STUPID_HARD_TRICKS": false,
     "POST_IRISU_ALLOWED": false,

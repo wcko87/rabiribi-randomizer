@@ -7,7 +7,7 @@ import os
 import argparse
 import requests
 import itemreader
-from itemreader import to_position, to_index, xy_to_index
+from itemreader import to_position, to_index, xy_to_index, to_tile_index
 import musicrandomizer
 import backgroundrandomizer
 import hashlib
@@ -29,6 +29,8 @@ def parse_args():
     args.add_argument('--shuffle-music', action='store_true', help='Shuffles the music in the map.')
     args.add_argument('--shuffle-backgrounds', action='store_true', help='Shuffles the backgrounds in the map.')
     args.add_argument('--no-laggy-backgrounds', action='store_true', help='Don\'t include laggy backgrounds in background shuffle.')
+    args.add_argument('--no-difficult-backgrounds', action='store_true', help='Don\'t include backgrounds in background shuffle that interfere with visibility.')
+    args.add_argument('--super-attack-mode', action='store_true', help='Start the game with a bunch of attack ups, so you do lots more damage.')
     args.add_argument('--hide-unreachable', action='store_true', help='Hide list of unreachable items. Affects seed.')
     args.add_argument('--hide-difficulty', action='store_true', help='Hide difficulty rating. Affects seed.')
     args.add_argument('--egg-goals', action='store_true', help='Egg goals mode. Hard-to-reach items are replaced with easter eggs. All other eggs are removed from the map.')
@@ -53,6 +55,7 @@ def define_variables(item_names):
         "POST_IRISU_ALLOWED": True,
         "STUPID_HARD_TRICKS": False,
         "HALLOWEEN_REACHABLE": False,
+        "PLURKWOOD_REACHABLE": True,
         "WARP_DESTINATION_REACHABLE": False,
         "DARKNESS_WITHOUT_LIGHT_ORB": True,
     }
@@ -113,11 +116,13 @@ def define_default_expressions(variables):
         "ADVANCED": parse_expression("ADVANCED_TRICKS_REQUIRED", variables),
         "POST_IRISU": parse_expression("POST_IRISU_ALLOWED", variables),
         "HALLOWEEN": parse_expression("HALLOWEEN_REACHABLE", variables),
+        "PLURKWOOD": parse_expression("PLURKWOOD_REACHABLE", variables),
         "WARP_DESTINATION": parse_expression("WARP_DESTINATION_REACHABLE", variables),
         "BUNNY_STRIKE": parse_expression("BUNNY_STRIKE & PIKO_HAMMER", variables),
         "BUNNY_WHIRL": parse_expression("BUNNY_WHIRL & PIKO_HAMMER", variables),
         "AIR_DASH": parse_expression("AIR_DASH & PIKO_HAMMER", variables),
         "AIR_DASH_LV3": parse_expression("AIR_DASH_LV3 & PIKO_HAMMER", variables),
+        "HAMMER_ROLL": parse_expression("HAMMER_ROLL & BUNNY_WHIRL & PIKO_HAMMER", variables),
         "HAMMER_ROLL_LV3": parse_expression("HAMMER_ROLL_LV3 & BUNNY_WHIRL & PIKO_HAMMER", variables),
         "DARKNESS": parse_expression("DARKNESS_WITHOUT_LIGHT_ORB | LIGHT_ORB", variables),
         "UNDERWATER": parse_expression("TRUE", variables),
@@ -832,24 +837,7 @@ def run_item_randomizer(seed=None, config_file='config.txt', egg_goals=False):
 
 def apply_fixes_for_randomizer(areaid, data):
     if areaid == 0:
-        # Place post-ribbon cutscene at (new) erina start location.
-        # this enables warp stones from the start of the game.
-        # this trigger causes erina to jump 5 tiles right to start at (96,98)
-        data.tiledata_event[xy_to_index(91,98)] = 281
-
-        # Place starting forest music trigger on (new+1)  erina start location
-        data.tiledata_event[xy_to_index(96,98)] = 129
-
-        # Relocate start position to 5 tiles left of the original position.
-        # Trigger 34 is where erina spawns. Erina walks 17 tiles left from the
-        # new starting position (108,98) to (91,98) after start.
-        # the warp stone trigger corrects this by making erina jump 5 tiles right,
-        # so that she is back in her correct starting position (96,98).
-        data.tiledata_event[xy_to_index(113,98)] = 0
-        data.tiledata_event[xy_to_index(108,98)] = 34
-        data.tiledata_event[xy_to_index(107,98)] = 129
-
-        # For v1.85 custom maps mode: Add second warp CS trigger
+        # Add warp CS trigger to enable warps from start of game.
         for y in range(79,100):
             data.tiledata_event[xy_to_index(125,y)] = 524
             data.tiledata_event[xy_to_index(126,y)] = 525
@@ -886,9 +874,50 @@ def apply_fixes_for_randomizer(areaid, data):
         for y in range(186,189):
             data.tiledata_event[xy_to_index(310,y)] = 0
 
+def apply_super_attack_mode(areaid, data):
+    # area 0 only.
+    if areaid != 0: return
+    
+    ATTACK_UP_COUNT = 20
+
+    # EV_MOVEDOWN event to move erina down to start position
+    data.tiledata_event[xy_to_index(111,43)] = 554
+
+    # Place attack up get events
+    for i in range(0,ATTACK_UP_COUNT):
+        y = 42 - i
+        data.tiledata_event[xy_to_index(111,y)] = 558
+        data.tiledata_event[xy_to_index(112,y)] = 5223 - i
+        data.tiledata_event[xy_to_index(113,y)] = 5001
+
+    # Remove old start event
+    data.tiledata_event[xy_to_index(113,98)] = 0
+    # Place new start event
+    data.tiledata_event[xy_to_index(111,42-ATTACK_UP_COUNT)] = 34
+
+    # Add collision data
+    data.tiledata_map[xy_to_index(110,44)] = 1
+    data.tiledata_map[xy_to_index(111,44)] = 1
+    data.tiledata_map[xy_to_index(112,44)] = 1
+    for i in range(0,ATTACK_UP_COUNT+5):
+        y = 43-i
+        data.tiledata_map[xy_to_index(110,y)] = 1
+        data.tiledata_map[xy_to_index(112,y)] = 1
+    data.tiledata_map[xy_to_index(111,43-ATTACK_UP_COUNT-4)] = 1
+
+    # Blanket with black graphical tiles
+    for y in range(0,45):
+        for x in range(100,120):
+            data.tiledata_tiles1[xy_to_index(x,y)] = 33
+
+    # Change room type and background
+    for y in range(0,4):
+        data.tiledata_roombg[to_tile_index(5,y)] = 56
+        data.tiledata_roomtype[to_tile_index(5,y)] = 3
 
 
-def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds):
+
+def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, no_difficult_backgrounds, super_attack_mode):
     # apply rando fixes
     if apply_fixes:
         for areaid, data in mod.stored_datas.items():
@@ -902,8 +931,13 @@ def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no
         musicrandomizer.shuffle_music(mod.stored_datas)
 
     if shuffle_backgrounds:
-        backgroundrandomizer.shuffle_backgrounds(mod.stored_datas, no_laggy_backgrounds)
+        backgroundrandomizer.shuffle_backgrounds(mod.stored_datas, no_laggy_backgrounds, no_difficult_backgrounds)
 
+    # super attack mode
+    if super_attack_mode:
+        for areaid, data in mod.stored_datas.items():
+            apply_super_attack_mode(areaid, data)
+        print('Super attack mode applied')
 
 def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
     all_eggs = set(filter(is_egg, assigned_locations.keys()))
@@ -922,7 +956,7 @@ def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
 def get_default_areaids():
     return list(range(10))
 
-def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to_map_files, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, apply_fixes, egg_goals, extra_eggs, hide_unreachable, hide_difficulty):
+def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to_map_files, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, no_difficult_backgrounds, super_attack_mode, apply_fixes, egg_goals, extra_eggs, hide_unreachable, hide_difficulty):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
@@ -952,7 +986,7 @@ def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to
     itemreader.grab_original_maps(source_dir, output_dir)
     print('Maps copied...')
     mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)
-    pre_modify_map_data(mod, apply_fixes=apply_fixes, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds, no_laggy_backgrounds=no_laggy_backgrounds)
+    pre_modify_map_data(mod, apply_fixes=apply_fixes, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds, no_laggy_backgrounds=no_laggy_backgrounds, no_difficult_backgrounds=no_difficult_backgrounds, super_attack_mode=super_attack_mode)
 
     mod.clear_items()
     for item in items:
@@ -1012,6 +1046,8 @@ if __name__ == '__main__':
             shuffle_music=args.shuffle_music,
             shuffle_backgrounds=args.shuffle_backgrounds,
             no_laggy_backgrounds=args.no_laggy_backgrounds,
+            no_difficult_backgrounds=args.no_difficult_backgrounds,
+            super_attack_mode=args.super_attack_mode,
             apply_fixes=args.apply_fixes,
             egg_goals=args.egg_goals,
             extra_eggs=args.extra_eggs,

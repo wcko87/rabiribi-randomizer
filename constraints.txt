@@ -771,7 +771,10 @@ DARKNESS &
         (ADVANCED & (BUNNY_STRIKE | BUNNY_WHIRL))
         | AIR_DASH
         | AIR_JUMP
+        // rwj left wall, wallkick overhang
         | (RABI_SLIPPERS & ((ADVANCED & SPEED_BOOST) | STUPID))
+        // wimpy right corner, bounce left wall, amulet (similar to spike barrier)
+        | STUPID
     )
 ",
 "exit_prereq": "NONE",
@@ -806,12 +809,18 @@ DARKNESS &
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
-        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) | // you need to disable speed boost
-        (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
-        (WALL_JUMP_LV2 & AIR_JUMP) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) // you need to disable speed boost
+        | (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP)
+        | (WALL_JUMP_LV2 & AIR_JUMP)
+        | (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        | (BUNNY_WHIRL & AIR_JUMP & RABI_SLIPPERS & ADVANCED)
+        | (BUNNY_WHIRL & STUPID)
     )",
-"exit_prereq": "NONE",
+"exit_prereq": "
+    (WALL_JUMP & AIR_JUMP)
+    | WALL_JUMP_LV2
+    | (AIR_JUMP & RABI_SLIPPERS)
+",
 }
 
 {
@@ -833,12 +842,18 @@ DARKNESS &
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
-        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) | // you need to disable speed boost
-        (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
-        (WALL_JUMP_LV2 & AIR_JUMP) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) // you need to disable speed boost
+        | (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP)
+        | (WALL_JUMP_LV2 & AIR_JUMP)
+        | (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        | (BUNNY_WHIRL & AIR_JUMP & RABI_SLIPPERS & ADVANCED)
+        | (BUNNY_WHIRL & STUPID)
     )",
-"exit_prereq": "NONE",
+"exit_prereq": "
+    (WALL_JUMP & AIR_JUMP)
+    | WALL_JUMP_LV2
+    | (AIR_JUMP & RABI_SLIPPERS)
+",
 }
 
 {

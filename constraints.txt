@@ -595,7 +595,7 @@ DARKNESS &
     DARKNESS
     & (CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID))
 ",
-"exit_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
+"exit_prereq": "NONE",
 }
 
 {

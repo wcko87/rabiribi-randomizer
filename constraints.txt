@@ -817,9 +817,17 @@ DARKNESS &
         | (BUNNY_WHIRL & STUPID)
     )",
 "exit_prereq": "
-    (WALL_JUMP & AIR_JUMP)
-    | WALL_JUMP_LV2
-    | (AIR_JUMP & RABI_SLIPPERS)
+    WATER_ORB & (
+        WALL_JUMP_LV2
+        | (AIR_JUMP & (
+            WALL_JUMP
+            | RABI_SLIPPERS
+            // airdash to opposite wall and wallkick off it
+            | (AIR_DASH & ADVANCED)
+            // wimpy, bounce
+            | STUPID
+        ))
+    )
 ",
 }
 
@@ -850,9 +858,12 @@ DARKNESS &
         | (BUNNY_WHIRL & STUPID)
     )",
 "exit_prereq": "
-    (WALL_JUMP & AIR_JUMP)
-    | WALL_JUMP_LV2
-    | (AIR_JUMP & RABI_SLIPPERS)
+    WATER_ORB & (
+        (WALL_JUMP & AIR_JUMP)
+        | WALL_JUMP_LV2
+        | (AIR_JUMP & RABI_SLIPPERS)
+        | (AIR_JUMP & AIR_DASH & ADVANCED)
+    )
 ",
 }
 

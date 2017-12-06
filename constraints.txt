@@ -23,7 +23,16 @@
 {
 "location": "ATK_UP_FOREST_NIGHT",
 "accessibility": "mid",
-"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (RABI_SLIPPERS & AIR_JUMP)",
+"entry_prereq": "
+    CARROT_BOMB
+    | (CARROT_SHOOTER & BOOST)
+    | (AIR_JUMP & (RABI_SLIPPERS | WALL_JUMP))
+    | (ADVANCED & (
+        BUNNY_WHIRL
+        | (BUNNY_STRIKE & AIR_JUMP)
+        | (BUNNY_STRIKE & WALL_JUMP_LV2 & (AIR_DASH | STUPID))
+    ))
+",
 "exit_prereq": "NONE",
 }
 
@@ -218,8 +227,21 @@
 "entry_prereq": "
 (BUNNY_WHIRL & ADVANCED)
 | AIR_JUMP
-| (((ADVANCED & WALL_JUMP) | RABI_SLIPPERS) & AIR_DASH)
-| (BUNNY_STRIKE & STUPID)
+| (AIR_DASH & RABI_SLIPPERS)
+| (ADVANCED & (
+    // four-tile walljump, airdash for first jump.
+    (AIR_DASH & (WALL_JUMP | BUNNY_STRIKE))
+    // slide jump bunny strike + slippers for first jump
+    | (BUNNY_STRIKE & RABI_SLIPPERS)
+))
+| (STUPID & (
+    // slide bonk for first jump
+    (SLIDING_POWDER & (RABI_SLIPPERS | WALL_JUMP | BUNNY_STRIKE))
+    // slide bonk or damage boost for first jump
+    | RABI_SLIPPERS
+    // slide bonk or damage boost for first jump, lure fairy for slide bonk for second
+    | SLIDING_POWDER
+))
 ",
 "exit_prereq": "NONE",
 }
@@ -232,8 +254,21 @@
 (
     (BUNNY_WHIRL & ADVANCED)
     | AIR_JUMP
-    | (((ADVANCED & WALL_JUMP) | RABI_SLIPPERS) & AIR_DASH)
-    | (BUNNY_STRIKE & STUPID)
+    | (AIR_DASH & RABI_SLIPPERS)
+    | (ADVANCED & (
+        // four-tile walljump, airdash for first jump.
+        (AIR_DASH & (WALL_JUMP | BUNNY_STRIKE))
+        // slide jump bunny strike + slippers for first jump
+        | (BUNNY_STRIKE & RABI_SLIPPERS)
+    ))
+    | (STUPID & (
+        // slide bonk for first jump
+        (SLIDING_POWDER & (RABI_SLIPPERS | WALL_JUMP | BUNNY_STRIKE))
+        // slide bonk or damage boost for first jump
+        | RABI_SLIPPERS
+        // slide bonk or damage boost for first jump, lure fairy for slide bonk for second
+        | SLIDING_POWDER
+    ))
 ) &
 // Health wager jump
 (
@@ -281,8 +316,21 @@
 (
     (BUNNY_WHIRL & ADVANCED)
     | AIR_JUMP
-    | (((ADVANCED & WALL_JUMP) | RABI_SLIPPERS) & AIR_DASH)
-    | (BUNNY_STRIKE & STUPID)
+    | (AIR_DASH & RABI_SLIPPERS)
+    | (ADVANCED & (
+        // four-tile walljump, airdash for first jump.
+        (AIR_DASH & (WALL_JUMP | BUNNY_STRIKE))
+        // slide jump bunny strike + slippers for first jump
+        | (BUNNY_STRIKE & RABI_SLIPPERS)
+    ))
+    | (STUPID & (
+        // slide bonk for first jump
+        (SLIDING_POWDER & (RABI_SLIPPERS | WALL_JUMP | BUNNY_STRIKE))
+        // slide bonk or damage boost for first jump
+        | RABI_SLIPPERS
+        // slide bonk or damage boost for first jump, lure fairy for slide bonk for second
+        | SLIDING_POWDER
+    ))
 )
 // Getting onto the ledge
 & (AIR_JUMP | AIR_DASH | ADVANCED)
@@ -552,8 +600,11 @@ DARKNESS &
 {
 "location": "HEALTH_SURGE",
 "accessibility": "near",
-"entry_prereq": "DARKNESS & ((CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID)) & (SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)))",
-"exit_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)",
+"entry_prereq": "
+    DARKNESS
+    & (CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID))
+",
+"exit_prereq": "NONE",
 }
 
 {
@@ -601,7 +652,7 @@ DARKNESS &
 {
 "location": "REGEN_UP_SKY_BRIDGE",
 "accessibility": "mid",
-"entry_prereq": "(SLIDING_POWDER & ADVANCED) | AIR_JUMP | AIR_DASH | (HAMMER_ROLL_LV3 & ZIP & DARKNESS)",
+"entry_prereq": "(SLIDING_POWDER & ADVANCED) | AIR_JUMP | AIR_DASH | (HAMMER_ROLL_LV3 & ZIP & DARKNESS) | (RABI_SLIPPERS & STUPID)",
 "exit_prereq": "NONE",
 }
 
@@ -723,7 +774,18 @@ DARKNESS &
 {
 "location": "REGEN_UP_PALACE",
 "accessibility": "mid",
-"entry_prereq": "DARKNESS & ((ADVANCED & (BUNNY_STRIKE | BUNNY_WHIRL)) | AIR_DASH | AIR_JUMP)",
+"entry_prereq": "
+    DARKNESS &
+    (
+        (ADVANCED & (BUNNY_STRIKE | BUNNY_WHIRL))
+        | AIR_DASH
+        | AIR_JUMP
+        // rwj left wall, wallkick overhang
+        | (RABI_SLIPPERS & ((ADVANCED & SPEED_BOOST) | STUPID))
+        // wimpy right corner, bounce left wall, amulet (similar to spike barrier)
+        | STUPID
+    )
+",
 "exit_prereq": "NONE",
 }
 
@@ -756,12 +818,26 @@ DARKNESS &
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
-        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) | // you need to disable speed boost
-        (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
-        (WALL_JUMP_LV2 & AIR_JUMP) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) // you need to disable speed boost
+        | (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP)
+        | (WALL_JUMP_LV2 & AIR_JUMP)
+        | (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        | (BUNNY_WHIRL & AIR_JUMP & RABI_SLIPPERS & ADVANCED)
+        | (BUNNY_WHIRL & STUPID)
     )",
-"exit_prereq": "NONE",
+"exit_prereq": "
+    WATER_ORB & (
+        WALL_JUMP_LV2
+        | (AIR_JUMP & (
+            WALL_JUMP
+            | RABI_SLIPPERS
+            // airdash to opposite wall and wallkick off it
+            | (AIR_DASH & ADVANCED)
+            // wimpy, bounce
+            | STUPID
+        ))
+    )
+",
 }
 
 {
@@ -783,12 +859,21 @@ DARKNESS &
     WATER_ORB &
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST)) &
     (
-        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) | // you need to disable speed boost
-        (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP) |
-        (WALL_JUMP_LV2 & AIR_JUMP) |
-        (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) // you need to disable speed boost
+        | (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP)
+        | (WALL_JUMP_LV2 & AIR_JUMP)
+        | (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        | (BUNNY_WHIRL & AIR_JUMP & RABI_SLIPPERS & ADVANCED)
+        | (BUNNY_WHIRL & STUPID)
     )",
-"exit_prereq": "NONE",
+"exit_prereq": "
+    WATER_ORB & (
+        (WALL_JUMP & AIR_JUMP)
+        | WALL_JUMP_LV2
+        | (AIR_JUMP & RABI_SLIPPERS)
+        | (AIR_JUMP & AIR_DASH & ADVANCED)
+    )
+",
 }
 
 {
@@ -902,7 +987,13 @@ DARKNESS &
 "entry_prereq": "
 (
     (CARROT_SHOOTER & BOOST)
-    & (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))
+    & (SLIDING_POWDER
+        | (BUNNY_WHIRL & ADVANCED) 
+        | AIR_JUMP 
+        | AIR_DASH 
+        | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP)
+        | (RABI_SLIPPERS & STUPID) // damage boost off spider bullets
+    )
 ) | (
     (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
     & SLIDING_POWDER
@@ -916,7 +1007,14 @@ DARKNESS &
 "accessibility": "far",
 "entry_prereq": "
 (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
-& (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))
+& (
+    SLIDING_POWDER
+    | (BUNNY_WHIRL & ADVANCED) 
+    | AIR_JUMP 
+    | AIR_DASH 
+    | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP)
+    | (RABI_SLIPPERS & STUPID) // damage boost off spider bullets
+)
 ",
 "exit_prereq": "NONE",
 }
@@ -934,7 +1032,14 @@ DARKNESS &
 "entry_prereq": "
 DARKNESS
 & (CARROT_BOMB | (CARROT_SHOOTER & BOOST))
-& (SLIDING_POWDER | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP))
+& (
+    SLIDING_POWDER 
+    | (BUNNY_WHIRL & ADVANCED) 
+    | AIR_JUMP 
+    | AIR_DASH 
+    | (PIKO_HAMMER_LEVELED & SEMISOLID_CLIP)
+    | (RABI_SLIPPERS & STUPID) // damage boost off spider bullets
+)
 ",
 "exit_prereq": "NONE",
 }
@@ -1019,7 +1124,16 @@ DARKNESS
 {
 "location": "MP_UP_EVERNIGHT",
 "accessibility": "mid",
-"entry_prereq": "DARKNESS & SLIDING_POWDER & (AIR_JUMP | (BUNNY_WHIRL & ADVANCED))",
+"entry_prereq": "
+    DARKNESS & SLIDING_POWDER
+    & (
+        (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | ADVANCED))
+        | (BUNNY_WHIRL & ADVANCED)
+        | (RABI_SLIPPERS & AIR_DASH)
+        | (BUNNY_STRIKE & AIR_DASH & ADVANCED)
+        | STUPID // wimpy, bounce, spam amulet (same as spike barrier jump)
+    )
+",
 "exit_prereq": "NONE",
 }
 
@@ -1110,7 +1224,16 @@ DARKNESS
 {
 "location": "ATK_UP_EAST_LAB",
 "accessibility": "mid",
-"entry_prereq": "(CARROT_BOMB | CARROT_SHOOTER) & (AIR_JUMP | AIR_DASH | (RABI_SLIPPERS & STUPID) | (HAMMER_ROLL_LV3 & ZIP))",
+"entry_prereq": "
+    (CARROT_BOMB | CARROT_SHOOTER) &
+    (
+        AIR_JUMP
+        | AIR_DASH
+        | (RABI_SLIPPERS & STUPID)
+        | (HAMMER_ROLL_LV3 & ZIP)
+        | (RABI_SLIPPERS & BUNNY_STRIKE & ADVANCED)
+    )
+",
 "exit_prereq": "NONE",
 }
 
@@ -1242,7 +1365,7 @@ DARKNESS
 {
 "location": "EGG_FOREST_NE_LEDGE",
 "accessibility": "near",
-"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | (AIR_JUMP & WALL_JUMP_LV2)",
+"entry_prereq": "CARROT_BOMB | CARROT_SHOOTER | (AIR_JUMP & WALL_JUMP_LV2) | (BUNNY_WHIRL & WALL_JUMP_LV2)",
 "exit_prereq": "NONE",
 }
 
@@ -1298,7 +1421,33 @@ DARKNESS
 {
 "location": "EGG_GRAVEYARD_NEAR_LIBRARY",
 "accessibility": "mid",
-"entry_prereq": "AIR_JUMP | (RABI_SLIPPERS & AIR_DASH) | (BUNNY_STRIKE & STUPID)",
+"entry_prereq": "
+(
+    (BUNNY_WHIRL & ADVANCED)
+    | AIR_JUMP
+    | (AIR_DASH & RABI_SLIPPERS)
+    | (ADVANCED & (
+        // four-tile walljump, airdash for first jump.
+        (AIR_DASH & (WALL_JUMP | BUNNY_STRIKE))
+        // slide jump bunny strike + slippers for first jump
+        | (BUNNY_STRIKE & RABI_SLIPPERS)
+    ))
+    | (STUPID & (
+        // slide bonk for first jump
+        (SLIDING_POWDER & (RABI_SLIPPERS | WALL_JUMP | BUNNY_STRIKE))
+        // slide bonk or damage boost for first jump
+        | RABI_SLIPPERS
+        // slide bonk or damage boost for first jump, lure fairy for slide bonk for second
+        | SLIDING_POWDER
+    ))
+) & (
+    AIR_JUMP
+    | AIR_DASH
+    | BUNNY_STRIKE
+    // may degrade to v.hard (with speedboost) once v.hard is introduced
+    | (SLIDING_POWDER & (RABI_SLIPPERS | STUPID))
+)
+",
 "exit_prereq": "NONE",
 }
 

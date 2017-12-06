@@ -23,7 +23,16 @@
 {
 "location": "ATK_UP_FOREST_NIGHT",
 "accessibility": "mid",
-"entry_prereq": "CARROT_BOMB | (CARROT_SHOOTER & BOOST) | (RABI_SLIPPERS & AIR_JUMP)",
+"entry_prereq": "
+    CARROT_BOMB
+    | (CARROT_SHOOTER & BOOST)
+    | (AIR_JUMP & (RABI_SLIPPERS | WALL_JUMP))
+    | (ADVANCED & (
+        BUNNY_WHIRL
+        | (BUNNY_STRIKE & AIR_JUMP)
+        | (BUNNY_STRIKE & WALL_JUMP_LV2 & (AIR_DASH | STUPID))
+    ))
+",
 "exit_prereq": "NONE",
 }
 
@@ -1115,7 +1124,16 @@ DARKNESS
 {
 "location": "MP_UP_EVERNIGHT",
 "accessibility": "mid",
-"entry_prereq": "DARKNESS & SLIDING_POWDER & (AIR_JUMP | (BUNNY_WHIRL & ADVANCED))",
+"entry_prereq": "
+    DARKNESS & SLIDING_POWDER
+    & (
+        (AIR_JUMP & (RABI_SLIPPERS | AIR_DASH | ADVANCED))
+        | (BUNNY_WHIRL & ADVANCED)
+        | (RABI_SLIPPERS & AIR_DASH)
+        | (BUNNY_STRIKE & AIR_DASH & ADVANCED)
+        | STUPID // wimpy, bounce, spam amulet (same as spike barrier jump)
+    )
+",
 "exit_prereq": "NONE",
 }
 

@@ -601,8 +601,13 @@ DARKNESS &
 "location": "HEALTH_SURGE",
 "accessibility": "near",
 "entry_prereq": "
-    DARKNESS
-    & (CARROT_BOMB | CARROT_SHOOTER | (BUNNY_WHIRL & WALL_JUMP & STUPID))
+DARKNESS & (
+    CARROT_BOMB
+    | CARROT_SHOOTER
+    | (STUPID & (
+        (BUNNY_WHIRL & WALL_JUMP) | (AIR_JUMP & (WALL_JUMP_LV2 | BUNNY_STRIKE))
+    ))
+)
 ",
 "exit_prereq": "NONE",
 }

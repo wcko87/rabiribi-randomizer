@@ -835,6 +835,22 @@ def run_item_randomizer(seed=None, config_file='config.txt', egg_goals=False):
     location_map = randomize(items, locations, variables, to_shuffle, must_be_reachable, constraints, seed=seed, egg_goals=egg_goals)
     return location_map.compute_item_locations()
 
+def apply_item_specific_fixes(mod, assigned_locations):
+    item_at_location = dict(((location, item) for item, location in assigned_locations.items()))
+
+    if is_egg(item_at_location['PURE_LOVE']):
+        data = mod.stored_datas[1]
+        data.tiledata_event[xy_to_index(404,12)] = 3
+
+    if is_egg(item_at_location['ATK_UP_SNOWLAND']):
+        data = mod.stored_datas[3]
+        data.tiledata_event[xy_to_index(93,119)] = 3
+
+    if is_egg(item_at_location['HP_UP_NORTH_FOREST']):
+        data = mod.stored_datas[0]
+        data.tiledata_map[xy_to_index(271,51)] = 0
+        data.tiledata_tiles1[xy_to_index(271,51)] = 0
+
 def apply_fixes_for_randomizer(areaid, data):
     if areaid == 0:
         # Add warp CS trigger to enable warps from start of game.
@@ -965,7 +981,7 @@ def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to
     assert len(set(item.areaid for item in items) - set(areaids)) == 0
     if egg_goals:
         items = remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs)
-
+    
     #print_allocation(assigned_locations)
     #print_analysis(analyzer, assigned_locations)
     #warnings = get_all_warnings(assigned_locations)
@@ -987,6 +1003,7 @@ def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to
     print('Maps copied...')
     mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)
     pre_modify_map_data(mod, apply_fixes=apply_fixes, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds, no_laggy_backgrounds=no_laggy_backgrounds, no_difficult_backgrounds=no_difficult_backgrounds, super_attack_mode=super_attack_mode)
+    apply_item_specific_fixes(mod, assigned_locations)
 
     mod.clear_items()
     for item in items:

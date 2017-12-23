@@ -113,7 +113,7 @@
 "location": "WALL_JUMP",
 "accessibility": "mid",
 "entry_prereq": "SLIDING_POWDER | (AIR_JUMP & (AIR_DASH | STUPID)) | (ZIP & HAMMER_ROLL_LV3)",
-"exit_prereq": "RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | (ADVANCED & (AIR_DASH | SLIDING_POWDER))",
+"exit_prereq": "RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | (ADVANCED & (AIR_DASH | SLIDING_POWDER)) | (SPEED_BOOST & STUPID)",
 }
 
 {
@@ -175,7 +175,7 @@
 {
 "location": "ARM_STRENGTH",
 "accessibility": "near",
-"entry_prereq": "(BUNNY_STRIKE & ADVANCED) | AIR_DASH | AIR_JUMP",
+"entry_prereq": "(BUNNY_STRIKE & ADVANCED) | AIR_DASH | AIR_JUMP | STUPID",
 "exit_prereq": "NONE",
 }
 
@@ -702,7 +702,14 @@ DARKNESS & (
 {
 "location": "ATK_UP_NORTH_RAVINE",
 "accessibility": "mid",
-"entry_prereq": "(SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP)) & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | BLOCK_CLIP)",
+"entry_prereq": "
+    (
+        SLIDING_POWDER
+        | (HAMMER_ROLL_LV3 & ZIP)
+        | (AIR_JUMP & WALL_JUMP_LV2 & SPEED_BOOST & STUPID)
+    )
+    & (CARROT_BOMB | (CARROT_SHOOTER & BOOST) | BLOCK_CLIP)
+",
 "exit_prereq": "NONE",
 }
 
@@ -826,13 +833,14 @@ DARKNESS & (
         (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) // you need to disable speed boost
         | (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP)
         | (WALL_JUMP_LV2 & AIR_JUMP)
-        | (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        | (WALL_JUMP & BUNNY_WHIRL & ADVANCED)
         | (BUNNY_WHIRL & AIR_JUMP & RABI_SLIPPERS & ADVANCED)
         | (BUNNY_WHIRL & STUPID)
     )",
 "exit_prereq": "
     WATER_ORB & (
         WALL_JUMP_LV2
+        | (RABI_SLIPPERS & AIR_DASH_LV3 & ADVANCED)
         | (AIR_JUMP & (
             WALL_JUMP
             | RABI_SLIPPERS
@@ -867,7 +875,7 @@ DARKNESS & (
         (WALL_JUMP_LV2 & RABI_SLIPPERS & ADVANCED) // you need to disable speed boost
         | (WALL_JUMP & RABI_SLIPPERS & AIR_JUMP)
         | (WALL_JUMP_LV2 & AIR_JUMP)
-        | (WALL_JUMP_LV2 & BUNNY_WHIRL & ADVANCED)
+        | (WALL_JUMP & BUNNY_WHIRL & ADVANCED)
         | (BUNNY_WHIRL & AIR_JUMP & RABI_SLIPPERS & ADVANCED)
         | (BUNNY_WHIRL & STUPID)
     )",
@@ -905,7 +913,7 @@ DARKNESS & (
 {
 "location": "MP_UP_ICY_SUMMIT",
 "accessibility": "near",
-"entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP) | RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | (BUNNY_WHIRL & ADVANCED)",
+"entry_prereq": "SLIDING_POWDER | (HAMMER_ROLL_LV3 & ZIP) | RABI_SLIPPERS | AIR_JUMP | WALL_JUMP | (BUNNY_WHIRL & ADVANCED) | (SPEED_BOOST & STUPID)",
 "exit_prereq": "NONE",
 }
 
@@ -1160,7 +1168,7 @@ DARKNESS
 "location": "SLIDING_POWDER",
 "accessibility": "mid",
 "entry_prereq": "ADVANCED | CARROT_BOMB | CARROT_SHOOTER | SLIDING_POWDER",
-"exit_prereq": "SLIDING_POWDER | (AIR_JUMP & WALL_JUMP_LV2) | (AIR_JUMP & RABI_SLIPPERS & SPEED_BOOST)",
+"exit_prereq": "SLIDING_POWDER | (AIR_JUMP & WALL_JUMP_LV2) | (AIR_JUMP & (RABI_SLIPPERS | BUNNY_STRIKE) & SPEED_BOOST & ADVANCED)",
 }
 
 {
@@ -1827,7 +1835,7 @@ SLIDING_POWDER & DARKNESS &
 {
 "location": "EGG_PARK_GREEN_KOTRI",
 "accessibility": "near",
-"entry_prereq": "(RABI_SLIPPERS & STUPID) | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH",
+"entry_prereq": "(RABI_SLIPPERS & STUPID) | (RABI_SLIPPERS & BUNNY_STRIKE & ADVANCED) | (BUNNY_WHIRL & ADVANCED) | AIR_JUMP | AIR_DASH",
 "exit_prereq": "NONE",
 }
 
@@ -1953,7 +1961,12 @@ SLIDING_POWDER & DARKNESS &
 {
 "location": "EGG_EVERNIGHT_SAYA",
 "accessibility": "mid",
-"entry_prereq": "STUPID | ((BUNNY_WHIRL | BUNNY_STRIKE) & ADVANCED) | AIR_JUMP",
+"entry_prereq": "
+    STUPID
+    | AIR_JUMP
+    | ((BUNNY_WHIRL | BUNNY_STRIKE) & ADVANCED)
+    | ((AIR_DASH_LV3 | (AIR_DASH & SPEED_BOOST & ADVANCED)) & RABI_SLIPPERS)
+",
 "exit_prereq": "NONE",
 }
 

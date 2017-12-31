@@ -131,3 +131,6 @@ Minor changes have been made to prevent the player from being permanently stuck.
   
 These map changes can be turned off by the "No Fixes" (--no-fixes) option.
 
+### Rabi-Ribi Platforming Tricks Tutorial
+For those interested in learning some of the more advanced tricks used in Randomizer / Speedruns, there is a tutorial map showcasing most of the platforming tricks we use.
+* More information can be found here: [Platforming Tricks Tutorial](https://wcko87.github.io/rabi-ribi-maps/maps/platforming_tricks_tutorial/)

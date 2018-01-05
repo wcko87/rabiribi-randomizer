@@ -890,6 +890,9 @@ def apply_fixes_for_randomizer(areaid, data):
         for y in range(186,189):
             data.tiledata_event[xy_to_index(310,y)] = 0
 
+    if areaid == 8:
+        data.tiledata_event = [0 if x==42 else x for x in data.tiledata_event]
+
 def apply_super_attack_mode(areaid, data):
     # area 0 only.
     if areaid != 0: return

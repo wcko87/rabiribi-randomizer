@@ -31,6 +31,7 @@ def parse_args():
     args.add_argument('--no-laggy-backgrounds', action='store_true', help='Don\'t include laggy backgrounds in background shuffle.')
     args.add_argument('--no-difficult-backgrounds', action='store_true', help='Don\'t include backgrounds in background shuffle that interfere with visibility.')
     args.add_argument('--super-attack-mode', action='store_true', help='Start the game with a bunch of attack ups, so you do lots more damage.')
+    args.add_argument('--hyper-attack-mode', action='store_true', help='Like Super Attack Mode, but with 35 attack ups.')
     args.add_argument('--hide-unreachable', action='store_true', help='Hide list of unreachable items. Affects seed.')
     args.add_argument('--hide-difficulty', action='store_true', help='Hide difficulty rating. Affects seed.')
     args.add_argument('--egg-goals', action='store_true', help='Egg goals mode. Hard-to-reach items are replaced with easter eggs. All other eggs are removed from the map.')
@@ -893,12 +894,10 @@ def apply_fixes_for_randomizer(areaid, data):
     if areaid == 8:
         data.tiledata_event = [0 if x==42 else x for x in data.tiledata_event]
 
-def apply_super_attack_mode(areaid, data):
+def apply_super_attack_mode(areaid, data, ATTACK_UP_COUNT=20):
     # area 0 only.
     if areaid != 0: return
     
-    ATTACK_UP_COUNT = 20
-
     # EV_MOVEDOWN event to move erina down to start position
     data.tiledata_event[xy_to_index(111,43)] = 554
 
@@ -936,7 +935,7 @@ def apply_super_attack_mode(areaid, data):
 
 
 
-def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, no_difficult_backgrounds, super_attack_mode):
+def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, no_difficult_backgrounds, super_attack_mode, hyper_attack_mode):
     # apply rando fixes
     if apply_fixes:
         for areaid, data in mod.stored_datas.items():
@@ -953,7 +952,11 @@ def pre_modify_map_data(mod, apply_fixes, shuffle_music, shuffle_backgrounds, no
         backgroundrandomizer.shuffle_backgrounds(mod.stored_datas, no_laggy_backgrounds, no_difficult_backgrounds)
 
     # super attack mode
-    if super_attack_mode:
+    if hyper_attack_mode:
+        for areaid, data in mod.stored_datas.items():
+            apply_super_attack_mode(areaid, data, ATTACK_UP_COUNT=35)
+        print('Hyper attack mode applied')
+    elif super_attack_mode:
         for areaid, data in mod.stored_datas.items():
             apply_super_attack_mode(areaid, data)
         print('Super attack mode applied')
@@ -975,7 +978,7 @@ def remove_non_goal_eggs(analyzer, assigned_locations, items, extra_eggs):
 def get_default_areaids():
     return list(range(10))
 
-def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to_map_files, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, no_difficult_backgrounds, super_attack_mode, apply_fixes, egg_goals, extra_eggs, hide_unreachable, hide_difficulty):
+def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to_map_files, shuffle_music, shuffle_backgrounds, no_laggy_backgrounds, no_difficult_backgrounds, super_attack_mode, hyper_attack_mode, apply_fixes, egg_goals, extra_eggs, hide_unreachable, hide_difficulty):
     if write_to_map_files and not os.path.isdir(output_dir):
         fail('Output directory %s does not exist' % output_dir)
 
@@ -1005,7 +1008,7 @@ def generate_randomized_maps(seed, source_dir, output_dir, config_file, write_to
     itemreader.grab_original_maps(source_dir, output_dir)
     print('Maps copied...')
     mod = itemreader.ItemModifier(areaids, source_dir=source_dir, no_load=True)
-    pre_modify_map_data(mod, apply_fixes=apply_fixes, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds, no_laggy_backgrounds=no_laggy_backgrounds, no_difficult_backgrounds=no_difficult_backgrounds, super_attack_mode=super_attack_mode)
+    pre_modify_map_data(mod, apply_fixes=apply_fixes, shuffle_music=shuffle_music, shuffle_backgrounds=shuffle_backgrounds, no_laggy_backgrounds=no_laggy_backgrounds, no_difficult_backgrounds=no_difficult_backgrounds, super_attack_mode=super_attack_mode, hyper_attack_mode=hyper_attack_mode)
     apply_item_specific_fixes(mod, assigned_locations)
 
     mod.clear_items()
@@ -1068,6 +1071,7 @@ if __name__ == '__main__':
             no_laggy_backgrounds=args.no_laggy_backgrounds,
             no_difficult_backgrounds=args.no_difficult_backgrounds,
             super_attack_mode=args.super_attack_mode,
+            hyper_attack_mode=args.hyper_attack_mode,
             apply_fixes=args.apply_fixes,
             egg_goals=args.egg_goals,
             extra_eggs=args.extra_eggs,

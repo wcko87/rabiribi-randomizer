@@ -68,6 +68,16 @@ def define_variables(item_names):
 def define_custom_items():
     # Generally used for items that require you to exit to the shop before you can fully utilize it
     return {
+        "CARROT_BOMB_ENTRY": {
+            "accessibility": "free",
+            "entry_prereq": "CARROT_BOMB",
+            "exit_prereq": "NONE",
+        },
+        "CARROT_SHOOTER_ENTRY": {
+            "accessibility": "free",
+            "entry_prereq": "CARROT_SHOOTER",
+            "exit_prereq": "NONE",
+        },
         "WALL_JUMP_LV2": {
             "accessibility": "free",
             "entry_prereq": "WALL_JUMP & SHOP",

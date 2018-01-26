@@ -1,3 +1,7 @@
+<meta content="Rabi-Ribi Randomizer" property="og:title">
+<meta content="article" property="og:type">
+<meta content="https://user-images.githubusercontent.com/27341392/29525297-bc4087d8-86c4-11e7-8c1a-235de711994d.gif" property="og:image">
+
 # Rabi-Ribi Randomizer
 
 ![Rabi-Ribi Randomizer](https://user-images.githubusercontent.com/27341392/29525297-bc4087d8-86c4-11e7-8c1a-235de711994d.gif)

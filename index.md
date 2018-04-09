@@ -204,7 +204,21 @@ In addition to the options offered in the UI, the randomization can be further c
   ##### EVENT_WARPS_REQUIRED
   Some events in the game warp you to other locations. This gives you access to new areas. See the event warps section below for more information. Turning on this flag means you might be required to use these warps to obtain the required items.
 
-  ### To Shuffle List
+### Addtional Items List
+
+* The next part of the config file is the `additional_items` list.
+  ```
+  "additional_items": [
+      "SPEED_BOOST",
+      "SOUL_HEART",
+      ...
+      "COCOA_BOMB",
+  ],
+  ```
+  These additional items will be added into the item shuffle (and replace eggs). These usually means that there are two ways to obtain these items - by picking them up or by their original method (e.g. you can either pick up a cocoa bomb, or buy one from Cocoa).
+
+
+### To Shuffle List
 
 * The next part of the config file is the `to_shuffle` list.
   ```
@@ -217,7 +231,6 @@ In addition to the options offered in the UI, the randomization can be further c
   ]
   ```
   Only the items listed in this list will be shuffled. All other items will remain in their original locations.
-
 
 ### Must be Reachable List
 

@@ -254,11 +254,10 @@ Minor changes have been made to prevent the player from being permanently stuck.
 These map changes can be turned off by the "No Fixes" (--no-fixes) option.
 
 ### Removal of Autosaves
-* At the entrace to Cocoa1, the save point has been removed, and the autosave point has been moved to the top of the ledge.
-* The save point at the sliding powder location in exotic laboratory has been removed.
-* Warp Stones are active from the start, instead of only after viewing the cutscene one room after the ribbon fight.
-  * This means that you no longer need to walk right after fighting ribbon, and can go straight back to the warp.
-  * This prevents a softlock when Rabi Slippers or Air Jump is picked up before the cutscene, disabling the cutscene and leaving you stuck in Spectral Cave without the ability to warp out.
+* Autosave/save point at the entrance to Cocoa1 has been moved to the top of the ledge.
+* Save point at sliding powder location has been removed.
+* Autosave under chaos rod location has been removed.
+* Autosave at air dash location has been removed.
 
 
 ### Event Warps
@@ -277,6 +276,15 @@ To fix this, we make some changes to the maps to allow you to repeat these event
 1. There is a door in starting forest. Using that door sends you to a room where you can re-fight the forest UPRPRC battle if you have already met the pre-conditions (Ribbon) for it. This sends you to beach again.
 2. After beating Cicini, you can enter a hidden room behind her boss arena, which has a warp to ravine.
 3. There is a strange door in town that can be used to manually trigger the cutscene that warps you to riverbank (if you have already met the pre-conditions for the cutscene).
+
+
+### Other Changes
+
+* Warp Stones are active from the start, instead of only after viewing the cutscene one room after the ribbon fight.
+  * This means that you no longer need to walk right after fighting ribbon, and can go straight back to the warp.
+  * This prevents a softlock when Rabi Slippers or Air Jump is picked up before the cutscene, disabling the cutscene and leaving you stuck in Spectral Cave without the ability to warp out.
+* The low% spring at crisis boost location has been removed.
+* The prologue trigger to the left of the warp stone after defeating Cocoa1 and Ribbon has been removed.
 
 
 ## Rabi-Ribi Platforming Tricks Tutorial

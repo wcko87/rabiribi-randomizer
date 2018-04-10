@@ -14,7 +14,7 @@ This program shuffles item and egg locations (among other things) around in Rabi
 What the randomizer can currently randomize:
 * Item and egg locations
 * Map transitions
-* Random Obstacles (constraint randomization)
+* Obstacles (constraint randomization)
 * Music triggers
 * Backgrounds
 
@@ -75,7 +75,7 @@ If Egg Goals mode is turned off, the randomizer will mark some items (default: 5
 
 Note that because the entire game is completable on 0%, completing the game on randomized maps isn't much of a challenge.
 
-However, if constraint randomization or map transition shuffle are turned on, it is possible that the game may end up uncompletable (either by having too many unreachable bosses or by having rabi rabi town unreachable). Having a mode that ensures the game is always completable will be supported in the near future.
+However, if constraint randomization or map transition shuffle are turned on, it is possible that the game may end up uncompletable (either by having too many unreachable bosses or by having Rabi Rabi Town unreachable). Having a mode that ensures the game is always completable will be supported in the near future.
 
 
 ## Randomizer Options
@@ -86,7 +86,7 @@ Item randomization is always on by default. Only items in the `to_shuffle` list 
 #### Shuffle Map Transitions
 * `--shuffle-map-transitions`
 
-This mode shuffles the 13 map transition in Rabi-Ribi. For example, walking left from starting forest may cause you to end up in the right side of natural aquarium.
+This mode shuffles the 13 map transitions in Rabi-Ribi. For example, walking left from starting forest may cause you to end up in the right side of natural aquarium.
 
 Shuffling map transitions can sometimes make entire areas unreachable (including Rabi Rabi Town).
 
@@ -162,8 +162,33 @@ In addition to the options offered in the UI, the randomization can be further c
 
 ### Difficulty and Knowledge
 
-* `ADVANCED_TRICKS_REQUIRED`: There are many tricks in the game that requires advanced knowledge of how the game works to perform. Turning off this flag removes the need for some of the more advanced tricks to obtain all the required items.
-  * `STUPID_HARD_TRICKS`: There are some tricks that we consider ridiculous, even for speedrunners. Keeping this flag off removes the need for any of these tricks to be performed. We recommend keeping this off to preserve sanity.
+The knowledge and difficulty settings influences the minimum required knowledge/platforming ability required to clear the randomizer seed (obtain the required items).
+
+Here are the commonly played settings:
+* `BASIC`+`NORMAL` is recommended for most players.
+* `INTERMEDIATE`+`HARD` is recommended for players who are familiar with the advanced platforming tricks used in the game.
+* `ADVANCED`+`HARD` is the commonly played setting by speedrunners.
+* `ADVANCED`+`V_HARD` is rarely played.
+`STUPID` is never used.
+
+##### Knowledge
+
+Knowledge can be `BASIC`, `INTERMEDIATE` or `ADVANCED`.
+
+There are many tricks in the game that requires advanced knowledge of how the game works to perform.
+* `BASIC` is recommended for anyone not familiar with speedrunning tricks used in Rabi-Ribi.
+* `INTERMEDIATE` is recommended for players who are already very familiar with the advanced speedrunning tricks used in Rabi-Ribi.
+* `ADVANCED` tricks require extremely specific knowledge, and is not recommended unless you are always keeping up to date with the very specific tricks used to get into certain areas in the game.
+
+##### Difficulty
+
+Difficulty can be `NORMAL`, `HARD`, `V_HARD` or `STUPID`.
+
+Some tricks in Rabi-Ribi can be very difficult to execute. This flag determines the minimum execution ability required to complete the seed.
+* `NORMAL` is recommended for most players. There are many tight jumps which are still labeled as `NORMAL`.
+* `HARD` involves some tricks that are very tight, and can be difficult to execute even for experienced players. However, these tricks are still reasonable.
+* `V_HARD` involves tricks that can be quite unreasonable to be expected to execute (i.e. borderline stupid), but some people still do them anyway.
+* `STUPID` refers to tricks that no one wants to do, ever. This often refers to tricks that have only been performed successfully once, just to prove that it is possible.
 
 
 ### Settings

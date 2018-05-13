@@ -312,6 +312,12 @@ To fix this, we make some changes to the maps to allow you to repeat these event
 * The prologue trigger to the left of the warp stone after defeating Cocoa1 and Ribbon has been removed.
 
 
-## Rabi-Ribi Platforming Tricks Tutorial
-For those interested in learning some of the more advanced tricks used in Randomizer / Speedruns, there is a tutorial map showcasing most of the platforming tricks we use.
-* More information can be found here: [Platforming Tricks Tutorial](https://wcko87.github.io/rabi-ribi-maps/maps/platforming_tricks_tutorial/)
+## Learning Tricks for Randomizer
+#### [Rabi-Ribi Platforming Tricks Tutorial](https://wcko87.github.io/rabi-ribi-maps/maps/platforming_tricks_tutorial/)
+A tutorial map / video explaining most the (basic/intermediate/advanced) platforming tricks used in Randomizer / Speedruns.
+
+#### [Randomizer Gif Collection](https://wcko87.github.io/rabi-ribi-guides/randomizer_tricks)
+A collection of gifs of specific trick jumps used in Randomzier
+
+#### [Randomizer Constraints](https://github.com/wcko87/revised-rabi-ribi-randomizer/blob/master/README.md#checking-constraints)
+The Randomizer constraints files show the exact item requirements to get from one place to another in Rabi-Ribi. These are the files used by the Randomizer itself to generate the seeds.

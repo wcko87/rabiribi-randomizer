@@ -309,7 +309,7 @@ To fix this, we make some changes to the maps to allow you to repeat these event
   * This means that you no longer need to walk right after fighting ribbon, and can go straight back to the warp.
   * This prevents a softlock when Rabi Slippers or Air Jump is picked up before the cutscene, disabling the cutscene and leaving you stuck in Spectral Cave without the ability to warp out.
 * The low% spring at crisis boost location has been removed.
-* The prologue trigger to the left of the warp stone after defeating Cocoa1 and Ribbon has been removed.
+* The prologue trigger to the right of the starting forest warp stone after defeating Cocoa1 and Ribbon has been removed.
 
 
 ## Learning Tricks for Randomizer

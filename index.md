@@ -29,12 +29,8 @@ The Randomizer is not the work of one person. It is a collaborative effort of th
 
 ## Download
 The following download links are automatically updated with the latest changes to the randomizer.
-* [**Download** *(Randomizer with UI)*](https://ci.appveyor.com/project/wcko87/rabiribi-randomizer-ui-rc94b/build/artifacts)
-   - **randomizer-ui.zip** is the stable version of the randomizer.
-   - **randomizer-ui-dev.zip** is the development version of the randomizer and may contain new untested features. Use at your own risk.
-* [**Download** *(command line tool, main branch)*](https://ci.appveyor.com/project/wcko87/revised-rabi-ribi-randomizer/build/artifacts?branch=master)
-* [**Download** *(command line tool, development branch)*](https://ci.appveyor.com/project/wcko87/revised-rabi-ribi-randomizer/build/artifacts?branch=dev)
-
+* [**Download** *(Randomizer with UI)*](https://github.com/AzureHakua/rabiribi-randomizer-ui/releases/tag/rel)
+* [**Download** *(command line tool)*](https://github.com/wcko87/revised-rabi-ribi-randomizer/releases/tag/rel)
 
 The randomizer is written in Python, the UI is written in C#/WPF.
 * [**Source code** *(randomizer)*](https://github.com/wcko87/revised-rabi-ribi-randomizer)
